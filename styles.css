@@ -1085,3 +1085,22 @@
 #take-off-your-plate .plate-service.is-active .plate-icon,
 #take-off-your-plate .plate-service:hover .plate-icon { background: #e4b76a; color: #15372f; }
 #take-off-your-plate .plate-visual-note { color: #f0c77f; }
+
+/* GulfSufra services-only background update (2026-10-12).
+   Preserve the original boxed section, cards, mascot, and all other sections. */
+#services .services-bg {
+  background-image: url('/assets/services-golden-terrace.png');
+  background-position: center center;
+  background-size: cover;
+}
+#services .services-bg::before {
+  background: linear-gradient(90deg, rgba(255,248,232,.73) 0%, rgba(255,247,231,.52) 45%, rgba(255,247,231,.06) 100%);
+}
+#services .services-bg::after {
+  background: linear-gradient(180deg, rgba(255,248,232,.08) 0%, rgba(255,248,232,0) 48%, rgba(30,38,28,.12) 100%);
+}
+#services .services-heading h2 { color: #10372f; }
+#services .services-heading h2 span { color: #ad7229; }
+#services .services-heading .kicker { color: #9b6524; }
+#services .services-heading .kicker::before { background: #9b6524; }
+#services .services-heading > p:last-child { color: #29443a; }
