@@ -1104,3 +1104,13 @@
 #services .services-heading .kicker { color: #9b6524; }
 #services .services-heading .kicker::before { background: #9b6524; }
 #services .services-heading > p:last-child { color: #29443a; }
+
+/* GulfSufra logo: remove unwanted rectangular frame without altering artwork. */
+.nav .logo, .nav .logo img, .site-footer .footer-brand img {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.nav .logo { border-radius: 0; }
+.nav .logo:focus-visible { outline: 2px solid #d9aa59 !important; outline-offset: 5px !important; }
