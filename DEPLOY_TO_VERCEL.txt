@@ -1,0 +1,7 @@
+Vercel project settings:
+Framework Preset: Vite
+Root Directory: ./ (project files are at ZIP root)
+Build Command: npm run build
+Output Directory: dist
+
+The vercel.json rewrite enables direct visits and refreshes of React Router routes such as /services.
