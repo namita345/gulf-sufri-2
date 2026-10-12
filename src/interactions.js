@@ -31,7 +31,7 @@ const plateRows=[...document.querySelectorAll('.plate-service')];
 const plateBubble=document.querySelector('#plate-bubble-text');
 const plateSufri=document.querySelector('.plate-sufri');
 const plateLines={website:'Let’s give your restaurant a website worth visiting.',menu:'Your menu deserves to look as good as your food.',social:'Let’s give people a reason to crave your food.',google:'Let’s help hungry customers find you.',support:'You focus on the kitchen. I’ll watch over the digital side.'};
-const platePoses={website:'/assets/sufri-presenting.png',menu:'/assets/sufri-thinking.png',social:'/assets/sufri-presenting.png',google:'/assets/sufri-approval.png',support:'/assets/sufri-thinking.png'};
+const platePoses={website:'/assets/sufri-presenting.webp',menu:'/assets/sufri-thinking.webp',social:'/assets/sufri-presenting.webp',google:'/assets/sufri-approval.webp',support:'/assets/sufri-thinking.webp'};
 function activatePlateRow(row){plateRows.forEach(item=>{const active=item===row;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});if(plateSufri){const next=platePoses[row.dataset.plateService]||plateSufri.dataset.defaultSrc;if(plateSufri.getAttribute('src')!==next){plateSufri.style.opacity='0';window.setTimeout(()=>{plateSufri.setAttribute('src',next);plateSufri.style.opacity='1';},140);}}if(plateBubble){plateBubble.style.opacity='0';window.setTimeout(()=>{plateBubble.textContent=plateLines[row.dataset.plateService]||plateLines.website;plateBubble.style.opacity='1';},120);}}
 plateRows.forEach(row=>{row.addEventListener('mouseenter',()=>activatePlateRow(row));row.addEventListener('focus',()=>activatePlateRow(row));row.addEventListener('click',()=>activatePlateRow(row));});
 
