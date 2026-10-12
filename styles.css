@@ -1153,3 +1153,40 @@
 /* Minimal crisp chevron for Services menu */
 .nav .nav-chevron { display:inline-block; width:7px; height:7px; font-size:0; line-height:0; border-right:1.7px solid currentColor; border-bottom:1.7px solid currentColor; transform:rotate(45deg) translateY(-2px); margin-left:3px; transition:transform .2s ease; }
 .nav-services:hover .nav-chevron, .nav-services:focus-within .nav-chevron { transform:rotate(225deg) translateY(-1px); }
+
+/* Services dropdown only — polished illustrated-menu styling */
+.nav .nav-chevron {
+  width:8px; height:8px; border-width:0 1.8px 1.8px 0;
+  color:#E8AF61; margin-left:5px;
+}
+.nav .services-trigger { gap:5px; }
+.nav .services-dropdown {
+  left:-30px; top:calc(100% - 1px); width:410px; padding:12px 18px;
+  background:linear-gradient(135deg,rgba(4,38,32,.99),rgba(6,45,38,.98));
+  border:1px solid rgba(232,175,97,.68); border-radius:20px;
+  box-shadow:0 22px 55px rgba(0,0,0,.32);
+}
+.nav .services-dropdown::before {
+  content:""; position:absolute; top:-8px; left:89px; width:14px; height:14px;
+  background:#062b24; border-left:1px solid rgba(232,175,97,.68);
+  border-top:1px solid rgba(232,175,97,.68); transform:rotate(45deg);
+}
+.nav .services-dropdown a.service-menu-item {
+  display:flex; align-items:center; gap:15px; padding:14px 8px;
+  border-radius:9px; color:#fff; text-decoration:none;
+}
+.nav .services-dropdown a.service-menu-item + a.service-menu-item {border-top:1px solid rgba(255,255,255,.13);border-radius:0}
+.nav .services-dropdown a.service-menu-item:hover,.nav .services-dropdown a.service-menu-item:focus-visible {background:rgba(232,175,97,.08)}
+.service-menu-icon {width:48px;height:48px;flex:0 0 48px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(232,175,97,.55);border-radius:15px;color:#E8AF61;background:rgba(232,175,97,.04)}
+.service-menu-copy {display:flex;flex:1;flex-direction:column;gap:5px;min-width:0}
+.nav .services-dropdown .service-menu-copy strong {font-size:16px;line-height:1.2;font-weight:600;color:#fff}
+.nav .services-dropdown .service-menu-copy small {font-size:12px;line-height:1.4;font-weight:400;color:#91b0a8}
+.service-menu-arrow {font-size:31px;line-height:1;color:#E8AF61;font-weight:300;padding:0 5px}
+@media(max-width:950px){
+ .nav .services-dropdown {width:100%;padding:7px 10px;box-shadow:none;border-radius:12px;position:static}
+ .nav .services-dropdown::before {display:none}
+ .nav .services-dropdown a.service-menu-item {padding:11px 5px}
+ .service-menu-icon {width:40px;height:40px;flex-basis:40px;border-radius:11px}
+ .nav .services-dropdown .service-menu-copy strong {font-size:14px}
+ .nav .services-dropdown .service-menu-copy small {font-size:11px}
+}
