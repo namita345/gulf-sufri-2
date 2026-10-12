@@ -1190,3 +1190,20 @@
  .nav .services-dropdown .service-menu-copy strong {font-size:14px}
  .nav .services-dropdown .service-menu-copy small {font-size:11px}
 }
+
+
+/* Hero-only technology logos — within existing hero, no new band */
+.hero-technologies{margin-top:42px;width:max-content;max-width:100%}
+.hero-technologies-label{margin:0 0 13px;color:#E8AF61;font-size:11px;font-weight:700;letter-spacing:.19em;text-transform:uppercase}
+.hero-technology-logos{display:flex;align-items:center;flex-wrap:wrap;column-gap:12px;row-gap:9px}
+.tech-logo{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;color:#f9f7ef;font-size:13px;font-weight:650;line-height:1}
+.tech-logo svg{width:20px;height:20px;flex:none}
+.tech-logo.tech-meta svg{width:24px}
+.tech-logo.tech-cloudflare svg{width:25px}
+.google-wordmark{font-weight:700;font-size:17px;letter-spacing:-.8px}
+.google-wordmark span:nth-child(1),.google-wordmark span:nth-child(4){color:#4285F4}
+.google-wordmark span:nth-child(2),.google-wordmark span:nth-child(6){color:#EA4335}
+.google-wordmark span:nth-child(3){color:#FBBC05}
+.google-wordmark span:nth-child(5){color:#34A853}
+@media(max-width:1100px){.hero-technologies{margin-top:28px}.hero-technology-logos{column-gap:10px}.tech-logo{font-size:12px}}
+@media(max-width:700px){.hero-technologies{margin-top:24px;max-width:350px}.hero-technologies-label{font-size:9px;margin-bottom:10px}.hero-technology-logos{column-gap:10px;row-gap:9px}.tech-logo{font-size:11px}.tech-logo svg{width:17px;height:17px}.tech-logo.tech-meta svg{width:21px}.tech-logo.tech-cloudflare svg{width:22px}.google-wordmark{font-size:15px}}
