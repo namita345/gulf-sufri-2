@@ -90,7 +90,7 @@ export default function Home() {
 <span>Show up when hungry customers are looking for somewhere to eat.</span>
 <a href="#contact">Improve My Google Presence <i>→</i></a>
 </div>
-<div className="card-visual google-card-visual"><div className="google-mini"><b>G</b><strong>Your Restaurant</strong><span>4.8 ★★★★★</span><small>Restaurant · Open</small><div><em>⌖ Directions</em><em>⌕ Call</em><em>♡ Save</em></div></div></div>
+<div className="card-visual"><img alt="Google Business profile example" src="/assets/google-business-mockup.png"/></div>
 <div className="card-body"><span className="card-number">04</span><h3>Google Business</h3><p>Get found, build trust and bring more diners through your doors.</p><span className="card-arrow">→</span></div>
 </article>
 </div>
