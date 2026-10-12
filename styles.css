@@ -1344,3 +1344,46 @@
   #services .sufri-host {height:235px}
   #how-it-works .how-it-works-inner {padding-top:52px}
 }
+
+/* Scoped October refinements: requested hero and how-it-works adjustments only */
+@media (max-width:760px) {
+  /* Keep the existing boxed services design and its original terrace image. */
+  #services.services-showcase {padding:12px;background:#f7eee2;}
+  #services .services-bg {inset:12px !important;border-radius:17px !important;overflow:hidden;}
+  #services .services-content {width:calc(100% - 48px);}
+  /* Five partner logos remain on one compact line. */
+  .hero-technologies {width:100%;max-width:100%;}
+  .hero-technology-logos {display:flex;flex-wrap:nowrap;gap:clamp(3px,1.2vw,8px);width:100%;justify-content:space-between;}
+  .hero-technology-logos .tech-logo {font-size:clamp(8px,2.15vw,11px);gap:2px;min-width:0;}
+  .hero-technology-logos .tech-logo svg {width:clamp(12px,3vw,17px);height:clamp(12px,3vw,17px);}
+  .hero-technology-logos .tech-meta svg {width:clamp(15px,4vw,21px);}
+  .hero-technology-logos .tech-cloudflare svg {width:clamp(17px,4.4vw,22px);}
+  .hero-technology-logos .google-wordmark {font-size:clamp(11px,3vw,15px);}
+  /* Move hero dialogue to the left, keep it above the mascot, and restore gentle floating. */
+  .sufri-hero {animation:gulf-mobile-float 6.2s ease-in-out infinite;}
+  .sufri-hero .bubble {left:2%;right:auto;top:0;width:min(190px,70%);}
+  .sufri-hero .bubble:before {left:22px;top:auto;bottom:-16px;border:9px solid transparent;border-top-color:#fff9ee;}
+}
+@keyframes gulf-mobile-float {0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+/* How it works: number, then dialogue + larger Sufri, then copy; same order on all screens. */
+#how-it-works .how-step {display:flex;flex-direction:column;align-items:stretch;}
+#how-it-works .how-step-number {order:0;position:relative;top:auto;left:auto;grid-column:auto;grid-row:auto;margin:0 0 9px 10px;flex:none;}
+#how-it-works .how-step-media {order:1;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-top:48px;height:270px;min-height:0;grid-row:auto;}
+#how-it-works .how-step-media img {width:100%;height:100%;max-width:none;object-fit:contain;object-position:center bottom;}
+#how-it-works .how-speech {left:50%;right:auto;top:4px;transform:translateX(-50%);max-width:94%;}
+#how-it-works .how-step-body {order:2;grid-column:auto;grid-row:auto;padding:13px 12px 16px;}
+#how-it-works .how-step-icon {display:none !important;}
+@media (min-width:761px) {
+  #how-it-works .how-step-media {height:275px;}
+  #how-it-works .how-step-number {margin:0 0 7px 12px;}
+  #how-it-works .how-step-body {padding:14px 12px 12px;}
+}
+@media (max-width:760px) {
+  #how-it-works .how-step {display:flex;flex-direction:column;align-items:stretch;overflow:hidden;}
+  #how-it-works .how-step-number {position:relative;top:auto;left:auto;margin:17px 0 8px 18px;width:44px;height:44px;}
+  #how-it-works .how-step-media {height:260px;padding-top:53px;width:100%;overflow:visible;}
+  #how-it-works .how-step-media img {height:100%;width:100%;max-width:100%;object-fit:contain;object-position:center bottom;}
+  #how-it-works .how-speech {top:5px;left:50%;right:auto;transform:translateX(-50%);max-width:90%;}
+  #how-it-works .how-step-body {padding:14px 20px 23px;}
+}
+@media (prefers-reduced-motion:reduce) {.sufri-hero {animation:none !important;}}

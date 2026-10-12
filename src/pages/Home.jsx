@@ -135,19 +135,19 @@ export default function Home() {
 </div>
 <div className="how-steps">
 <article className="how-step">
-<div className="how-step-media"><div className="how-speech">First, tell me about your restaurant!</div><img alt="Welcoming Sufri inviting restaurant owners to get started" src="/assets/sufri-neutral.webp"/></div>
 <span className="how-step-number">01</span>
-<div className="how-step-body"><span aria-hidden="true" className="how-step-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 5.5h14v9H8l-3 3v-12Z"></path><path d="M8 9h8M8 12h5"></path></svg></span><h3>Tell Us About<br/>Your Restaurant</h3><p>We learn about your restaurant, your goals, your customers and what you need.</p></div>
+<div className="how-step-media"><div className="how-speech">First, tell me about your restaurant!</div><img alt="Welcoming Sufri inviting restaurant owners to get started" src="/assets/sufri-neutral.webp"/></div>
+<div className="how-step-body"><h3>Tell Us About<br/>Your Restaurant</h3><p>We learn about your restaurant, your goals, your customers and what you need.</p></div>
 </article>
 <article className="how-step">
-<div className="how-step-media"><div className="how-speech">Leave the digital side to me.</div><img alt="Sufri presenting a restaurant website and digital setup" src="/assets/sufri-website.webp"/></div>
 <span className="how-step-number">02</span>
-<div className="how-step-body"><span aria-hidden="true" className="how-step-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19 12a7 7 0 0 0-.2-1.7l1.6-1.2-1.7-2.9-1.9.8A7 7 0 0 0 15.3 6L15 4h-3l-.3 2a7 7 0 0 0-1.5 1l-1.9-.8-1.7 2.9 1.6 1.2A7 7 0 0 0 8 12c0 .6.1 1.2.2 1.7l-1.6 1.2 1.7 2.9 1.9-.8a7 7 0 0 0 1.5 1l.3 2h3l.3-2a7 7 0 0 0 1.5-1l1.9.8 1.7-2.9-1.6-1.2c.1-.5.2-1.1.2-1.7Z"></path></svg></span><h3>We Build &amp; Set<br/>Everything Up</h3><p>Website, menu, social presence, Google Business and whatever else your restaurant needs.</p></div>
+<div className="how-step-media"><div className="how-speech">Leave the digital side to me.</div><img alt="Sufri presenting a restaurant website and digital setup" src="/assets/sufri-website.webp"/></div>
+<div className="how-step-body"><h3>We Build &amp; Set<br/>Everything Up</h3><p>Website, menu, social presence, Google Business and whatever else your restaurant needs.</p></div>
 </article>
 <article className="how-step">
-<div className="how-step-media"><div className="how-speech">You focus on the food. I’ll handle the rest!</div><img alt="Confident Sufri showing that the digital side is taken care of" src="/assets/sufri-approval.webp"/></div>
 <span className="how-step-number">03</span>
-<div className="how-step-body"><span aria-hidden="true" className="how-step-icon"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M8 11.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM16.5 12.5a3 3 0 1 0 0-6M3.5 20c.5-3 2.2-5 4.5-5s4 2 4.5 5M13 20c.4-2.2 1.7-3.7 3.5-3.7 2 0 3.2 1.5 3.8 3.7"></path></svg></span><h3>You Focus on<br/>the Food</h3><p>We keep your digital presence looking good, working properly and ready to bring you more customers.</p></div>
+<div className="how-step-media"><div className="how-speech">You focus on the food. I’ll handle the rest!</div><img alt="Confident Sufri showing that the digital side is taken care of" src="/assets/sufri-approval.webp"/></div>
+<div className="how-step-body"><h3>You Focus on<br/>the Food</h3><p>We keep your digital presence looking good, working properly and ready to bring you more customers.</p></div>
 </article>
 </div>
 </div>
