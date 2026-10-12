@@ -1149,3 +1149,7 @@
  .nav .services-dropdown a {font-size:13px;padding:9px}
  .nav-right {display:none}
 }
+
+/* Minimal crisp chevron for Services menu */
+.nav .nav-chevron { display:inline-block; width:7px; height:7px; font-size:0; line-height:0; border-right:1.7px solid currentColor; border-bottom:1.7px solid currentColor; transform:rotate(45deg) translateY(-2px); margin-left:3px; transition:transform .2s ease; }
+.nav-services:hover .nav-chevron, .nav-services:focus-within .nav-chevron { transform:rotate(225deg) translateY(-1px); }

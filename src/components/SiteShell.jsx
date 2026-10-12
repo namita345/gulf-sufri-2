@@ -17,7 +17,7 @@ export function Header(){
     <nav id="main-navigation" className={mobileOpen?'nav-open':''} aria-label="Main navigation">
       <Link className={isActive('/')?'nav-active':''} aria-current={isActive('/')?'page':undefined} to="/">Home</Link>
       <div className="nav-services">
-        <Link className={isActive('/services')?'nav-active services-trigger':'services-trigger'} aria-current={isActive('/services')?'page':undefined} to="/services">Services <span className="nav-chevron" aria-hidden="true">⌄</span></Link>
+        <Link className={isActive('/services')?'nav-active services-trigger':'services-trigger'} aria-current={isActive('/services')?'page':undefined} to="/services">Services <span className="nav-chevron" aria-hidden="true" /></Link>
         <div className="services-dropdown">
           <div className="dropdown-heading">WHAT WE DO</div>
           {services.map(([name,slug],index)=><Link key={slug} to={'/services#'+slug}><span className="dropdown-number">0{index+1}</span><span>{name}</span><span className="dropdown-arrow" aria-hidden="true">↗</span></Link>)}
