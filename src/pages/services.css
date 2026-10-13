@@ -89,3 +89,23 @@
 @media(max-width:900px){.gs-sv-v2 .gs-sv-hero h1{font-size:clamp(35px,4.7vw,52px)}.gs-sv-v2 .gs-sv-hero h1 em{font-size:clamp(30px,4vw,45px)}.gs-sv-service-mascot{width:130px;right:-8px}.gs-sv-mascot-bubble{width:140px}}
 @media(max-width:640px){.gs-sv-v2 .gs-sv-hero-inner{grid-template-columns:minmax(0,1fr)}.gs-sv-v2 .gs-sv-hero h1{font-size:clamp(34px,8.7vw,49px);letter-spacing:-.035em}.gs-sv-v2 .gs-sv-hero h1 em{font-size:clamp(29px,7.3vw,42px);line-height:1.2}.gs-sv-v2 .gs-sv-feature-art{margin-bottom:72px}.gs-sv-service-mascot,.gs-sv-v2 .gs-sv-reverse .gs-sv-service-mascot{width:clamp(120px,36vw,165px);right:4px;left:auto;bottom:-70px;transform:translate3d(35px,-25px,0) scale(.9)}.gs-sv-v2 .gs-sv-reverse .gs-sv-service-mascot.is-visible{transform:translate3d(0,0,0) scale(1)}.gs-sv-mascot-bubble{right:78%;bottom:42%;width:clamp(125px,39vw,165px);font-size:11px}.gs-sv-v2 .gs-sv-feature-copy{position:relative;z-index:1}}
 @media(prefers-reduced-motion:reduce){.gs-sv-service-mascot,.gs-sv-mascot-bubble{transition:none!important;transform:none!important}.gs-sv-service-mascot.is-visible img{animation:none!important}}
+
+/* 2026-10-13: precise hero typography and speech-bubble clearance only */
+.gs-sv-v2 .gs-sv-hero h1 em{font-style:normal;}
+/* Keep the entire speech bubble above Sufri rather than across his face. */
+.gs-sv-v2 .gs-sv-service-mascot .gs-sv-mascot-bubble{
+ top:auto;bottom:calc(100% + 12px);right:0;left:auto;
+ width:clamp(145px,15vw,205px);max-width:min(205px,70vw);
+}
+.gs-sv-v2 .gs-sv-reverse .gs-sv-service-mascot .gs-sv-mascot-bubble{
+ right:auto;left:0;
+}
+@media(max-width:900px){
+ .gs-sv-v2 .gs-sv-service-mascot .gs-sv-mascot-bubble{width:155px;max-width:155px;bottom:calc(100% + 9px)}
+}
+@media(max-width:640px){
+ .gs-sv-v2 .gs-sv-service-mascot .gs-sv-mascot-bubble,
+ .gs-sv-v2 .gs-sv-reverse .gs-sv-service-mascot .gs-sv-mascot-bubble{
+  left:auto;right:0;bottom:calc(100% + 8px);width:clamp(145px,44vw,180px);max-width:calc(100vw - 42px);
+ }
+}
