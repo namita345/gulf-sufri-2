@@ -9,6 +9,29 @@ const offerings=[
  {id:'social-media',n:'03',title:'Social Media',lead:'Make Them Hungry Before They Arrive.',copy:'Engaging content that showcases your food, atmosphere and unique story — and keeps your restaurant on top of mind.',image:'social-media-new.webp',items:['Custom content & post designs','Captions & hashtag strategy','Content calendar & scheduling','Reels, stories and promotions']},
  {id:'google-business',n:'04',title:'Google Business',lead:'Be the Restaurant They Find First.',copy:'We optimize your Google Business Profile to help you appear in local searches, attract more diners and build trust.',image:'google-business-new.webp',items:['Complete profile setup or optimization','Accurate information and menus','Photo updates & regular posts','Guidance on reviews and reputation']}
 ];
+const greetings=[
+ 'Ready to give your restaurant a website as amazing as your food?',
+ 'A beautiful menu, just a scan away. Shall we get started?',
+ 'Let’s make your restaurant the talk of the feed!',
+ 'Let’s help more hungry customers find you on Google!'
+];
+const mascotImages=['sufri-cta-new.webp','sufri-menu.webp','sufri-social.webp','sufri-google.webp'];
+function ServiceMascot({index}){
+ const ref=React.useRef(null);
+ const [visible,setVisible]=React.useState(false);
+ React.useEffect(()=>{
+  const node=ref.current;
+  if(!node)return;
+  if(!('IntersectionObserver' in window)){setVisible(true);return;}
+  const observer=new IntersectionObserver(([entry])=>setVisible(entry.isIntersecting),{threshold:0.22,rootMargin:'0px 0px -8% 0px'});
+  observer.observe(node);
+  return ()=>observer.disconnect();
+ },[]);
+ return <div ref={ref} className={'gs-sv-service-mascot'+(visible?' is-visible':'')} aria-label={'Sufri says: '+greetings[index]}>
+  <img src={A+mascotImages[index]} alt="" loading="lazy"/>
+  <div className="gs-sv-mascot-bubble">{greetings[index]}</div>
+ </div>;
+}
 const questions=[
  ['Can I get just one service or do I have to take a package?','You can choose just one service or combine several. We’ll recommend what suits your restaurant and goals.'],
  ['How long does it take to get started?','Once we understand what you need, we’ll discuss a timeline and the next steps with you.'],
@@ -22,7 +45,7 @@ export default function Services(){
  const recommendation={website:'Restaurant Websites',menu:'Digital Menus',google:'Google Business',social:'Social Media'};
  return <main className="gs-services gs-sv-v2">
  <section className="gs-sv-hero"><div className="gs-sv-hero-inner"><div className="gs-sv-hero-copy"><p className="gs-sv-kicker">OUR SERVICES</p><h1>You Make the Magic<br/>in the Kitchen.<br/><em>We Make It Happen Online.</em></h1><p>Beautiful websites, digital menus, social media and Google Business solutions — all designed to help your restaurant get noticed, bring in more diners and grow.</p><div className="gs-sv-actions"><a className="gs-sv-btn" href="#explore-services">Explore Our Services <span>→</span></a><a className="gs-sv-text-link" href="#how-it-works">▷ &nbsp; See How It Works</a></div></div><div className="gs-sv-hero-figure"><div className="gs-sv-speech">Your restaurant deserves to be seen. Let’s make it happen!</div><img src={A+'sufri-cta-new.webp'} alt="Sufri welcomes restaurant owners"/></div></div></section>
- <div className="gs-sv-offerings" id="explore-services">{offerings.map((s,i)=><section className={'gs-sv-feature '+(i%2?'gs-sv-reverse':'')} id={s.id} key={s.id}><div className="gs-sv-feature-art"><img src={A+s.image} alt={s.title+' visual example'} loading="lazy"/></div><div className="gs-sv-feature-copy"><span className="gs-sv-feature-number">{s.n} <span className="gs-sv-rule"/></span><h2>{s.title}</h2><h3>{s.lead}</h3><p>{s.copy}</p><div className="gs-sv-feature-list">{s.items.map(item=><span key={item}><i>✓</i>{item}</span>)}</div><Link className="gs-sv-btn" to="/contact">Learn More <span>→</span></Link></div></section>)}</div>
+ <div className="gs-sv-offerings" id="explore-services">{offerings.map((s,i)=><section className={'gs-sv-feature '+(i%2?'gs-sv-reverse':'')} id={s.id} key={s.id}><div className="gs-sv-feature-art"><img src={A+s.image} alt={s.title+' visual example'} loading="lazy"/><ServiceMascot index={i}/></div><div className="gs-sv-feature-copy"><span className="gs-sv-feature-number">{s.n} <span className="gs-sv-rule"/></span><h2>{s.title}</h2><h3>{s.lead}</h3><p>{s.copy}</p><div className="gs-sv-feature-list">{s.items.map(item=><span key={item}><i>✓</i>{item}</span>)}</div><Link className="gs-sv-btn" to="/contact">Learn More <span>→</span></Link></div></section>)}</div>
  <section className="gs-sv-recommend"><div className="gs-sv-recommend-figure"><img src={A+'sufri-cta-new.webp'} alt="Sufri helps you choose a service"/><div className="gs-sv-speech">Not sure where to start, Habibi? I got you!</div></div><div className="gs-sv-recommend-content"><h2>Find the Right Solution<br/>for Your Restaurant</h2><p>Tell me your biggest challenge and I’ll suggest the best place to start.</p><div className="gs-sv-options">{[['website','I need a website'],['menu','I need a digital menu'],['google','I want more visibility on Google'],['social','I want to grow on social media']].map(([v,t])=><button type="button" key={v} className={need===v?'active':''} onClick={()=>setNeed(v)}>{t}</button>)}</div><button type="button" className="gs-sv-btn" onClick={()=>{if(!need){setNeed('website');return;}document.getElementById('gs-sv-result')?.scrollIntoView({behavior:'smooth',block:'nearest'});}}>Show My Recommendation <span>→</span></button>{need&&<p id="gs-sv-result" className="gs-sv-result">A great place to start: <a href={'#'+({website:'restaurant-websites',menu:'digital-menus',google:'google-business',social:'social-media'}[need])}>{recommendation[need]} ↗</a></p>}</div></section>
  <section className="gs-sv-process" id="how-it-works"><div className="gs-sv-process-head"><div><p className="gs-sv-kicker">OUR PROCESS</p><h2>What Happens After You Say Hello?</h2></div><p>A simple, stress-free process — so you can focus on what you do best: great food.</p></div><div className="gs-sv-steps">{[
  ['01','Tell Us Your Goals','We learn about your restaurant, your vision and your customers.','sufri-cta-new.webp','Tell me about your restaurant!'],
