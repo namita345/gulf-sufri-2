@@ -40,6 +40,7 @@ export function Header(){
       <Link className={isActive('/about')?'nav-active':''} aria-current={isActive('/about')?'page':undefined} to="/about">About Us</Link>
       <Link className={isActive('/pricing')?'nav-active':''} aria-current={isActive('/pricing')?'page':undefined} to="/pricing">Pricing</Link>
       <Link className={isActive('/contact')?'nav-active':''} aria-current={isActive('/contact')?'page':undefined} to="/contact">Contact Us</Link>
+      <Link className="nav-mobile-cta" to="/contact">Get Started <span aria-hidden="true">→</span></Link>
     </nav>
     <div className="nav-right"><span>EN&nbsp; | &nbsp;عربي</span><Link className="btn gold" to="/contact">Get Started <i>→</i></Link></div>
   </header>

@@ -1402,38 +1402,146 @@
 @media(max-width:950px){.nav .services-dropdown-toggle{display:none}.nav-services .services-dropdown{pointer-events:auto}}
 
 
-/* GulfSufra shared glass navigation — 2026-10-14
-   Universal header appearance; navigation items, routes and footer preserved. */
+/* ==============================================================
+   GULFSUFRA — UNIVERSAL HEADER V2 (navigation only)
+   Refined after reviewing the Restaurant Websites hero and visual
+   reference: slimmer pill, deep emerald translucent glass, restrained
+   warm-gold accents, tighter typography and stable dropdown behavior.
+   Does not change Jinni's hero or any other page section.
+   ============================================================== */
 .nav.gulf-glass-nav{
- position:fixed;top:18px;left:50%;z-index:900;
- width:min(1440px,calc(100% - 56px));height:72px;
- transform:translateX(-50%);
- border-radius:999px;padding:8px 16px 8px 27px;
- background:linear-gradient(105deg,rgba(3,49,38,.90) 0%,rgba(3,66,49,.83) 48%,rgba(4,45,34,.91) 100%);
- border:1px solid rgba(244,204,126,.58);
- color:#fff9eb;
- backdrop-filter:blur(19px) saturate(160%);-webkit-backdrop-filter:blur(19px) saturate(160%);
- box-shadow:0 15px 42px rgba(2,41,29,.20),inset 0 1px 0 rgba(255,236,192,.3),inset 0 -1px 0 rgba(0,29,19,.3);
- transition:height .32s ease,top .32s ease,background .32s ease,box-shadow .32s ease,padding .32s ease;
+  position:fixed; z-index:900; top:18px; left:50%;
+  transform:translateX(-50%);
+  width:min(1380px,calc(100% - 64px)); height:66px;
+  padding:8px 14px 8px 24px; border-radius:999px;
+  display:grid; grid-template-columns:168px minmax(0,1fr) auto;
+  align-items:center; gap:12px;
+  color:#fff9eb;
+  background:linear-gradient(106deg,rgba(1,44,35,.94) 0%,rgba(2,58,44,.89) 51%,rgba(1,42,33,.95) 100%);
+  border:1px solid rgba(234,186,104,.43);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 14px 34px rgba(1,32,26,.19),inset 0 1px 0 rgba(254,227,174,.15);
+  transition:top .3s ease,height .3s ease,background .3s ease,box-shadow .3s ease;
 }
 .nav.gulf-glass-nav::before{
- content:"";position:absolute;inset:1px 30px auto 30px;height:1px;pointer-events:none;
- background:linear-gradient(90deg,transparent,rgba(255,239,187,.64),transparent);
+  content:""; position:absolute; pointer-events:none;
+  top:1px;left:5%;right:5%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(250,225,165,.36) 36%,rgba(255,240,202,.43) 58%,transparent);
 }
-.nav.gulf-glass-nav.gulf-nav-scrolled{top:9px;height:62px;background:linear-gradient(100deg,rgba(3,47,36,.96),rgba(4,66,49,.94) 55%,rgba(3,46,36,.97));box-shadow:0 12px 35px rgba(0,27,19,.3),inset 0 1px 0 rgba(255,239,196,.25)}
-.nav.gulf-glass-nav .logo img{width:182px;height:auto;max-height:56px;object-fit:contain}
-.nav.gulf-glass-nav nav{gap:clamp(14px,2vw,30px);font-size:14px}
-.nav.gulf-glass-nav nav>a,.nav.gulf-glass-nav .services-trigger{color:rgba(255,252,244,.93);font-weight:600}
-.nav.gulf-glass-nav nav>a:hover,.nav.gulf-glass-nav .services-trigger:hover,.nav.gulf-glass-nav nav .nav-active{color:#f0c779!important}
-.nav.gulf-glass-nav .nav-services{gap:2px}
-.nav.gulf-glass-nav .nav-right .gold{background:linear-gradient(115deg,#f7ce80,#e8ac50);color:#193328;border:1px solid rgba(254,235,181,.55);padding:13px 23px;box-shadow:0 7px 22px rgba(1,27,20,.18)}
-.nav.gulf-glass-nav .services-dropdown{top:calc(100% + 9px)}
-@media(max-width:1180px) and (min-width:951px){.nav.gulf-glass-nav{width:calc(100% - 38px);padding-inline:16px}.nav.gulf-glass-nav .logo img{width:151px}.nav.gulf-glass-nav nav{gap:14px;font-size:12px}.nav.gulf-glass-nav .nav-right{margin-left:15px;gap:8px}.nav.gulf-glass-nav .nav-right .gold{padding:11px 16px}}
+.nav.gulf-glass-nav.gulf-nav-scrolled{
+  top:9px;height:61px;
+  background:linear-gradient(108deg,rgba(1,43,34,.98),rgba(1,56,42,.96) 50%,rgba(1,38,30,.98));
+  box-shadow:0 13px 30px rgba(1,27,20,.25),inset 0 1px 0 rgba(254,227,174,.16);
+}
+.nav.gulf-glass-nav .logo{display:inline-flex;align-items:center;max-width:168px;width:100%;min-width:0}
+.nav.gulf-glass-nav .logo img{width:156px;max-height:none;height:auto;object-fit:contain;object-position:left center}
+.nav.gulf-glass-nav nav{
+  display:flex; align-items:center; justify-content:center;
+  gap:clamp(16px,2vw,29px); margin:0; min-width:0;
+  font-family:'DM Sans',Arial,sans-serif; font-size:12.5px;
+}
+.nav.gulf-glass-nav nav>a,.nav.gulf-glass-nav .services-trigger{
+  position:relative; white-space:nowrap;
+  opacity:1; color:rgba(255,248,232,.91);
+  font-weight:500; line-height:1.2; letter-spacing:.005em;
+  padding:16px 0; transition:color .2s ease;
+}
+.nav.gulf-glass-nav nav>a:hover,.nav.gulf-glass-nav .services-trigger:hover,
+.nav.gulf-glass-nav nav .nav-active{color:#F3CA7A!important}
+.nav.gulf-glass-nav nav>.nav-active::after,
+.nav.gulf-glass-nav .services-trigger.nav-active::after{
+  display:block; content:"";position:absolute;bottom:9px;left:0;right:0;
+  height:2px;border-radius:2px;background:#eabb69;
+}
+.nav.gulf-glass-nav .nav-services{display:flex;align-items:center;gap:2px;position:relative}
+.nav.gulf-glass-nav .services-dropdown-toggle{height:36px;width:19px;flex-basis:19px;color:#eabb69}
+.nav.gulf-glass-nav .nav-chevron{width:7px;height:7px;border-width:0 1.5px 1.5px 0;margin:0}
+.nav.gulf-glass-nav .nav-right{display:flex;align-items:center;gap:16px;margin:0;white-space:nowrap;font-size:10.5px}
+.nav.gulf-glass-nav .nav-right>span{opacity:.82;letter-spacing:.025em}
+.nav.gulf-glass-nav .nav-right .btn.gold{
+  background:linear-gradient(116deg,#F9D58C,#E8B35C);
+  color:#123a2e;border:1px solid rgba(255,228,170,.48);
+  min-height:43px;padding:11px 21px;font-size:11.5px;font-weight:700;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+.nav.gulf-glass-nav .nav-right .btn.gold:hover{
+  box-shadow:0 6px 17px rgba(232,179,92,.25);filter:brightness(1.04)
+}
+.nav.gulf-glass-nav .nav-right .btn.gold i{font-size:16px}
+.nav.gulf-glass-nav .nav-mobile-cta{display:none}
+.nav.gulf-glass-nav .services-dropdown{
+  top:calc(100% - 2px);left:-30px;
+  width:386px;padding:11px 15px;border-radius:16px;
+  background:rgba(2,43,34,.985);border:1px solid rgba(234,186,104,.32);
+  box-shadow:0 20px 40px rgba(0,19,14,.28);
+  -webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);
+}
+.nav.gulf-glass-nav .services-dropdown::before{background:#032b23;border-color:rgba(234,186,104,.32)}
+.nav.gulf-glass-nav .services-dropdown a.service-menu-item{padding:10px 8px;gap:12px}
+.nav.gulf-glass-nav .service-menu-icon{width:38px;height:38px;flex-basis:38px;border-radius:11px}
+.nav.gulf-glass-nav .services-dropdown .service-menu-copy strong{font-size:13px}
+.nav.gulf-glass-nav .services-dropdown .service-menu-copy small{font-size:10.5px;line-height:1.35;color:#bbd0c8}
+.nav.gulf-glass-nav .service-menu-arrow{font-size:23px}
+.nav.gulf-glass-nav :is(button,a):focus-visible{outline:2px solid #f2c473;outline-offset:4px}
+@media(min-width:951px) and (max-width:1200px){
+  .nav.gulf-glass-nav{width:calc(100% - 42px);grid-template-columns:151px minmax(0,1fr) auto;padding-left:18px;gap:6px}
+  .nav.gulf-glass-nav .logo img{width:140px;max-height:none}
+  .nav.gulf-glass-nav nav{gap:clamp(9px,1.5vw,18px);font-size:11.5px}
+  .nav.gulf-glass-nav .nav-right{gap:9px}
+  .nav.gulf-glass-nav .nav-right .btn.gold{padding:10px 14px}
+}
 @media(max-width:950px){
- .nav.gulf-glass-nav{top:10px;width:calc(100% - 24px);height:60px;padding:8px 15px;border-radius:30px}
- .nav.gulf-glass-nav.gulf-nav-scrolled{top:7px;height:56px}
- .nav.gulf-glass-nav .logo img{width:145px;max-height:44px}
- .nav.gulf-glass-nav nav.nav-open{display:flex;position:absolute;top:calc(100% + 8px);left:0;right:0;gap:1px;max-height:74dvh;overflow:auto;background:rgba(3,49,38,.98);border:1px solid rgba(244,204,126,.53);border-radius:18px;padding:13px 14px}
- .nav.gulf-glass-nav .services-dropdown{top:auto}
+  .nav.gulf-glass-nav,
+  .nav.gulf-glass-nav.gulf-nav-scrolled{
+    top:10px; width:calc(100% - 24px); height:60px;
+    padding:7px 12px 7px 16px; border-radius:22px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav.gulf-glass-nav.gulf-nav-scrolled{top:7px;height:57px}
+  .nav.gulf-glass-nav .logo{max-width:158px}
+  .nav.gulf-glass-nav .logo img{width:140px;max-height:none}
+  .nav.gulf-glass-nav .header-menu-toggle{
+    display:grid;place-items:center; min-width:42px;height:42px;
+    border:1px solid rgba(248,226,184,.24);border-radius:14px;
+    background:rgba(255,255,255,.055);font-size:23px;line-height:1;
+    color:#fff7e7;margin-left:auto;
+  }
+  .nav.gulf-glass-nav nav{display:none}
+  .nav.gulf-glass-nav nav.nav-open{
+    display:flex;flex-direction:column;align-items:stretch;
+    justify-content:flex-start;gap:1px;
+    position:absolute;left:0;right:0;top:calc(100% + 8px);
+    max-height:78dvh;overflow-y:auto;padding:15px 14px;
+    background:#043a30; border:1px solid rgba(234,186,104,.35);
+    border-radius:18px; box-shadow:0 22px 45px rgba(2,33,23,.27);
+    font-size:14px;
+  }
+  .nav.gulf-glass-nav nav>a,.nav.gulf-glass-nav .services-trigger{padding:13px 12px;font-size:14px}
+  .nav.gulf-glass-nav nav>.nav-active::after,.nav.gulf-glass-nav .services-trigger.nav-active::after{display:none}
+  .nav.gulf-glass-nav .nav-services{display:flex;flex-wrap:wrap;gap:0}
+  .nav.gulf-glass-nav .nav-services .services-trigger{flex:1}
+  .nav.gulf-glass-nav .services-dropdown-toggle{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px}
+  .nav.gulf-glass-nav .services-dropdown{
+    position:relative;left:auto;top:auto;order:3;width:100%;
+    display:none;visibility:hidden;opacity:0;transform:none;pointer-events:none;
+    margin:0 0 7px;padding:7px 9px;border-radius:12px;
+    background:rgba(0,27,21,.4);box-shadow:none;
+  }
+  .nav.gulf-glass-nav .nav-services.is-open .services-dropdown{
+    display:block;visibility:visible;opacity:1;pointer-events:auto;
+  }
+  .nav.gulf-glass-nav .services-dropdown::before{display:none}
+  .nav.gulf-glass-nav .services-dropdown a.service-menu-item{padding:10px 5px}
+  .nav.gulf-glass-nav .nav-mobile-cta{
+    display:flex;align-items:center;justify-content:space-between;
+    background:linear-gradient(116deg,#f8d185,#e9b15b);
+    color:#17392e!important;font-weight:700;font-size:13px;
+    border-radius:30px;padding:13px 19px;margin:9px 3px 2px;
+  }
+  .nav.gulf-glass-nav .nav-right{display:none}
+}
+@media(max-width:420px){
+ .nav.gulf-glass-nav .logo img{width:130px}
+ .nav.gulf-glass-nav .logo{max-width:140px}
 }
 @media(prefers-reduced-motion:reduce){.nav.gulf-glass-nav{transition:none!important}}
