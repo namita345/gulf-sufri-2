@@ -3,10 +3,10 @@ import './restaurant-websites.css';
 
 const A = '/assets/';
 const TEMPLATES = [
-  { id:'spice-house', name:'The Spice House', style:'Dark · Elegant · Bold', image:'template-spice-house.webp', description:'A dramatic, luxury look for destination dining and signature cuisine.' },
-  { id:'olive-thyme', name:'Olive & Thyme', style:'Clean · Modern · Fresh', image:'template-olive-thyme.webp', description:'Sunlit, minimal design for modern cafés and Mediterranean concepts.' },
-  { id:'al-yamama', name:'Al Yamama', style:'Traditional · Luxury · Warm', image:'template-al-yamama.webp', description:'Timeless Arabian hospitality, with rich green and golden details.' },
-  { id:'ocean-grill', name:'Ocean Grill', style:'Modern · Clean · Coastal', image:'template-ocean-grill.webp', description:'Fresh ocean blue with refined seafood and coastal imagery.' },
+  { id:'spice-house', name:'The Spice House', style:'Dark · Elegant · Bold', image:'template-spice-house.webp', description:'A dramatic, luxury look for destination dining and signature cuisine.', jinni:'jinni-template-spice.webp', quip:'Dark, dramatic, expensive-looking. Finally, a website with standards.' },
+  { id:'olive-thyme', name:'Olive & Thyme', style:'Clean · Modern · Fresh', image:'template-olive-thyme.webp', description:'Sunlit, minimal design for modern cafés and Mediterranean concepts.', jinni:'jinni-template-olive.webp', quip:'Elegant. Minimal. See? You don’t need 47 colors to look expensive.' },
+  { id:'al-yamama', name:'Al Yamama', style:'Traditional · Luxury · Warm', image:'template-al-yamama.webp', description:'Timeless Arabian hospitality, with rich green and golden details.', jinni:'jinni-template-yamama.webp', quip:'Traditional doesn’t mean outdated, darling. This isn’t 2009.' },
+  { id:'ocean-grill', name:'Ocean Grill', style:'Modern · Clean · Coastal', image:'template-ocean-grill.webp', description:'Fresh ocean blue with refined seafood and coastal imagery.', jinni:'jinni-template-ocean.webp', quip:'Coastal luxury without the tacky clip-art fish. You’re welcome.' },
 ];
 
 const FEATURES = [
@@ -30,7 +30,7 @@ function LineIcon({name}) {
  return <svg {...props}>{paths[name]||paths.monitor}</svg>;
 }
 
-function Reveal({children,className='',style}) {
+function Reveal({children,className='',style,...rest}) {
  const ref=React.useRef(null);
  const [visible,setVisible]=React.useState(false);
  React.useEffect(()=>{
@@ -39,7 +39,7 @@ function Reveal({children,className='',style}) {
   if(ref.current)ob.observe(ref.current);
   return()=>ob.disconnect();
  },[]);
- return <div ref={ref} className={`jrw-reveal ${visible?'is-visible ':''}${className}`} style={style}>{children}</div>;
+ return <div {...rest} ref={ref} className={`jrw-reveal ${visible?'is-visible ':''}${className}`} style={style}>{children}</div>;
 }
 
 const initialForm={restaurant:'',name:'',email:'',phone:'',country:'Qatar',template:'Not sure yet',details:'',website:''};
@@ -96,6 +96,7 @@ function InquiryModal({onClose,selectedTemplate}){
 
 export default function RestaurantWebsites(){
  const [preview,setPreview]=React.useState(null);
+ const [activeTemplate,setActiveTemplate]=React.useState(null);
  const [lampAwake,setLampAwake]=React.useState(false);
  const [inquiry,setInquiry]=React.useState(null);
  const closeInquiry=React.useCallback(()=>setInquiry(null),[]);
@@ -156,7 +157,37 @@ export default function RestaurantWebsites(){
 
   <section id="jrw-templates" className="jrw-templates jrw-container">
    <Reveal className="jrw-templates-header"><div><span className="jrw-label">CHOOSE A STYLE THAT MATCHES YOUR RESTAURANT</span><h2>Beautiful Templates, <span>Made for You</span></h2><p>Four demo concepts, each ready to inspire a website customized to your restaurant and brand.</p></div><button type="button" className="jrw-btn jrw-btn-secondary jrw-header-cta" onClick={()=>ask()}>Create My Own Style <span>→</span></button></Reveal>
-   <div className="jrw-template-grid">{TEMPLATES.map((t,i)=><Reveal key={t.id} className="jrw-template-card" style={{'--delay':`${i*.075}s`}}><button className="jrw-template-img" type="button" onClick={()=>setPreview(t)} aria-label={`Preview ${t.name} demo template`}><img src={A+t.image} alt={`${t.name} demo restaurant website, desktop and mobile preview`} loading="lazy"/><span className="jrw-image-hover">View Design ↗</span></button><div className="jrw-template-body"><div><h3>{t.name}</h3><p>{t.style}</p></div><button type="button" className="jrw-template-arrow" onClick={()=>setPreview(t)} aria-label={`Explore ${t.name}`}>→</button></div><button type="button" className="jrw-pick-style" onClick={()=>ask(t.name)}>I Want This Style ↗</button></Reveal>)}</div>
+   <div className="jrw-template-grid">{TEMPLATES.map((t,i)=><Reveal
+    key={t.id}
+    className={`jrw-template-card${activeTemplate===t.id?' is-jinni-active':''}`}
+    style={{'--delay':`${i*.11}s`}}
+    onPointerEnter={e=>{if(e.pointerType==='mouse')setActiveTemplate(t.id);}}
+    onPointerLeave={e=>{if(e.pointerType==='mouse')setActiveTemplate(current=>current===t.id?null:current);}}
+    onFocusCapture={e=>{if(e.target.matches(':focus-visible'))setActiveTemplate(t.id);}}
+    onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setActiveTemplate(current=>current===t.id?null:current);}}
+    onClick={e=>{if(window.matchMedia('(hover: none)').matches&&!e.target.closest('button'))setActiveTemplate(current=>current===t.id?null:t.id);}}
+   >
+    <div className="jrw-template-visual">
+     <button className="jrw-template-img" type="button"
+      onClick={()=>{if(window.matchMedia('(hover: none)').matches&&activeTemplate!==t.id){setActiveTemplate(t.id);return;}setPreview(t);}}
+      aria-label={activeTemplate===t.id?`Preview ${t.name} website demo`:`Explore ${t.name} website demo`}
+      aria-expanded={activeTemplate===t.id} aria-controls={`jrw-template-magic-${t.id}`}>
+      <img src={A+t.image} alt={`${t.name} demo restaurant website, desktop and mobile preview`} loading="lazy"/>
+      <span className="jrw-image-hover">View Design ↗</span>
+     </button>
+     <div id={`jrw-template-magic-${t.id}`} className="jrw-template-magic">
+      <span className="jrw-template-dust jrw-template-dust-one" aria-hidden="true">✦</span><span className="jrw-template-dust jrw-template-dust-two" aria-hidden="true">✧</span>
+      <div className="jrw-template-jinni-frame"><img src={A+t.jinni} alt="" loading="lazy"/></div>
+      <div className="jrw-template-quip">{t.quip}</div>
+     </div>
+     <div className="jrw-template-hover-actions">
+      <button type="button" onClick={()=>setPreview(t)}>Preview Website ↗</button>
+      <button type="button" onClick={()=>ask(t.name)}>I Want This Style →</button>
+     </div>
+    </div>
+    <div className="jrw-template-body"><div><h3>{t.name}</h3><p>{t.style}</p></div><button type="button" className="jrw-template-arrow" onClick={()=>setPreview(t)} aria-label={`Explore ${t.name}`}>→</button></div>
+    <button type="button" className="jrw-pick-style" onClick={()=>ask(t.name)}>I Want This Style ↗</button>
+   </Reveal>)}</div>
    <p className="jrw-demo-disclosure">These are illustrative demo concepts, not examples of completed client projects.</p>
   </section>
 
