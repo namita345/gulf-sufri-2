@@ -171,3 +171,13 @@
 @media (prefers-reduced-motion:reduce){
  .gs-sv-v2 .gs-sv-hero-figure>img{animation:none!important}
 }
+
+/* Character family: retain original scroll landing and float, avoid face overlap. */
+.gs-sv-v2 .gs-sv-service-mascot{width:clamp(145px,18vw,235px)}
+.gs-sv-v2 .gs-sv-service-mascot img{max-height:245px;object-fit:contain;object-position:bottom}
+.gs-sv-v2 .gs-sv-service-mascot .gs-sv-mascot-bubble{bottom:calc(100% + 9px);max-width:220px;width:clamp(160px,17vw,220px)}
+@media(max-width:640px){
+ .gs-sv-v2 .gs-sv-service-mascot,.gs-sv-v2 .gs-sv-reverse .gs-sv-service-mascot{width:clamp(118px,36vw,160px)}
+ .gs-sv-v2 .gs-sv-service-mascot img{max-height:175px}
+ .gs-sv-v2 .gs-sv-service-mascot .gs-sv-mascot-bubble,.gs-sv-v2 .gs-sv-reverse .gs-sv-service-mascot .gs-sv-mascot-bubble{width:clamp(150px,43vw,185px);font-size:11px}
+}

@@ -10,12 +10,13 @@ const offerings=[
  {id:'google-business',n:'04',title:'Google Business',lead:'Be the Restaurant They Find First.',copy:'We optimize your Google Business Profile to help you appear in local searches, attract more diners and build trust.',image:'google-business-new.webp',items:['Complete profile setup or optimization','Accurate information and menus','Photo updates & regular posts','Guidance on reviews and reputation']}
 ];
 const greetings=[
- 'Ready to give your restaurant a website as amazing as your food?',
- 'A beautiful menu, just a scan away. Shall we get started?',
- 'Let’s make your restaurant the talk of the feed!',
- 'Let’s help more hungry customers find you on Google!'
+ "Hi, I'm Jinni, your website genie! Let's make your restaurant shine online!",
+ "I'm Tabikh! Let's make your menu as irresistible as your food!",
+ "Hi, I'm Marina! Let's make your restaurant the talk of the feed!",
+ "I'm Mummo! Let's help hungry customers find you on Google!"
 ];
-const mascotImages=['sufri-cta-new.webp','sufri-menu.webp','sufri-social.webp','sufri-google.webp'];
+const mascotNames=['Jinni','Tabikh','Marina','Mummo'];
+const mascotImages=['jinni-services.png','tabikh-services.png','marina-services.png','mummo-services.png'];
 function ServiceMascot({index}){
  const ref=React.useRef(null);
  const [visible,setVisible]=React.useState(false);
@@ -27,8 +28,8 @@ function ServiceMascot({index}){
   observer.observe(node);
   return ()=>observer.disconnect();
  },[]);
- return <div ref={ref} className={'gs-sv-service-mascot'+(visible?' is-visible':'')} aria-label={'Sufri says: '+greetings[index]}>
-  <img src={A+mascotImages[index]} alt="" loading="lazy"/>
+ return <div ref={ref} className={'gs-sv-service-mascot'+(visible?' is-visible':'')} aria-label={mascotNames[index]+' says: '+greetings[index]}>
+  <img src={A+mascotImages[index]} alt={mascotNames[index]+' presenting the service'} loading="lazy"/>
   <div className="gs-sv-mascot-bubble">{greetings[index]}</div>
  </div>;
 }
