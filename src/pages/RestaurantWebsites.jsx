@@ -1,16 +1,160 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './restaurant-websites.css';
-const A='/assets/';
-const faqs=[['Will the website work on phones?','Yes. We design for mobile, tablet and desktop so guests can browse comfortably on any screen.'],['Can guests view our menu and contact us?','Absolutely. Your website can feature your menu, location, opening hours, WhatsApp contact and clear reservation or ordering links.'],['Can I update my restaurant website later?','Yes. We can discuss an easy-to-manage setup and ongoing support based on your needs.'],['How long will my website take?','Timelines depend on the number of pages, content and integrations. We’ll agree on a realistic schedule before work begins.'],['Do you work with restaurants in Qatar, Bahrain and Kuwait?','Yes. GulfSufra is focused on helping restaurants across the Gulf build their digital presence.']];
-function Reveal({children,className=''}){const ref=React.useRef(null);const [seen,setSeen]=React.useState(false);React.useEffect(()=>{if(!ref.current)return;const ob=new IntersectionObserver(([e])=>{if(e.isIntersecting){setSeen(true);ob.disconnect()}},{threshold:.12});ob.observe(ref.current);return()=>ob.disconnect()},[]);return <div ref={ref} className={'rw-reveal '+(seen?'rw-seen ':'')+className}>{children}</div>}
-export default function RestaurantWebsites(){const [open,setOpen]=React.useState(0);const [tab,setTab]=React.useState(0);const tabs=[['First impressions','A memorable first impression that looks and feels like your restaurant.'],['Menus & discovery','Make it easy to browse your food, find your location and get in touch.'],['Mobile experience','A fast, polished experience for guests browsing on their phones.']];return <main className="rw-page">
-<section className="rw-hero"><div className="rw-hero-inner"><div className="rw-hero-copy"><span className="rw-eyebrow">GULFSUFRA / RESTAURANT WEBSITES</span><h1>Your restaurant has a story. <span>Let's make it unforgettable online.</span></h1><p>Beautiful, mobile-first restaurant websites designed to turn curious visitors into your next guests.</p><div className="rw-actions"><Link to="/contact" className="rw-button rw-gold">Let's Build Your Website <span>↗</span></Link><a href="#rw-showcase" className="rw-quiet">Explore the experience <span>↓</span></a></div><div className="rw-hero-trust"><span>✦ Made for restaurants</span><span>✦ Designed for mobile</span><span>✦ Built to convert</span></div></div><div className="rw-hero-art"><div className="rw-orbit"/><img src={A+'jinni-services.png'} alt="Jinni, the GulfSufra website genie, presenting your restaurant's online possibilities"/><div className="rw-bubble"><span>✦ MEET JINNI</span><strong>Hi! I'm Jinni, your website genie.</strong><small>Your restaurant's next chapter starts here!</small></div></div></div></section>
-<section className="rw-intro"><div className="rw-container rw-intro-grid"><div><span className="rw-eyebrow">THE FIRST IMPRESSION MATTERS</span><h2>Before they taste your food, <span>they visit your website.</span></h2></div><p>Your website should do more than look pretty. It should capture the atmosphere, showcase your menu and make it effortless for diners to choose you.</p></div></section>
-<section className="rw-showcase rw-container" id="rw-showcase"><Reveal className="rw-section-head"><span className="rw-eyebrow">THE DIGITAL DINING EXPERIENCE</span><h2>A website worth <span>staying for.</span></h2><p>Thoughtful design. Mouthwatering visuals. A smooth path from discovery to dining.</p></Reveal><div className="rw-showcase-grid"><Reveal className="rw-browser"><div className="rw-browser-bar"><span className="rw-dots"><i/><i/><i/></span><span>yourrestaurant.com</span><span>↗</span></div><img src={A+'restaurant-websites-new.webp'} alt="Premium restaurant website design preview"/></Reveal><Reveal className="rw-showcase-side"><div className="rw-mini-label">✧ JINNI'S DESIGN NOTES</div><h3>Make them hungry before they arrive.</h3><p>From the first image to the final booking button, every detail should invite guests inside.</p><div className="rw-tabs" role="tablist" aria-label="Website benefits">{tabs.map(([t],i)=><button key={t} role="tab" aria-selected={tab===i} className={tab===i?'active':''} onClick={()=>setTab(i)}>{String(i+1).padStart(2,'0')} &nbsp; {t} <span>{tab===i?'−':'+'}</span></button>)}</div><p className="rw-tab-desc" role="tabpanel">{tabs[tab][1]}</p><Link to="/contact" className="rw-text-cta">Let's create yours <span>→</span></Link></Reveal></div></section>
-<section className="rw-features"><div className="rw-container"><Reveal className="rw-section-head"><span className="rw-eyebrow">WHAT'S INSIDE</span><h2>Everything your guests need. <span>Nothing they don't.</span></h2></Reveal><div className="rw-feature-grid">{[['01','A design that feels like you','Custom visuals and storytelling that reflect your food, atmosphere and identity.','✧'],['02','Menus they want to explore','Organized, appetizing menus that make choosing a dish a pleasure.','▤'],['03','Easy ways to take action','Clear links for reservations, directions, calls, WhatsApp or ordering.','↗'],['04','Ready for every screen','A smooth, mobile-friendly experience from first tap to final click.','▣'],['05','Found by local diners','Search-friendly structure and a strong foundation for local visibility.','⌖'],['06','Room to grow','A flexible website that can evolve as your restaurant does.','✳']].map(([n,t,d,icon])=><Reveal className="rw-feature" key={n}><div className="rw-feature-top"><span>{n}</span><b>{icon}</b></div><h3>{t}</h3><p>{d}</p></Reveal>)}</div></div></section>
-<section className="rw-magic rw-container"><Reveal className="rw-magic-inner"><div className="rw-magic-art"><img src={A+'jinni-services.png'} alt="Jinni presenting your website's next step" loading="lazy"/></div><div><span className="rw-eyebrow">A LITTLE MAGIC. A LOT OF STRATEGY.</span><h2>Your wish for a beautiful restaurant website? <span>Granted.</span></h2><p>Jinni brings the spark. GulfSufra brings the design, strategy and development to make it real.</p><Link to="/contact" className="rw-button rw-gold">Tell Us About Your Restaurant <span>↗</span></Link></div></Reveal></section>
-<section className="rw-process rw-container"><Reveal className="rw-section-head"><span className="rw-eyebrow">THE JOURNEY</span><h2>From first hello <span>to first impression.</span></h2></Reveal><div className="rw-process-grid">{[['01','We listen','Tell us about your restaurant, your customers and what makes you different.'],['02','We design & build','We shape the visual experience and bring your website to life.'],['03','We refine & launch','We review the details with you and prepare your website for guests.']].map(([n,t,d])=><Reveal className="rw-process-card" key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></Reveal>)}</div></section>
-<section className="rw-faq"><div className="rw-container rw-faq-grid"><div><span className="rw-eyebrow">GOOD QUESTIONS</span><h2>Curious? <span>Jinni has answers.</span></h2><p>Here are a few things restaurant owners often ask before getting started.</p></div><div className="rw-faq-list">{faqs.map(([q,a],i)=><div key={q}><button aria-expanded={open===i} onClick={()=>setOpen(open===i?-1:i)}>{q}<span>{open===i?'−':'+'}</span></button>{open===i&&<p>{a}</p>}</div>)}</div></div></section>
-<section className="rw-end rw-container"><div className="rw-end-panel"><span className="rw-eyebrow">READY WHEN YOU ARE</span><h2>Let's give your restaurant a website <span>worth talking about.</span></h2><p>Tell us what you're dreaming of. We'll help turn it into a digital experience your guests will remember.</p><Link className="rw-button rw-gold" to="/contact">Start Your Website Project <span>↗</span></Link><div className="rw-end-star">✧</div></div></section>
-</main>}
+
+const A = '/assets/';
+const TEMPLATES = [
+  { id:'spice-house', name:'The Spice House', style:'Dark · Elegant · Bold', image:'template-spice-house.webp', description:'A dramatic, luxury look for destination dining and signature cuisine.' },
+  { id:'olive-thyme', name:'Olive & Thyme', style:'Clean · Modern · Fresh', image:'template-olive-thyme.webp', description:'Sunlit, minimal design for modern cafés and Mediterranean concepts.' },
+  { id:'al-yamama', name:'Al Yamama', style:'Traditional · Luxury · Warm', image:'template-al-yamama.webp', description:'Timeless Arabian hospitality, with rich green and golden details.' },
+  { id:'ocean-grill', name:'Ocean Grill', style:'Modern · Clean · Coastal', image:'template-ocean-grill.webp', description:'Fresh ocean blue with refined seafood and coastal imagery.' },
+];
+
+const FEATURES = [
+  { icon:'monitor', heading:'Custom Design', text:"A website that feels like your restaurant, not everyone else's." },
+  { icon:'calendar', heading:'Online Reservations', text:'Help diners book a table with just a few clicks.' },
+  { icon:'phone', heading:'Mobile Optimized', text:'Beautiful, easy to use, on every screen.' },
+  { icon:'chart', heading:'FREE SEO Included', text:'Essential on-page SEO setup at no extra cost.' },
+];
+
+function LineIcon({name}) {
+ const props={width:36,height:36,viewBox:'0 0 36 36',fill:'none',stroke:'currentColor',strokeWidth:1.75,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true};
+ const paths={
+ monitor:<><rect x="4" y="6" width="28" height="20" rx="2"/><path d="M13 31h10M18 26v5"/></>,
+ calendar:<><rect x="5" y="8" width="26" height="23" rx="3"/><path d="M11 4v8M25 4v8M5 15h26M12 21h4M21 21h4M12 26h4"/></>,
+ phone:<><rect x="11" y="3" width="14" height="30" rx="3"/><path d="M15 7h6M17 29h2"/></>,
+ chart:<><path d="M5 29V20M13 29V16M21 29V11M29 29V5M3 32h30"/><path d="m5 15 8-5 8 2 9-8"/></>,
+ chat:<><path d="M5 6h26v19H15l-8 6v-6H5Z"/><circle cx="12" cy="16" r="1"/><circle cx="18" cy="16" r="1"/><circle cx="24" cy="16" r="1"/></>,
+ pen:<><path d="m7 27 3-9L25 3l8 8-15 15-9 3Z"/><path d="m20 8 8 8M8 29l-3 3M6 5l3 3M30 26l3 3"/></>,
+ rocket:<><path d="M13 23c-1-8 5-17 18-19-1 13-11 20-19 19Z"/><path d="m18 18 6-6M12 16H5l-2 8 9-2M20 24l-2 9 8-3v-7M9 27l-4 4"/></>
+ };
+ return <svg {...props}>{paths[name]||paths.monitor}</svg>;
+}
+
+function Reveal({children,className='',style}) {
+ const ref=React.useRef(null);
+ const [visible,setVisible]=React.useState(false);
+ React.useEffect(()=>{
+  if (typeof window==='undefined'||!('IntersectionObserver' in window)){setVisible(true);return;}
+  const ob=new IntersectionObserver(entries=>{if(entries[0]?.isIntersecting){setVisible(true);ob.disconnect();}},{threshold:0.09});
+  if(ref.current)ob.observe(ref.current);
+  return()=>ob.disconnect();
+ },[]);
+ return <div ref={ref} className={`jrw-reveal ${visible?'is-visible ':''}${className}`} style={style}>{children}</div>;
+}
+
+const initialForm={restaurant:'',name:'',email:'',phone:'',country:'Qatar',template:'Not sure yet',details:'',website:''};
+function InquiryModal({onClose,selectedTemplate}){
+ const [form,setForm]=React.useState({...initialForm,template:selectedTemplate||'Not sure yet'});
+ const [status,setStatus]=React.useState('idle');
+ const [error,setError]=React.useState('');
+ const closeRef=React.useRef(null);
+ React.useEffect(()=>{
+  const last=document.activeElement;
+  const scroll=document.body.style.overflow;
+  document.body.style.overflow='hidden';
+  closeRef.current?.focus();
+  const key=e=>{if(e.key==='Escape')onClose();if(e.key==='Tab'){
+   const nodes=Array.from(document.querySelectorAll('.jrw-modal [href], .jrw-modal button:not([disabled]), .jrw-modal input:not([disabled]), .jrw-modal select:not([disabled]), .jrw-modal textarea:not([disabled])'));
+   if(!nodes.length)return;
+   const first=nodes[0],last=nodes[nodes.length-1];
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }};
+  document.addEventListener('keydown',key);
+  return()=>{document.body.style.overflow=scroll;document.removeEventListener('keydown',key);last?.focus?.();};
+ },[onClose]);
+ const update=e=>setForm(p=>({...p,[e.target.name]:e.target.value}));
+ async function submit(e){
+  e.preventDefault();setError('');
+  if (!form.email.trim()&&!form.phone.trim()){setError('Enter an email address or WhatsApp number so we can reply.');return;}
+  setStatus('sending');
+  try {
+   const resp=await fetch('/api/inquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(form)});
+   const body=await resp.json().catch(()=>({}));
+   if(!resp.ok)throw new Error(body.error||'Your inquiry could not be sent. Please try again.');
+   setStatus('success');
+  }catch(err){setError(err.message||'Something went wrong. Please try again.');setStatus('idle');}
+ }
+ return <div className="jrw-modal-backdrop" onMouseDown={e=>{if(e.target===e.currentTarget)onClose();}}>
+  <section className="jrw-modal" role="dialog" aria-modal="true" aria-labelledby="jrw-modal-title">
+   <button ref={closeRef} className="jrw-modal-close" type="button" aria-label="Close inquiry form" onClick={onClose}>×</button>
+   {status==='success'?<div className="jrw-form-success" role="status"><div className="jrw-success-mark">✓</div><span className="jrw-label">WISH RECEIVED</span><h2 id="jrw-modal-title">Your website wish is in good hands.</h2><p>Thanks for reaching out! We'll review your restaurant details and get back to you using the contact information you provided.</p><button type="button" className="jrw-btn jrw-btn-primary" onClick={onClose}>Back to the showroom <span>→</span></button></div>:<>
+   <div className="jrw-modal-head"><span className="jrw-label">YOUR WEBSITE WISH</span><h2 id="jrw-modal-title">Let's make some magic.</h2><p>“Finally. Someone with excellent taste. Let's make your restaurant impossible to ignore.” — Jinni</p></div>
+   <form className="jrw-form" onSubmit={submit}>
+    <div className="jrw-form-grid"><label>Restaurant name <span>*</span><input name="restaurant" value={form.restaurant} onChange={update} required maxLength="120" placeholder="Your restaurant"/></label><label>Your name <span>*</span><input name="name" value={form.name} onChange={update} required maxLength="120" placeholder="Your full name"/></label></div>
+    <div className="jrw-form-grid"><label>Email <small>(or WhatsApp)</small><input name="email" type="email" value={form.email} onChange={update} maxLength="200" placeholder="you@example.com"/></label><label>WhatsApp number <small>(or email)</small><input name="phone" type="tel" value={form.phone} onChange={update} maxLength="35" placeholder="+974 ..."/></label></div>
+    <div className="jrw-form-grid"><label>Country<select name="country" value={form.country} onChange={update}>{['Qatar','Bahrain','Kuwait','Saudi Arabia','United Arab Emirates','Oman','Other'].map(c=><option key={c}>{c}</option>)}</select></label><label>Preferred style<select name="template" value={form.template} onChange={update}><option>Not sure yet</option>{TEMPLATES.map(t=><option key={t.id}>{t.name}</option>)}<option>Something custom</option></select></label></div>
+    <label>Tell us a little about your restaurant <small>(optional)</small><textarea name="details" rows="3" value={form.details} onChange={update} maxLength="2000" placeholder="What kind of website are you imagining?"/></label>
+    <div className="jrw-trap" aria-hidden="true"><label>Website<input name="website" autoComplete="off" tabIndex={-1} value={form.website} onChange={update}/></label></div>
+    {error&&<p className="jrw-form-error" role="alert">{error}</p>}
+    <button type="submit" className="jrw-btn jrw-btn-primary jrw-submit" disabled={status==='sending'}>{status==='sending'?'Sending your inquiry…':'Send My Website Wish'} <span>→</span></button>
+    <small className="jrw-privacy">We'll only use your details to respond to your inquiry.</small>
+   </form></>}
+  </section>
+ </div>;
+}
+
+export default function RestaurantWebsites(){
+ const [preview,setPreview]=React.useState(null);
+ const [lampAwake,setLampAwake]=React.useState(false);
+ const [inquiry,setInquiry]=React.useState(null);
+ const closeInquiry=React.useCallback(()=>setInquiry(null),[]);
+ const closePreview=React.useCallback(()=>setPreview(null),[]);
+ React.useEffect(()=>{
+  if(!preview)return;
+  const onKey=e=>{if(e.key==='Escape')closePreview();};
+  document.addEventListener('keydown',onKey);
+  return()=>document.removeEventListener('keydown',onKey);
+ },[preview,closePreview]);
+ const ask=(t='Not sure yet')=>{setPreview(null);setInquiry(t);};
+ return <main className="jrw-page">
+  <section className="jrw-hero" aria-labelledby="jrw-title">
+   <div className="jrw-hero-bg" aria-hidden="true"/>
+   <div className="jrw-container jrw-hero-inner">
+    <div className="jrw-hero-copy">
+     <span className="jrw-label">RESTAURANT WEBSITES</span>
+     <h1 id="jrw-title">Wish for a<br/>Restaurant Website?<br/><span>Consider it Granted!</span></h1>
+     <p>Beautiful, high-performing restaurant websites that attract diners, take reservations and help your business grow — with <strong>FREE SEO</strong> included.</p>
+     <div className="jrw-actions"><button className="jrw-btn jrw-btn-primary" type="button" onClick={()=>ask()}>Get Your Website <span>→</span></button><a className="jrw-btn jrw-btn-secondary" href="#jrw-templates">View Templates</a></div>
+     <div className="jrw-proof"><img src={A+'jinni-trust-avatars.png'} alt="Illustrated profile placeholders"/><span>Made for restaurants across the Gulf.<br/><small>See four demo styles below.</small></span></div>
+    </div>
+    <div className="jrw-hero-visual" aria-label="Jinni presents a restaurant website on laptop and mobile">
+     <img className="jrw-jinni" src={A+'jinni-confident.webp'} alt="Jinni the website genie, confidently presenting"/>
+     <div className="jrw-hero-bubble" aria-label="A message from Jinni"><strong>Hi, I'm Jinni!</strong><span>I turn boring websites into beautiful ones. You're welcome. ✨</span></div>
+     <img className="jrw-devices" src={A+'jinni-jingle-devices.webp'} alt="Jingle sample restaurant website shown on desktop and phone"/>
+     <img className="jrw-lamp" src={A+'jinni-gold-lamp.webp'} alt="" aria-hidden="true"/>
+    </div>
+   </div>
+  </section>
+
+  <section className="jrw-benefits" aria-label="Included in your restaurant website">
+   <div className="jrw-container jrw-benefits-grid">{FEATURES.map((f,i)=><Reveal className="jrw-benefit" key={f.heading} style={{'--delay':`${i*.09}s`}}><div className={`jrw-feature-icon ${i===3?'jrw-seo-sparkle':''}`}><LineIcon name={f.icon}/></div><h2>{f.heading}</h2><p>{f.text}</p>{i===3&&<span className="jrw-seo-note">A gorgeous site nobody finds? Please. SEO’s included.</span>}</Reveal>)}</div>
+  </section>
+
+  <section id="jrw-templates" className="jrw-templates jrw-container">
+   <Reveal className="jrw-templates-header"><div><span className="jrw-label">CHOOSE A STYLE THAT MATCHES YOUR RESTAURANT</span><h2>Beautiful Templates, <span>Made for You</span></h2><p>Four demo concepts, each ready to inspire a website customized to your restaurant and brand.</p></div><button type="button" className="jrw-btn jrw-btn-secondary jrw-header-cta" onClick={()=>ask()}>Create My Own Style <span>→</span></button></Reveal>
+   <div className="jrw-template-grid">{TEMPLATES.map((t,i)=><Reveal key={t.id} className="jrw-template-card" style={{'--delay':`${i*.075}s`}}><button className="jrw-template-img" type="button" onClick={()=>setPreview(t)} aria-label={`Preview ${t.name} demo template`}><img src={A+t.image} alt={`${t.name} demo restaurant website, desktop and mobile preview`} loading="lazy"/><span className="jrw-image-hover">View Design ↗</span></button><div className="jrw-template-body"><div><h3>{t.name}</h3><p>{t.style}</p></div><button type="button" className="jrw-template-arrow" onClick={()=>setPreview(t)} aria-label={`Explore ${t.name}`}>→</button></div><button type="button" className="jrw-pick-style" onClick={()=>ask(t.name)}>I Want This Style ↗</button></Reveal>)}</div>
+   <p className="jrw-demo-disclosure">These are illustrative demo concepts, not examples of completed client projects.</p>
+  </section>
+
+  <section className="jrw-process" aria-labelledby="jrw-process-title"><div className="jrw-container jrw-process-inner">
+   <Reveal className="jrw-process-heading"><span className="jrw-label">HOW JINNI MAKES IT HAPPEN</span><h2 id="jrw-process-title">A Simple <span>3-Step</span> Process</h2><p>“Three simple steps. And no, you don't need three wishes.”</p></Reveal>
+   <div className="jrw-steps">
+    {[
+     {no:'01',icon:'chat',title:'Share Your Vision',text:'Tell us about your restaurant, style and requirements.'},
+     {no:'02',icon:'pen',title:'We Design & Build',text:'We craft a customized website that feels like your brand.'},
+     {no:'03',icon:'rocket',title:'Launch & Grow',text:'Your website goes live with essential on-page SEO setup.'}
+    ].map((step,i)=><Reveal key={step.no} className="jrw-step" style={{'--delay':`${i*.17}s`}}><div className="jrw-step-symbol"><LineIcon name={step.icon}/><span>{step.no}</span></div><div><h3>{step.title}</h3><p>{step.text}</p></div>{i<2&&<span className="jrw-step-arrow" aria-hidden="true">⟶</span>}</Reveal>)}
+   </div>
+   <div className="jrw-lamp-interaction">
+    <button type="button" className={`jrw-lamp-button ${lampAwake?'is-awake':''}`} onClick={()=>setLampAwake(x=>!x)} aria-pressed={lampAwake} aria-label="Rub Jinni's enchanted lamp"><img src={A+'jinni-gold-lamp.webp'} alt=""/></button>
+    <div className="jrw-lamp-caption" role="status" aria-live="polite">{lampAwake?"Three steps. No complicated spells. Try to keep up, darling.":"Go ahead, rub the lamp. I'm waiting."}<span>{lampAwake?' ✨':' ↗'}</span></div>
+   </div>
+  </div></section>
+
+  <section className="jrw-final" aria-labelledby="jrw-final-title"><div className="jrw-container jrw-final-panel"><div className="jrw-final-image" aria-hidden="true"/><div className="jrw-final-content"><span className="jrw-label">ONE LAST WISH?</span><h2 id="jrw-final-title">Ready to Get Your Restaurant Online?</h2><p>“You've admired my work long enough, darling. Shall we make yours?”</p><button type="button" className="jrw-btn jrw-btn-primary" onClick={()=>ask()}>Grant My Website Wish <span>→</span></button></div><span className="jrw-final-note">Your success is just a wish away ✧</span></div></section>
+
+  {preview&&<div className="jrw-preview-overlay" onMouseDown={e=>{if(e.currentTarget===e.target)closePreview();}}><div className="jrw-preview-dialog" role="dialog" aria-modal="true" aria-label={`${preview.name} template preview`}><div className="jrw-preview-top"><div><h2>{preview.name}</h2><p>{preview.description}</p></div><button type="button" className="jrw-preview-close" onClick={closePreview} aria-label="Close preview">×</button></div><img src={A+preview.image} alt={`${preview.name} restaurant demo template large preview`}/><div className="jrw-preview-bottom"><span>Illustrative design concept · Can be customized for your restaurant</span><button type="button" className="jrw-btn jrw-btn-primary" onClick={()=>ask(preview.name)}>I Want This Style <span>→</span></button></div></div></div>}
+  {inquiry!==null&&<InquiryModal key={inquiry} onClose={closeInquiry} selectedTemplate={inquiry}/>}
+ </main>;
+}

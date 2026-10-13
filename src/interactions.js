@@ -12,7 +12,7 @@ const copy={
 function setHost(key){
   Object.entries(poses).forEach(([name,img])=>img&&img.classList.toggle('active',name===key));
   const c=copy[key]||copy.neutral;
-  bubble.innerHTML='<strong>'+c.title+'</strong><span>'+c.text+'</span>'+(c.cta?'<a href="#contact">'+c.cta+' <i>→</i></a>':'');
+  bubble.innerHTML='<strong>'+c.title+'</strong><span>'+c.text+'</span>'+(c.cta?'<a href="'+(key==='website'?'/services/restaurant-websites':'#contact')+'">'+c.cta+' <i>→</i></a>':'');
 }
 cards.forEach(card=>{
   const key=card.dataset.service;

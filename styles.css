@@ -1387,3 +1387,16 @@
   #how-it-works .how-step-body {padding:14px 20px 23px;}
 }
 @media (prefers-reduced-motion:reduce) {.sufri-hero {animation:none !important;}}
+
+/* Restaurant Websites navigation links: keyboard, touch and desktop dropdown access. */
+.nav .services-dropdown-toggle{display:inline-flex;align-items:center;justify-content:center;flex:0 0 26px;width:26px;height:34px;padding:0;border:0;background:transparent;color:#E8AF61;cursor:pointer}
+.nav .services-dropdown-toggle:focus-visible,.nav .service-card-deep-link:focus-visible{outline:2px solid #E8AF61;outline-offset:3px}
+.nav-services.is-open .services-dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.nav-services.is-open .nav-chevron{transform:rotate(225deg) translateY(-1px)}
+.nav-services .services-dropdown{pointer-events:none}
+.nav-services:hover .services-dropdown,.nav-services:focus-within .services-dropdown{pointer-events:auto}
+.gs-sv-feature-copy h2 a{color:inherit;text-decoration:none}
+.gs-sv-feature-copy h2 a:hover,.gs-sv-feature-copy h2 a:focus-visible{color:#B88236}
+#services .service-card[data-service="website"] .service-card-deep-link{position:absolute;inset:0;z-index:4;border-radius:inherit;cursor:pointer}
+#services .service-card[data-service="website"] .service-card-deep-link:focus-visible{outline:3px solid #E8AF61;outline-offset:-3px}
+@media(max-width:950px){.nav .services-dropdown-toggle{display:none}.nav-services .services-dropdown{pointer-events:auto}}

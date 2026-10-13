@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import '../../styles.css';
 import { initInteractions } from '../interactions.js';
 
@@ -65,6 +66,7 @@ export default function Home() {
 </div>
 <div className="card-visual"><img alt="Restaurant website example" src="/assets/website-mockup.webp"/></div>
 <div className="card-body"><span className="card-number">01</span><h3>Restaurant Websites</h3><p>Beautiful, modern websites that turn your restaurant into a destination.</p><span className="card-arrow">→</span></div>
+<Link className="service-card-deep-link" to="/services/restaurant-websites" aria-label="Explore GulfSufra Restaurant Websites with Jinni"/>
 </article>
 <article className="service-card" data-service="menu">
 <div className="service-tooltip">
