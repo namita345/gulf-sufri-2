@@ -207,3 +207,116 @@
  .jrw-hero .jrw-hero-bubble{top:-86px;right:0;width:160px}
 }
 @media(prefers-reduced-motion:reduce){.jrw-hero .jrw-jinni,.jrw-hero .jrw-devices,.jrw-hero .jrw-hero-bubble{animation:none!important}}
+
+
+/* === Four Wishes · scoped boxed benefit section only (all other page elements unchanged) === */
+.jrw-page > .jrw-wishes{
+  --wish-gold:#eaba6d;
+  width:min(1200px,calc(100% - 64px));
+  margin:26px auto 40px;
+  border:0;
+  border-radius:24px;
+  box-shadow:0 18px 42px rgba(3,36,32,.13);
+  background:#042420;
+  overflow:hidden;
+  isolation:isolate;
+}
+.jrw-wishes-panel{
+  position:relative;
+  padding:38px 32px 28px;
+  color:#fff5e9;
+  background:
+    radial-gradient(ellipse 52% 75% at 91% 56%,rgba(26,94,73,.58),transparent 80%),
+    radial-gradient(ellipse 54% 80% at 12% 20%,rgba(19,78,63,.28),transparent 82%),
+    linear-gradient(115deg,#042420 0%,#07342c 53%,#042420 100%);
+}
+.jrw-wishes-panel::before,
+.jrw-wishes-panel::after{
+  content:"";pointer-events:none;position:absolute;z-index:0;
+}
+.jrw-wishes-panel::before{
+  inset:0;opacity:.36;
+  background:repeating-linear-gradient(135deg,transparent 0 36px,rgba(226,182,111,.055) 37px,transparent 38px 84px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 26%,transparent 75%,#000 100%);
+  mask-image:linear-gradient(90deg,#000 0%,transparent 26%,transparent 75%,#000 100%);
+}
+.jrw-wishes-panel::after{
+  top:15px;left:20px;right:20px;bottom:15px;
+  border:1px solid rgba(235,188,112,.13);border-radius:18px;
+}
+.jrw-wishes-heading{position:relative;z-index:1;text-align:center;margin:0 auto 23px;max-width:960px}
+.jrw-wishes-eyebrow{display:block;color:#eaba6d;font-size:11px;font-weight:800;letter-spacing:.18em;margin-bottom:6px}
+.jrw-wishes-eyebrow span{font-size:16px;margin-left:7px}
+.jrw-wishes-heading h2{font-family:'Cormorant Garamond',Georgia,serif;color:#fffaf0;font-size:clamp(39px,4.5vw,55px);font-weight:600;letter-spacing:-.035em;line-height:1.06;margin:0 0 7px}
+.jrw-wishes-heading h2 span{color:var(--wish-gold)}
+.jrw-wishes-heading p{color:#dce7df;font-size:13px;line-height:1.5;margin:0}
+.jrw-wishes-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 217px;gap:15px;align-items:end}
+.jrw-wishes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));min-width:0}
+.jrw-wish{position:relative;min-width:0;padding:2px 11px 12px;isolation:isolate}
+.jrw-wish:first-child{padding-left:0}
+.jrw-wish:not(:last-child)::after{content:"";position:absolute;right:0;top:30px;bottom:5px;width:1px;background:linear-gradient(180deg,transparent,rgba(235,188,112,.38) 29%,rgba(235,188,112,.36) 70%,transparent)}
+.jrw-wish-art{position:relative;width:100%;height:168px;display:grid;place-items:center}
+.jrw-wish-art:before{content:"";position:absolute;inset:28% 8% 4%;z-index:-1;filter:blur(16px);background:radial-gradient(ellipse,rgba(232,181,90,.12),transparent 65%)}
+.jrw-wish-art img{display:block;width:100%;max-width:206px;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.18));transition:transform .38s cubic-bezier(.2,.7,.2,1),filter .38s ease}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.jrw-wish:hover .jrw-wish-art img{transform:translateY(-9px) scale(1.06);filter:drop-shadow(0 14px 16px rgba(248,193,103,.22))}}
+.jrw-wish-number{display:flex;align-items:center;gap:8px;margin:2px 0 9px;color:#fff8e8;font-family:'Cormorant Garamond',Georgia,serif;font-size:25px;line-height:1}
+.jrw-wish-number i{width:38px;height:1px;background:#d1a45e;opacity:.8}
+.jrw-wish h3{font-family:'DM Sans',Arial,sans-serif;font-size:15px;line-height:1.2;letter-spacing:-.025em;color:var(--wish-gold);font-weight:750;margin:0 0 8px}
+.jrw-wish p{font-size:11.5px;line-height:1.48;color:#f0eae0;max-width:210px;margin:0}
+.jrw-wishes-companion{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;align-self:stretch;min-width:0;z-index:2}
+.jrw-wishes-quip{position:relative;z-index:3;width:207px;max-width:100%;padding:11px 13px;border-radius:22px 22px 9px 22px;border:1px solid rgba(234,175,95,.88);background:#fff9ed;color:#184037;font-size:11.5px;line-height:1.48;font-weight:600;box-shadow:0 8px 25px rgba(0,0,0,.2);margin-top:7px;margin-bottom:6px;animation:jrw-wishes-bubble 0.55s cubic-bezier(.17,.9,.3,1.1) .65s both}
+.jrw-wishes-quip span{color:#c58c3a}
+.jrw-wishes-quip:after{content:"";position:absolute;bottom:-8px;right:33px;width:14px;height:14px;transform:rotate(45deg);background:#fff9ed;border-right:1px solid rgba(234,175,95,.88);border-bottom:1px solid rgba(234,175,95,.88)}
+.jrw-wishes-jinni{position:relative;display:block;width:252px;max-width:130%;height:auto;margin:0 -20px -32px 0;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.2));animation:jrw-wishes-float 5.3s ease-in-out infinite}
+.jrw-wishes-companion:not(.is-visible) .jrw-wishes-quip{animation-play-state:paused}
+@keyframes jrw-wishes-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes jrw-wishes-bubble{from{opacity:0;transform:translateY(13px) scale(.87)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(min-width:901px) and (max-width:1150px){
+ .jrw-wishes-panel{padding:32px 25px 25px}
+ .jrw-wishes-body{grid-template-columns:minmax(0,1fr) 185px;gap:6px}
+ .jrw-wish{padding-inline:8px}
+ .jrw-wish-art{height:150px}
+ .jrw-wish h3{font-size:13px}
+ .jrw-wish p{font-size:10.5px}
+ .jrw-wishes-jinni{width:210px}
+ .jrw-wishes-quip{width:185px;font-size:10.5px}
+}
+@media(max-width:900px){
+ .jrw-wishes-panel{padding:30px 24px 23px}
+ .jrw-wishes-body{grid-template-columns:minmax(0,1fr);gap:14px}
+ .jrw-wishes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 0}
+ .jrw-wish{padding:0 20px 5px}
+ .jrw-wish:first-child{padding-left:20px}
+ .jrw-wish:nth-child(2)::after{display:none}
+ .jrw-wish-art{height:170px}
+ .jrw-wish h3{font-size:15px}
+ .jrw-wish p{font-size:12px}
+ .jrw-wishes-companion{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:14px;min-height:185px}
+ .jrw-wishes-quip{margin:0;flex:0 1 280px;width:280px;font-size:12px}
+ .jrw-wishes-quip:after{bottom:18px;right:-8px;transform:rotate(-45deg)}
+ .jrw-wishes-jinni{width:190px;max-width:50%;margin:0 0 -25px;flex:0 0 auto}
+}
+@media(max-width:560px){
+ .jrw-page > .jrw-wishes{width:calc(100% - 24px);margin:18px auto 32px;border-radius:19px}
+ .jrw-wishes-panel{padding:28px 15px 20px}
+ .jrw-wishes-panel::after{inset:8px;border-radius:14px}
+ .jrw-wishes-heading{margin-bottom:20px}
+ .jrw-wishes-eyebrow{font-size:9px;letter-spacing:.12em}
+ .jrw-wishes-heading h2{font-size:clamp(33px,8.3vw,45px)}
+ .jrw-wishes-heading p{font-size:11.5px}
+ .jrw-wishes-grid{gap:21px 0}
+ .jrw-wish,.jrw-wish:first-child{padding:0 9px 4px}
+ .jrw-wish:nth-child(odd){padding-left:2px}
+ .jrw-wish-art{height:128px}
+ .jrw-wish-number{font-size:20px;margin:2px 0 7px}
+ .jrw-wish-number i{width:25px}
+ .jrw-wish h3{font-size:12.5px;line-height:1.22;margin-bottom:6px}
+ .jrw-wish p{font-size:10.5px;line-height:1.45}
+ .jrw-wishes-companion{gap:3px;min-height:130px}
+ .jrw-wishes-quip{font-size:10.5px;padding:10px 10px;line-height:1.35;flex-basis:220px}
+ .jrw-wishes-jinni{width:155px;max-width:48%;margin-bottom:-20px}
+}
+@media(prefers-reduced-motion:reduce){
+ .jrw-wishes-jinni,.jrw-wishes-quip{animation:none!important}
+ .jrw-wish-art img{transition:none!important}
+}

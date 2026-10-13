@@ -10,10 +10,10 @@ const TEMPLATES = [
 ];
 
 const FEATURES = [
-  { icon:'monitor', heading:'Custom Design', text:"A website that feels like your restaurant, not everyone else's." },
-  { icon:'calendar', heading:'Online Reservations', text:'Help diners book a table with just a few clicks.' },
-  { icon:'phone', heading:'Mobile Optimized', text:'Beautiful, easy to use, on every screen.' },
-  { icon:'chart', heading:'FREE SEO Included', text:'Essential on-page SEO setup at no extra cost.' },
+  { number: '01', heading: 'Custom Design', text: "A website that feels like your restaurant, not everyone else’s.", image: 'jrw-wish-custom-design.webp' },
+  { number: '02', heading: 'Online Reservations', text: 'Help diners book a table with just a few clicks.', image: 'jrw-wish-reservations.webp' },
+  { number: '03', heading: 'Mobile Optimized', text: 'Beautiful, easy to use, on every screen.', image: 'jrw-wish-mobile.webp' },
+  { number: '04', heading: 'FREE SEO Included', text: 'Essential on-page SEO setup at no extra cost.', image: 'jrw-wish-seo.webp' },
 ];
 
 function LineIcon({name}) {
@@ -130,8 +130,28 @@ export default function RestaurantWebsites(){
    </div>
   </section>
 
-  <section className="jrw-benefits" aria-label="Included in your restaurant website">
-   <div className="jrw-container jrw-benefits-grid">{FEATURES.map((f,i)=><Reveal className="jrw-benefit" key={f.heading} style={{'--delay':`${i*.09}s`}}><div className={`jrw-feature-icon ${i===3?'jrw-seo-sparkle':''}`}><LineIcon name={f.icon}/></div><h2>{f.heading}</h2><p>{f.text}</p>{i===3&&<span className="jrw-seo-note">A gorgeous site nobody finds? Please. SEO’s included.</span>}</Reveal>)}</div>
+  <section className="jrw-benefits jrw-wishes" aria-labelledby="jrw-wishes-title">
+   <div className="jrw-wishes-panel">
+    <Reveal className="jrw-wishes-heading">
+     <span className="jrw-wishes-eyebrow">THE JINNI ADVANTAGE <span aria-hidden="true">✦</span></span>
+     <h2 id="jrw-wishes-title">Four Wishes. <span>Zero Compromises.</span></h2>
+     <p>Everything your restaurant needs to make a little magic online.</p>
+    </Reveal>
+    <div className="jrw-wishes-body">
+     <div className="jrw-wishes-grid">
+      {FEATURES.map((feature,i)=><Reveal className="jrw-wish" key={feature.number} style={{'--delay':`${i*.12}s`}}>
+       <div className="jrw-wish-art"><img src={A+feature.image} alt="" loading="lazy" width="250" height="250"/></div>
+       <div className="jrw-wish-number" aria-hidden="true"><span>{feature.number}</span><i/></div>
+       <h3>{feature.heading}</h3>
+       <p>{feature.text}</p>
+      </Reveal>)}
+     </div>
+     <Reveal className="jrw-wishes-companion" style={{'--delay':'.38s'}}>
+      <div className="jrw-wishes-quip">A stunning website nobody can find? Darling, that's just expensive wallpaper.<span aria-hidden="true"> ✦</span></div>
+      <img className="jrw-wishes-jinni" src={A+'jrw-wish-jinni.webp'} alt="Jinni the website genie, smiling with a knowing expression and presenting the four wishes" loading="lazy" width="320" height="320"/>
+     </Reveal>
+    </div>
+   </div>
   </section>
 
   <section id="jrw-templates" className="jrw-templates jrw-container">
