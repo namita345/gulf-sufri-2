@@ -25,7 +25,7 @@ export function Header(){
       <div className="nav-services">
         <Link className={isActive('/services')?'nav-active services-trigger':'services-trigger'} aria-current={isActive('/services')?'page':undefined} to="/services">Services <span className="nav-chevron" aria-hidden="true" /></Link>
         <div className="services-dropdown">
-          {services.map(([name,slug,description,icon])=><Link key={slug} to={'/services#'+slug} className="service-menu-item"><span className="service-menu-icon"><ServiceIcon type={icon}/></span><span className="service-menu-copy"><strong>{name}</strong><small>{description}</small></span><span className="service-menu-arrow" aria-hidden="true">›</span></Link>)}
+          {services.map(([name,slug,description,icon])=><Link key={slug} to={slug==='restaurant-websites'?'/services/restaurant-websites':'/services#'+slug} className="service-menu-item"><span className="service-menu-icon"><ServiceIcon type={icon}/></span><span className="service-menu-copy"><strong>{name}</strong><small>{description}</small></span><span className="service-menu-arrow" aria-hidden="true">›</span></Link>)}
         </div>
       </div>
       <Link className={isActive('/about')?'nav-active':''} aria-current={isActive('/about')?'page':undefined} to="/about">About Us</Link>
