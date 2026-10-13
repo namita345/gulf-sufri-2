@@ -116,7 +116,10 @@ export default function RestaurantWebsites(){
      <h1 id="jrw-title">Wish for a<br/>Restaurant Website?<br/><span>Consider it Granted!</span></h1>
      <p>Beautiful, high-performing restaurant websites that attract diners, take reservations and help your business grow — with <strong>FREE SEO</strong> included.</p>
      <div className="jrw-actions"><button className="jrw-btn jrw-btn-primary" type="button" onClick={()=>ask()}>Get Your Website <span>→</span></button><a className="jrw-btn jrw-btn-secondary" href="#jrw-templates">View Templates</a></div>
-     <div className="jrw-proof"><img src={A+'jinni-trust-avatars.png'} alt="Illustrated profile placeholders"/><span>Made for restaurants across the Gulf.<br/><small>See four demo styles below.</small></span></div>
+     <div className="jrw-proof" aria-label="Restaurant website demo styles and trust information">
+      <img src={A+'jinni-portrait-placeholders.webp'} alt="Illustrative photorealistic hospitality portraits, not actual GulfSufra clients"/>
+      <div className="jrw-proof-copy"><span>Made for restaurants across the Gulf.</span><small>See four demo styles below.</small><div className="jrw-rating"><span className="jrw-stars" aria-hidden="true">★★★★★</span><span>Trusted by clients</span></div></div>
+     </div><small className="jrw-proof-disclaimer">Illustrative portraits and rating motif — add verified client photos and review data before publishing.</small>
     </div>
     <div className="jrw-hero-visual" aria-label="Jinni presents a restaurant website on laptop and mobile">
      <img className="jrw-jinni" src={A+'jinni-confident.webp'} alt="Jinni the website genie, confidently presenting"/>

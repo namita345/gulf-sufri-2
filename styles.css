@@ -1400,3 +1400,40 @@
 #services .service-card[data-service="website"] .service-card-deep-link{position:absolute;inset:0;z-index:4;border-radius:inherit;cursor:pointer}
 #services .service-card[data-service="website"] .service-card-deep-link:focus-visible{outline:3px solid #E8AF61;outline-offset:-3px}
 @media(max-width:950px){.nav .services-dropdown-toggle{display:none}.nav-services .services-dropdown{pointer-events:auto}}
+
+
+/* GulfSufra shared glass navigation — 2026-10-14
+   Universal header appearance; navigation items, routes and footer preserved. */
+.nav.gulf-glass-nav{
+ position:fixed;top:18px;left:50%;z-index:900;
+ width:min(1440px,calc(100% - 56px));height:72px;
+ transform:translateX(-50%);
+ border-radius:999px;padding:8px 16px 8px 27px;
+ background:linear-gradient(105deg,rgba(3,49,38,.90) 0%,rgba(3,66,49,.83) 48%,rgba(4,45,34,.91) 100%);
+ border:1px solid rgba(244,204,126,.58);
+ color:#fff9eb;
+ backdrop-filter:blur(19px) saturate(160%);-webkit-backdrop-filter:blur(19px) saturate(160%);
+ box-shadow:0 15px 42px rgba(2,41,29,.20),inset 0 1px 0 rgba(255,236,192,.3),inset 0 -1px 0 rgba(0,29,19,.3);
+ transition:height .32s ease,top .32s ease,background .32s ease,box-shadow .32s ease,padding .32s ease;
+}
+.nav.gulf-glass-nav::before{
+ content:"";position:absolute;inset:1px 30px auto 30px;height:1px;pointer-events:none;
+ background:linear-gradient(90deg,transparent,rgba(255,239,187,.64),transparent);
+}
+.nav.gulf-glass-nav.gulf-nav-scrolled{top:9px;height:62px;background:linear-gradient(100deg,rgba(3,47,36,.96),rgba(4,66,49,.94) 55%,rgba(3,46,36,.97));box-shadow:0 12px 35px rgba(0,27,19,.3),inset 0 1px 0 rgba(255,239,196,.25)}
+.nav.gulf-glass-nav .logo img{width:182px;height:auto;max-height:56px;object-fit:contain}
+.nav.gulf-glass-nav nav{gap:clamp(14px,2vw,30px);font-size:14px}
+.nav.gulf-glass-nav nav>a,.nav.gulf-glass-nav .services-trigger{color:rgba(255,252,244,.93);font-weight:600}
+.nav.gulf-glass-nav nav>a:hover,.nav.gulf-glass-nav .services-trigger:hover,.nav.gulf-glass-nav nav .nav-active{color:#f0c779!important}
+.nav.gulf-glass-nav .nav-services{gap:2px}
+.nav.gulf-glass-nav .nav-right .gold{background:linear-gradient(115deg,#f7ce80,#e8ac50);color:#193328;border:1px solid rgba(254,235,181,.55);padding:13px 23px;box-shadow:0 7px 22px rgba(1,27,20,.18)}
+.nav.gulf-glass-nav .services-dropdown{top:calc(100% + 9px)}
+@media(max-width:1180px) and (min-width:951px){.nav.gulf-glass-nav{width:calc(100% - 38px);padding-inline:16px}.nav.gulf-glass-nav .logo img{width:151px}.nav.gulf-glass-nav nav{gap:14px;font-size:12px}.nav.gulf-glass-nav .nav-right{margin-left:15px;gap:8px}.nav.gulf-glass-nav .nav-right .gold{padding:11px 16px}}
+@media(max-width:950px){
+ .nav.gulf-glass-nav{top:10px;width:calc(100% - 24px);height:60px;padding:8px 15px;border-radius:30px}
+ .nav.gulf-glass-nav.gulf-nav-scrolled{top:7px;height:56px}
+ .nav.gulf-glass-nav .logo img{width:145px;max-height:44px}
+ .nav.gulf-glass-nav nav.nav-open{display:flex;position:absolute;top:calc(100% + 8px);left:0;right:0;gap:1px;max-height:74dvh;overflow:auto;background:rgba(3,49,38,.98);border:1px solid rgba(244,204,126,.53);border-radius:18px;padding:13px 14px}
+ .nav.gulf-glass-nav .services-dropdown{top:auto}
+}
+@media(prefers-reduced-motion:reduce){.nav.gulf-glass-nav{transition:none!important}}

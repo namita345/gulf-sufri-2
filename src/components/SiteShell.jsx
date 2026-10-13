@@ -4,6 +4,13 @@ export function Header(){
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [servicesOpen, setServicesOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  React.useEffect(()=>{
+    const sync=()=>setScrolled(window.scrollY>42);
+    sync();
+    window.addEventListener("scroll",sync,{passive:true});
+    return()=>window.removeEventListener("scroll",sync);
+  },[]);
   React.useEffect(()=>{setMobileOpen(false);setServicesOpen(false);},[location.pathname,location.hash]);
   const isActive = (path) => location.pathname === path || (path === '/services' && location.pathname.startsWith('/services/')); 
   const services = [
@@ -18,7 +25,7 @@ export function Header(){
     {type==='social' && <><path d="M4 10h4l9-5v14l-9-5H4zM8 14l2 6h3M20 9a4 4 0 0 1 0 6"/></>}
     {type==='google' && <><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></>}
   </svg>;
-  return <header className="nav">
+  return <header className={`nav gulf-glass-nav${scrolled?" gulf-nav-scrolled":""}`}>
     <Link className="logo" to="/" aria-label="GulfSufra home"><img src="/assets/logo.webp" alt="GulfSufra" /></Link>
     <button className="header-menu-toggle" type="button" aria-expanded={mobileOpen} aria-controls="main-navigation" onClick={()=>setMobileOpen(v=>!v)}>{mobileOpen?'✕':'☰'}<span className="sr-only">Toggle navigation</span></button>
     <nav id="main-navigation" className={mobileOpen?'nav-open':''} aria-label="Main navigation">
