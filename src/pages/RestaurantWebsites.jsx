@@ -1,4 +1,6 @@
 import React from 'react';
+import { gsap } from 'gsap';
+import EnchantedSmoke from './EnchantedSmoke.jsx';
 import './restaurant-websites.css';
 
 const A = '/assets/';
@@ -99,22 +101,45 @@ export default function RestaurantWebsites(){
  const [activeTemplate,setActiveTemplate]=React.useState(null);
  const [lampStage,setLampStage]=React.useState(0);
  const [lampRun,setLampRun]=React.useState(0);
- const lampTimers=React.useRef([]);
- React.useEffect(()=>()=>lampTimers.current.forEach(clearTimeout),[]);
+ const sceneRef=React.useRef(null);
+ const lampRef=React.useRef(null);
+ const jinniRef=React.useRef(null);
+ const sequence=React.useRef(null);
+ const hovering=React.useRef(null);
+ React.useEffect(()=>()=>{
+  sequence.current?.kill();
+  hovering.current?.kill();
+ },[]);
  const rubLamp=()=>{
-  lampTimers.current.forEach(clearTimeout);
-  lampTimers.current=[];
+  sequence.current?.kill();
+  hovering.current?.kill();
   setLampRun(run=>run+1);
-  if(typeof window!=='undefined'&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){
+   gsap.set(jinniRef.current,{clearProps:'all'});
    setLampStage(8);
    return;
   }
-  // One continuous sequence: the lamp lands, smoke rises, Jinni emerges,
-  // she speaks, and the three steps light up before the CTA appears.
   setLampStage(1);
-  [[2,530],[3,1120],[4,1970],[5,2200],[6,2540],[7,2880],[8,3380]].forEach(([step,ms])=>{
-   lampTimers.current.push(window.setTimeout(()=>setLampStage(step),ms));
-  });
+  // A single cancellable GSAP timeline controls the entire summoning.
+  gsap.set(jinniRef.current,{autoAlpha:0,x:-120,y:105,scale:.38,rotation:-6,filter:'blur(9px)'});
+  const tl=gsap.timeline({defaults:{overwrite:'auto'}});
+  sequence.current=tl;
+  tl.call(()=>setLampStage(2),null,.68) // smoke first
+    .call(()=>setLampStage(3),null,1.70)
+    .to(jinniRef.current,{
+      autoAlpha:1,x:0,y:0,scale:1,rotation:0,filter:'blur(0px)',
+      duration:1.4,ease:'power3.out'
+    },1.70)
+    .call(()=>setLampStage(4),null,3.09) // speech bubble
+    .call(()=>setLampStage(5),null,3.25)
+    .call(()=>setLampStage(6),null,3.60)
+    .call(()=>setLampStage(7),null,3.95)
+    .call(()=>{
+      setLampStage(8);
+      // Continue a very subtle hover above the smoke after emergence.
+      hovering.current=gsap.to(jinniRef.current,{y:-8,duration:3.1,ease:'sine.inOut',repeat:-1,yoyo:true});
+    },null,4.40);
  };
  const [inquiry,setInquiry]=React.useState(null);
  const closeInquiry=React.useCallback(()=>setInquiry(null),[]);
@@ -220,38 +245,21 @@ export default function RestaurantWebsites(){
     {lampStage>=5&&<span key={lampRun} className="jrw-process-gold-trail" aria-hidden="true"/>}
    </div>
    <div className={`jrw-lamp-experience${lampStage>0?' is-activated':''}${lampStage>=2?' is-smoking':''}${lampStage>=3?' is-jinni-awake':''}${lampStage>=4?' is-speaking':''}${lampStage>=8?' is-wish-ready':''}`}>
-    <div className="jrw-enchanted-stage">
+    <div ref={sceneRef} className="jrw-enchanted-stage">
      <div className="jrw-lamp-ambient" aria-hidden="true"/>
      <button
       type="button"
       className="jrw-lamp-button"
+      ref={lampRef}
       onClick={rubLamp}
       aria-label={lampStage===0?'Rub the golden lamp to summon Jinni':'Replay Jinni’s magical lamp animation'}
      >
       <img src={A+'jinni-gold-lamp.webp'} alt="" width="220" height="220" loading="lazy"/>
       <span className="jrw-lamp-rub-hint" aria-hidden="true">✦</span>
      </button>
-     <svg key={lampRun} className="jrw-magic-smoke" viewBox="0 0 1000 390" preserveAspectRatio="none" focusable="false" aria-hidden="true">
-      <defs>
-       <linearGradient id="jrwSmokeWarm" x1="0" x2="1" y1="1" y2="0"><stop offset="0%" stopColor="#fff3b9" stopOpacity=".88"/><stop offset="48%" stopColor="#edc56f" stopOpacity=".82"/><stop offset="100%" stopColor="#8fdbc1" stopOpacity=".22"/></linearGradient>
-       <linearGradient id="jrwSmokeMint" x1="0" x2="1" y1="1" y2="0"><stop offset="0%" stopColor="#92e0c3" stopOpacity=".86"/><stop offset="54%" stopColor="#ffd994" stopOpacity=".78"/><stop offset="100%" stopColor="#e8b968" stopOpacity=".12"/></linearGradient>
-       <filter id="jrwSmokeBlur" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur stdDeviation="10"/></filter>
-      </defs>
-      <g className="jrw-smoke-veil" filter="url(#jrwSmokeBlur)" fill="none" strokeLinecap="round">
-       <path d="M83 240 C138 211 176 244 214 198 S312 172 303 129 S430 107 490 48" stroke="url(#jrwSmokeWarm)" strokeWidth="78"/>
-       <path d="M80 243 C137 219 201 222 263 184 S391 136 368 105 S496 75 507 20" stroke="url(#jrwSmokeMint)" strokeWidth="54"/>
-      </g>
-      <g className="jrw-smoke-ribbons" fill="none" strokeLinecap="round">
-       <path className="jrw-smoke-ribbon one" d="M82 239 C139 210 201 238 269 198 S356 155 340 121 S438 77 480 36" stroke="url(#jrwSmokeWarm)" strokeWidth="16"/>
-       <path className="jrw-smoke-ribbon two" d="M82 241 C165 226 235 222 302 186 S391 131 374 100 S480 68 501 12" stroke="url(#jrwSmokeMint)" strokeWidth="12"/>
-       <path className="jrw-smoke-ribbon three" d="M80 242 C168 215 225 237 269 197 S338 147 373 131 S424 98 452 54" stroke="#fff1be" strokeOpacity=".55" strokeWidth="5"/>
-      </g>
-      <g className="jrw-smoke-embers" fill="#ffe3a0">
-       <circle cx="146" cy="223" r="4"/><circle cx="303" cy="200" r="3"/><circle cx="357" cy="152" r="5"/><circle cx="404" cy="94" r="3"/><circle cx="465" cy="50" r="4"/>
-      </g>
-     </svg>
+     <EnchantedSmoke active={lampStage>=2} run={lampRun} stageRef={sceneRef} lampRef={lampRef} jinniRef={jinniRef}/>
      <div className="jrw-summon-character" aria-hidden="true">
-      <img className="jrw-summon-jinni" src={A+'jrw-wish-jinni.webp'} alt="" width="300" height="300" loading="lazy"/>
+      <img ref={jinniRef} className="jrw-summon-jinni" src={A+'jrw-wish-jinni.webp'} alt="" width="300" height="300" loading="lazy"/>
       <span className="jrw-summon-stars" aria-hidden="true">✦ &nbsp; ✧ &nbsp; ✦</span>
      </div>
      <div className="jrw-summon-message">
@@ -263,7 +271,7 @@ export default function RestaurantWebsites(){
       </button>
      </div>
      <div className="jrw-lamp-caption" role="status" aria-live="polite">
-      {lampStage===0?'Go on, rub the lamp. I’m waiting.':lampStage<3?'Something magical is coming…':lampStage<8?'Of course I made an entrance.':'Magic complete. Tap the lamp to watch again.'}
+      {lampStage===0?'Go on, rub the lamp. I’m waiting.':lampStage<3?'The smoke is gathering…':lampStage<8?'Of course I made an entrance.':'Magic complete. Tap the lamp to watch again.'}
      </div>
     </div>
    </div>
