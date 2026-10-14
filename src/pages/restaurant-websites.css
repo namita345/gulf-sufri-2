@@ -378,145 +378,224 @@
 }
 
 
-/* === ENCHANTED LAMP EXPERIENCE ===
-   Scoped exclusively to the Restaurant Websites three-step process.
-   The original hero, navigation, Four Wishes, showroom and final CTA are unchanged. */
+/* === ENCHANTED LAMP / SMOOTH CONTINUOUS SMOKE ===
+   Changes scoped solely to this boxed three-step process section.
+   No other page styles, components or assets are modified. */
+.jrw-page .jrw-process{
+ background:
+  radial-gradient(ellipse at 24% 91%,rgba(36,116,91,.36),transparent 44%),
+  radial-gradient(ellipse at 75% 74%,rgba(187,128,55,.12),transparent 39%),
+  linear-gradient(145deg,#042420 0%,#073b30 52%,#03241e 100%);
+ color:#f9f0dc;
+ border-color:rgba(221,181,101,.38);
+ box-shadow:0 18px 42px rgba(0,34,27,.12);
+ padding:46px 0 30px;
+}
+.jrw-process .jrw-process-heading{margin-bottom:29px}
+.jrw-process .jrw-process-heading .jrw-label{color:#ecc17a}
+.jrw-process .jrw-process-heading h2{color:#fff8ea}
+.jrw-process .jrw-process-heading h2 span{color:#e8bb72}
+.jrw-process .jrw-process-heading p{color:#e9d1a7}
 .jrw-process .jrw-steps{isolation:isolate}
 .jrw-process .jrw-step{z-index:1;transition:filter .45s ease}
-.jrw-process .jrw-step-symbol{transition:background .45s ease,border-color .45s ease,box-shadow .45s ease,transform .45s ease}
+.jrw-process .jrw-step h3{color:#fdf3dc;transition:color .35s ease}
+.jrw-process .jrw-step p{color:#d0ded6}
+.jrw-process .jrw-step-arrow{color:#dfa952}
+.jrw-process .jrw-step-symbol{
+ color:#e6b66b;background:#0e473a;border-color:rgba(228,184,109,.47);
+ box-shadow:0 4px 20px rgba(0,17,12,.14);
+ transition:background .5s,border-color .5s,box-shadow .5s,transform .5s;
+}
+.jrw-process .jrw-step-symbol span{background:#d69a46;border-color:#062e27;color:#09271e}
 .jrw-process .jrw-step.is-magic-lit .jrw-step-symbol{
- background:#fff5d9;border-color:#e2ae51;
- box-shadow:0 0 0 6px rgba(233,181,82,.14),0 0 28px rgba(222,162,50,.34);
+ background:#184e40;border-color:#ffda8b;
+ box-shadow:0 0 0 5px rgba(239,195,104,.1),0 0 30px rgba(234,180,70,.36);
  transform:translateY(-3px)
 }
-.jrw-process .jrw-step.is-magic-lit .jrw-step-symbol svg{color:#af7121;filter:drop-shadow(0 0 6px rgba(231,169,65,.55))}
-.jrw-process .jrw-step.is-magic-lit h3{color:#ac7126;transition:color .35s ease}
+.jrw-process .jrw-step.is-magic-lit .jrw-step-symbol svg{color:#ffe3a0;filter:drop-shadow(0 0 7px rgba(247,205,109,.45))}
+.jrw-process .jrw-step.is-magic-lit h3{color:#ffd793}
+.jrw-process .jrw-steps:before{background:linear-gradient(90deg,transparent,rgba(205,165,100,.35),transparent)}
 .jrw-process .jrw-process-gold-trail{
  position:absolute;left:13%;right:13%;top:48px;height:3px;z-index:0;
- background:linear-gradient(90deg,transparent,#e5aa43 15%,#fff1ab 45%,#c98d34 85%,transparent);
- box-shadow:0 0 11px rgba(239,182,66,.8),0 0 20px rgba(239,182,66,.32);
+ background:linear-gradient(90deg,transparent,#e5aa43 16%,#fff2b8 48%,#d59939 84%,transparent);
+ box-shadow:0 0 12px rgba(239,192,89,.8),0 0 24px rgba(239,192,89,.27);
  transform-origin:left center;pointer-events:none;
- animation:jrw-lamp-gold-flow 1.5s ease-out .8s both
+ animation:jrw-lamp-gold-flow 1.18s cubic-bezier(.22,.75,.25,1) both
 }
 @keyframes jrw-lamp-gold-flow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
-.jrw-process .jrw-lamp-experience{margin:26px auto 0;text-align:center}
-.jrw-process .jrw-lamp-interaction{margin:0 auto;z-index:3}
+.jrw-process .jrw-lamp-experience{margin:5px auto 0}
+.jrw-process .jrw-enchanted-stage{
+ position:relative;width:min(960px,100%);height:350px;margin:0 auto;
+ isolation:isolate;text-align:center;
+}
+.jrw-process .jrw-lamp-ambient{
+ position:absolute;width:370px;height:240px;left:4%;bottom:4%;pointer-events:none;
+ background:radial-gradient(ellipse,rgba(224,174,77,.23),rgba(65,146,113,.07) 51%,transparent 72%);
+ opacity:.65;transition:opacity .65s ease;z-index:0;
+}
+.jrw-process .is-activated .jrw-lamp-ambient{opacity:1}
+/* Larger lamp rests above its final position, beckoning with a subtle periodic shake. */
 .jrw-process .jrw-lamp-button{
- width:96px;flex-basis:96px;isolation:isolate;
- transition:transform .24s ease,filter .24s ease
+ position:absolute;left:7%;bottom:6%;width:230px;height:230px;z-index:5;
+ background:transparent;border:0;padding:0;border-radius:20px;
+ transform-origin:53% 75%;
+ animation:jrw-lamp-invite 5.5s ease-in-out infinite;
+ filter:drop-shadow(0 13px 17px rgba(0,13,9,.33));
+ will-change:transform;
 }
-.jrw-process .jrw-lamp-button:hover{filter:drop-shadow(0 0 13px rgba(217,164,66,.55))}
-.jrw-process .jrw-lamp-button.is-shaking{animation:jrw-lamp-shake .42s ease-in-out both}
-.jrw-process .jrw-lamp-button.is-awake:not(.is-shaking){transform:rotate(-5deg)}
-@keyframes jrw-lamp-shake{
- 0%,100%{transform:rotate(0) scale(1)}
- 20%{transform:rotate(-12deg) scale(1.06)}
- 40%{transform:rotate(11deg) scale(1.07)}
- 60%{transform:rotate(-8deg) scale(1.08)}
- 80%{transform:rotate(6deg) scale(1.04)}
+.jrw-process .jrw-lamp-button img{width:100%;height:100%;object-fit:contain;display:block;filter:none}
+.jrw-process .jrw-lamp-button:hover{filter:drop-shadow(0 0 16px rgba(243,200,108,.58))}
+.jrw-process .jrw-lamp-button:focus-visible{outline:3px solid #ffdc9d;outline-offset:2px}
+.jrw-process .jrw-lamp-rub-hint{position:absolute;top:12%;right:6%;color:#ffdd86;font-size:25px;animation:jrw-lamp-twinkle 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes jrw-lamp-twinkle{0%,100%{opacity:.25;transform:scale(.75)}55%{opacity:1;transform:scale(1.2)}}
+@keyframes jrw-lamp-invite{
+ 0%,58%,100%{transform:translateY(-39px) rotate(-3deg)}
+ 63%{transform:translateY(-40px) rotate(-9deg)}
+ 68%{transform:translateY(-41px) rotate(5deg)}
+ 73%{transform:translateY(-39px) rotate(-6deg)}
+ 79%{transform:translateY(-39px) rotate(-3deg)}
 }
-.jrw-process .jrw-lamp-caption{min-width:235px;text-align:left}
-.jrw-process .jrw-summon-reveal{
- display:flex;align-items:center;justify-content:center;gap:22px;
- min-height:225px;max-width:720px;margin:4px auto 0;
- animation:jrw-summon-panel-in .34s ease both;
+.jrw-process .is-activated .jrw-lamp-button{
+ animation:jrw-lamp-settle .8s cubic-bezier(.25,.84,.24,1) both;
 }
-@keyframes jrw-summon-panel-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-.jrw-process .jrw-summon-character{position:relative;flex:0 0 245px;height:225px;align-self:end;isolation:isolate}
+@keyframes jrw-lamp-settle{
+ 0%{transform:translateY(-39px) rotate(-3deg)}
+ 32%{transform:translateY(1px) rotate(-12deg)}
+ 65%{transform:translateY(20px) rotate(3deg)}
+ 83%{transform:translateY(13px) rotate(-3deg)}
+ 100%{transform:translateY(16px) rotate(-5deg)}
+}
+/* Real, multi-layer smoke trails: soft vapor, luminous wisps and drifting embers.
+   Unlike the old static blurred oval, these KEEP MOVING while Jinni is visible. */
+.jrw-process .jrw-magic-smoke{
+ position:absolute;inset:0;width:100%;height:100%;z-index:4;overflow:visible;
+ pointer-events:none;opacity:0;transition:opacity .65s ease;
+}
+.jrw-process .is-smoking .jrw-magic-smoke{opacity:1}
+.jrw-process .jrw-smoke-veil,.jrw-process .jrw-smoke-ribbon,.jrw-process .jrw-smoke-embers{animation-play-state:paused}
+.jrw-process .is-smoking .jrw-smoke-veil,.jrw-process .is-smoking .jrw-smoke-ribbon,.jrw-process .is-smoking .jrw-smoke-embers{animation-play-state:running}
+.jrw-process .jrw-smoke-veil{
+ opacity:.72;transform-origin:27% 80%;
+ animation:jrw-smoke-breathe 4.5s ease-in-out infinite;
+}
+@keyframes jrw-smoke-breathe{
+ 0%,100%{opacity:.55;transform:translateY(7px) scaleX(.92)}
+ 50%{opacity:.95;transform:translateY(-9px) scaleX(1.07)}
+}
+.jrw-process .jrw-smoke-ribbon{
+ stroke-dasharray:85 75;
+ stroke-dashoffset:300;
+ animation:jrw-smoke-flow 5.2s linear infinite;
+}
+.jrw-process .jrw-smoke-ribbon.two{animation-duration:4.1s;animation-delay:-1.4s;stroke-dasharray:64 66}
+.jrw-process .jrw-smoke-ribbon.three{animation-duration:6.2s;animation-delay:-2.6s;stroke-dasharray:36 48}
+@keyframes jrw-smoke-flow{to{stroke-dashoffset:-340}}
+.jrw-process .jrw-smoke-embers{animation:jrw-smoke-embers 3.1s ease-in-out infinite alternate;filter:drop-shadow(0 0 7px #f3c477)}
+@keyframes jrw-smoke-embers{from{opacity:.25;transform:translateY(7px)}to{opacity:.9;transform:translateY(-12px)}}
+.jrw-process .jrw-summon-character{
+ position:absolute;z-index:6;left:38%;bottom:12px;width:300px;height:300px;
+ pointer-events:none;
+}
 .jrw-process .jrw-summon-jinni{
- position:relative;z-index:2;width:100%;height:100%;object-fit:contain;
- opacity:0;transform-origin:48% 95%;transform:translate(-65px,65px) scale(.18) rotate(-12deg);
- filter:drop-shadow(0 9px 13px rgba(80,54,23,.22))
+ width:100%;height:100%;object-fit:contain;display:block;
+ opacity:0;transform-origin:37% 95%;transform:translate(-150px,145px) scale(.14) rotate(-11deg);
+ filter:blur(7px) drop-shadow(0 0 15px rgba(238,192,97,.6));
 }
 .jrw-process .is-jinni-awake .jrw-summon-jinni{
- animation:jrw-jinni-emerge .86s cubic-bezier(.2,1.1,.32,1) both
+ animation:jrw-jinni-ascend 1.05s cubic-bezier(.16,.92,.22,1) both;
 }
-@keyframes jrw-jinni-emerge{
- 0%{opacity:0;transform:translate(-65px,65px) scale(.18) rotate(-12deg);filter:blur(3px) drop-shadow(0 0 3px rgba(255,206,115,.7))}
- 65%{opacity:1;filter:blur(0) drop-shadow(0 0 18px rgba(229,170,64,.6))}
- 100%{opacity:1;transform:translate(0,0) scale(1) rotate(0);filter:drop-shadow(0 9px 13px rgba(80,54,23,.22))}
+@keyframes jrw-jinni-ascend{
+ 0%{opacity:0;transform:translate(-150px,145px) scale(.14) rotate(-11deg);filter:blur(7px) drop-shadow(0 0 14px rgba(239,184,91,.55))}
+ 55%{opacity:.82;filter:blur(1px) drop-shadow(0 0 30px rgba(243,196,104,.7))}
+ 78%{transform:translate(0,-10px) scale(1.035) rotate(.8deg)}
+ 100%{opacity:1;transform:translate(0,0) scale(1) rotate(0);filter:blur(0) drop-shadow(0 13px 19px rgba(0,22,15,.35))}
 }
-.jrw-process .jrw-summon-smoke{
- position:absolute;z-index:0;left:6%;bottom:9%;width:78%;height:88%;border-radius:50%;
- background:radial-gradient(ellipse at 45% 75%,rgba(250,200,95,.46),rgba(255,220,143,.22) 33%,transparent 70%);
- filter:blur(12px);transform:scale(.3) rotate(-20deg);opacity:0
+.jrw-process .jrw-summon-stars{
+ position:absolute;left:0;top:14%;font-size:21px;letter-spacing:8px;color:#fbd58d;
+ text-shadow:0 0 12px #f9c679;opacity:0;
 }
-.jrw-process .is-activated .jrw-summon-smoke{
- animation:jrw-summon-smoke-rise 1.5s ease-out both
-}
-@keyframes jrw-summon-smoke-rise{
- 0%{opacity:0;transform:translate(-60px,35px) scale(.2) rotate(-28deg)}
- 45%{opacity:.95}
- 100%{opacity:.48;transform:translateY(-4px) scale(1.1) rotate(10deg)}
-}
-.jrw-process .jrw-summon-sparkles{
- position:absolute;top:13px;left:6%;z-index:3;
- color:#daa044;font-size:24px;letter-spacing:7px;white-space:nowrap;
- opacity:0;pointer-events:none
-}
-.jrw-process .is-activated .jrw-summon-sparkles{
- animation:jrw-summon-sparkle-in 1.8s .18s ease-out both
-}
-@keyframes jrw-summon-sparkle-in{
- 0%{opacity:0;transform:translateY(30px) scale(.6)}
- 40%{opacity:1;transform:translateY(-5px) scale(1.1)}
- 100%{opacity:.55;transform:translateY(-17px) scale(.9)}
-}
+.jrw-process .is-jinni-awake .jrw-summon-stars{animation:jrw-stars-appear 3.2s ease-in-out 0s infinite}
+@keyframes jrw-stars-appear{0%{opacity:0;transform:translateY(14px)}35%{opacity:1}85%,100%{opacity:0;transform:translateY(-22px)}}
 .jrw-process .jrw-summon-message{
- flex:0 1 312px;text-align:left;display:flex;flex-direction:column;gap:15px;
- align-items:flex-start;align-self:center
+ position:absolute;z-index:7;right:1%;top:87px;width:265px;
+ display:flex;align-items:stretch;flex-direction:column;gap:15px;text-align:left;
 }
 .jrw-process .jrw-summon-bubble{
- position:relative;background:#fffaf0;border:1px solid #d5a353;
- border-radius:20px 20px 20px 7px;padding:17px 19px;
- color:#123b31;font-weight:700;font-size:13px;line-height:1.5;
- box-shadow:0 8px 28px rgba(133,89,27,.11);
- opacity:0;transform:translateY(12px) scale(.9);transform-origin:0 100%
+ position:relative;background:#fff8e9;border:1px solid #efc77f;
+ padding:17px 18px;border-radius:19px 19px 19px 6px;
+ color:#163e33;font-weight:700;font-size:13px;line-height:1.5;
+ box-shadow:0 12px 27px rgba(1,21,14,.23);
+ opacity:0;transform:translateY(12px) scale(.87);transform-origin:0 100%;
 }
 .jrw-process .jrw-summon-bubble:before{
- content:'';position:absolute;left:-8px;top:57%;width:15px;height:15px;
- background:#fffaf0;border-left:1px solid #d5a353;border-bottom:1px solid #d5a353;transform:rotate(45deg)
+ content:'';position:absolute;left:-9px;top:58%;width:16px;height:16px;
+ transform:rotate(45deg);background:#fff8e9;border-left:1px solid #efc77f;border-bottom:1px solid #efc77f;
 }
-.jrw-process .is-jinni-awake .jrw-summon-bubble{
- animation:jrw-summon-bubble-pop .46s .44s cubic-bezier(.2,1.3,.4,1) both
-}
-@keyframes jrw-summon-bubble-pop{
- from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}
-}
+.jrw-process .is-speaking .jrw-summon-bubble{animation:jrw-bubble-gentle-pop .48s cubic-bezier(.2,1.1,.3,1) both}
+@keyframes jrw-bubble-gentle-pop{to{opacity:1;transform:translateY(0) scale(1)}}
 .jrw-process .jrw-summon-cta{
- animation:jrw-summon-cta-in .52s cubic-bezier(.2,1,.3,1) both
+ width:100%;white-space:normal;text-align:center;opacity:0;transform:translateY(10px);
+ visibility:hidden;pointer-events:none;
 }
-@keyframes jrw-summon-cta-in{from{opacity:0;transform:translateY(12px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+.jrw-process .is-wish-ready .jrw-summon-cta{
+ visibility:visible;pointer-events:auto;
+ animation:jrw-cta-gentle-in .5s cubic-bezier(.18,.95,.3,1) both;
+}
+@keyframes jrw-cta-gentle-in{to{opacity:1;transform:translateY(0)}}
+.jrw-process .jrw-lamp-caption{
+ position:absolute;bottom:0;left:3%;width:260px;max-width:36%;
+ color:#eed4a6;font-size:12px;line-height:1.45;font-weight:600;
+ text-shadow:0 2px 10px #032319;text-align:center;
+ background:transparent;border:0;padding:0;box-shadow:none;
+}
+@media(max-width:1000px){
+ .jrw-process .jrw-lamp-button{left:3%;width:195px;height:195px}
+ .jrw-process .jrw-summon-character{left:32%;width:270px;height:270px}
+ .jrw-process .jrw-summon-message{right:1%;width:240px}
+}
 @media(max-width:820px){
- .jrw-process .jrw-summon-reveal{gap:8px;min-height:205px}
- .jrw-process .jrw-summon-character{flex-basis:205px;height:205px}
- .jrw-process .jrw-summon-message{flex-basis:290px}
- .jrw-process .jrw-summon-bubble{font-size:12px;padding:14px}
+ .jrw-process .jrw-enchanted-stage{height:335px}
+ .jrw-process .jrw-lamp-button{left:2%;width:180px;height:180px}
+ .jrw-process .jrw-summon-character{left:29%;width:245px;height:245px}
+ .jrw-process .jrw-summon-message{top:85px;width:205px}
+ .jrw-process .jrw-summon-bubble{font-size:11.5px;padding:12px}
+ .jrw-process .jrw-lamp-caption{font-size:11px;left:1%}
+ .jrw-process .jrw-steps{gap:14px}
+ .jrw-process .jrw-step{gap:10px}
 }
-@media(max-width:560px){
- .jrw-process .jrw-steps{isolation:isolate}
- .jrw-process .jrw-process-gold-trail{
-  top:40px;bottom:40px;left:38px;right:auto;width:3px;height:auto;
- transform-origin:center top;animation:jrw-lamp-gold-flow-mobile 1.35s ease-out .8s both
- }
+@media(max-width:620px){
+ .jrw-page .jrw-process{padding:38px 0 21px}
+ .jrw-process .jrw-process-heading{margin-bottom:24px}
+ .jrw-process .jrw-step-symbol{width:64px;height:64px;flex-basis:64px}
+ .jrw-process .jrw-steps{gap:21px}
+ .jrw-process .jrw-process-gold-trail{top:32px;bottom:32px;left:32px;right:auto;width:3px;height:auto;transform-origin:center top;animation:jrw-lamp-gold-flow-mobile 1.15s ease-out both}
  @keyframes jrw-lamp-gold-flow-mobile{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
- .jrw-process .jrw-lamp-experience{margin-top:18px}
- .jrw-process .jrw-lamp-button{width:75px;flex-basis:75px}
- .jrw-process .jrw-lamp-caption{min-width:0;max-width:230px;font-size:11px}
- .jrw-process .jrw-summon-reveal{gap:4px;min-height:188px;width:100%;justify-content:center}
- .jrw-process .jrw-summon-character{flex:0 0 min(39%,155px);height:176px}
- .jrw-process .jrw-summon-message{flex:1 1 0;min-width:0;gap:8px}
- .jrw-process .jrw-summon-bubble{font-size:11px;line-height:1.38;padding:11px 10px;border-radius:13px}
- .jrw-process .jrw-summon-cta{white-space:normal;text-align:center;font-size:10px;padding:9px 11px;min-height:37px;gap:8px}
- .jrw-process .jrw-summon-sparkles{font-size:15px;letter-spacing:3px}
+ .jrw-process .jrw-enchanted-stage{height:475px;width:100%}
+ .jrw-process .jrw-lamp-button{left:0%;bottom:25%;width:175px;height:175px}
+ .jrw-process .jrw-lamp-ambient{left:-10%;bottom:18%;width:220px;height:200px}
+ .jrw-process .jrw-summon-character{left:auto;right:-3%;top:11px;bottom:auto;width:min(245px,71%);height:245px}
+ .jrw-process .jrw-summon-message{left:5%;right:5%;top:auto;bottom:26px;width:auto;align-items:stretch;gap:10px}
+ .jrw-process .jrw-summon-bubble{font-size:12px;max-width:100%;padding:12px 15px;text-align:center;border-radius:16px}
+ .jrw-process .jrw-summon-bubble:before{top:-9px;left:68%;border-bottom:0;border-top:1px solid #efc77f;transform:rotate(45deg)}
+ .jrw-process .jrw-summon-cta{min-height:41px;font-size:12px}
+ .jrw-process .jrw-lamp-caption{bottom:168px;left:0%;max-width:46%;width:160px;font-size:10.5px}
+ .jrw-process .jrw-magic-smoke{top:4%;height:86%}
+}
+@media(max-width:390px){
+ .jrw-process .jrw-enchanted-stage{height:455px}
+ .jrw-process .jrw-lamp-button{width:155px;height:155px;left:-2%;bottom:27%}
+ .jrw-process .jrw-summon-character{width:215px;height:215px;right:-7%;top:24px}
+ .jrw-process .jrw-lamp-caption{bottom:159px}
 }
 @media(prefers-reduced-motion:reduce){
- .jrw-process .jrw-process-gold-trail{animation:none;transform:scaleX(1);opacity:1}
- .jrw-process .jrw-lamp-button.is-shaking,
- .jrw-process .jrw-summon-reveal,
- .jrw-process .jrw-summon-jinni,
- .jrw-process .jrw-summon-smoke,
- .jrw-process .jrw-summon-sparkles,
- .jrw-process .jrw-summon-bubble,
- .jrw-process .jrw-summon-cta{animation:none!important;transform:none!important;opacity:1!important}
+ .jrw-process .jrw-lamp-button,.jrw-process .jrw-lamp-rub-hint,.jrw-process .jrw-summon-jinni,
+ .jrw-process .jrw-summon-stars,.jrw-process .jrw-smoke-veil,.jrw-process .jrw-smoke-ribbon,
+ .jrw-process .jrw-smoke-embers,.jrw-process .jrw-summon-bubble,.jrw-process .jrw-summon-cta,
+ .jrw-process .jrw-process-gold-trail{animation:none!important;transition:none!important}
+ .jrw-process .jrw-lamp-button{transform:none!important}
+ .jrw-process .is-smoking .jrw-magic-smoke{opacity:.75!important}
+ .jrw-process .is-jinni-awake .jrw-summon-jinni{opacity:1!important;filter:none!important;transform:none!important}
+ .jrw-process .is-speaking .jrw-summon-bubble{opacity:1!important;transform:none!important}
+ .jrw-process .is-wish-ready .jrw-summon-cta{opacity:1!important;transform:none!important;visibility:visible!important}
+ .jrw-process .jrw-process-gold-trail{transform:none!important;opacity:1!important}
 }

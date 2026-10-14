@@ -105,12 +105,14 @@ export default function RestaurantWebsites(){
   lampTimers.current.forEach(clearTimeout);
   lampTimers.current=[];
   setLampRun(run=>run+1);
-  if(typeof window!=='undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-   setLampStage(6);
+  if(typeof window!=='undefined'&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   setLampStage(8);
    return;
   }
+  // One continuous sequence: the lamp lands, smoke rises, Jinni emerges,
+  // she speaks, and the three steps light up before the CTA appears.
   setLampStage(1);
-  [[2,410],[3,900],[4,1310],[5,1730],[6,2400]].forEach(([step,ms])=>{
+  [[2,530],[3,1120],[4,1970],[5,2200],[6,2540],[7,2880],[8,3380]].forEach(([step,ms])=>{
    lampTimers.current.push(window.setTimeout(()=>setLampStage(step),ms));
   });
  };
@@ -214,25 +216,56 @@ export default function RestaurantWebsites(){
      {no:'01',icon:'chat',title:'Share Your Vision',text:'Tell us about your restaurant, style and requirements.'},
      {no:'02',icon:'pen',title:'We Design & Build',text:'We craft a customized website that feels like your brand.'},
      {no:'03',icon:'rocket',title:'Launch & Grow',text:'Your website goes live with essential on-page SEO setup.'}
-    ].map((step,i)=><Reveal key={step.no} className={`jrw-step${lampStage>=i+3?' is-magic-lit':''}`} style={{'--delay':`${i*.17}s`}}><div className="jrw-step-symbol"><LineIcon name={step.icon}/><span>{step.no}</span></div><div><h3>{step.title}</h3><p>{step.text}</p></div>{i<2&&<span className="jrw-step-arrow" aria-hidden="true">⟶</span>}</Reveal>)}
-    {lampStage>0&&<span key={lampRun} className="jrw-process-gold-trail" aria-hidden="true"/>}
+    ].map((step,i)=><Reveal key={step.no} className={`jrw-step${lampStage>=i+5?' is-magic-lit':''}`} style={{'--delay':`${i*.17}s`}}><div className="jrw-step-symbol"><LineIcon name={step.icon}/><span>{step.no}</span></div><div><h3>{step.title}</h3><p>{step.text}</p></div>{i<2&&<span className="jrw-step-arrow" aria-hidden="true">⟶</span>}</Reveal>)}
+    {lampStage>=5&&<span key={lampRun} className="jrw-process-gold-trail" aria-hidden="true"/>}
    </div>
-   <div className={`jrw-lamp-experience${lampStage>0?' is-activated':''}${lampStage>=2?' is-jinni-awake':''}${lampStage>=6?' is-wish-ready':''}`}>
-    <div className="jrw-lamp-interaction">
-     <button type="button" className={`jrw-lamp-button${lampStage>0?' is-awake':''}${lampStage===1?' is-shaking':''}`} onClick={rubLamp} aria-label={lampStage===0?'Rub Jinni’s enchanted lamp':'Replay Jinni’s enchanted lamp animation'} aria-pressed={lampStage>0}><img src={A+'jinni-gold-lamp.webp'} alt=""/></button>
-     <div className="jrw-lamp-caption" role="status" aria-live="polite">{lampStage===0?"Go ahead, rub the lamp. I'm waiting.":lampStage<6?"One little rub, one very fabulous genie…":"Magic complete. Go on, make your wish."}<span aria-hidden="true">{lampStage===0?' ↗':' ✦'}</span></div>
-    </div>
-    {lampStage>0&&<div className="jrw-summon-reveal">
-     <div className="jrw-summon-character">
-      <span className="jrw-summon-smoke" aria-hidden="true"/>
-      <span className="jrw-summon-sparkles" aria-hidden="true">✦ ✧ ✦</span>
-      <img className="jrw-summon-jinni" src={A+'jrw-wish-jinni.webp'} alt="Jinni appears in a swirl of golden magic" width="225" height="225"/>
+   <div className={`jrw-lamp-experience${lampStage>0?' is-activated':''}${lampStage>=2?' is-smoking':''}${lampStage>=3?' is-jinni-awake':''}${lampStage>=4?' is-speaking':''}${lampStage>=8?' is-wish-ready':''}`}>
+    <div className="jrw-enchanted-stage">
+     <div className="jrw-lamp-ambient" aria-hidden="true"/>
+     <button
+      type="button"
+      className="jrw-lamp-button"
+      onClick={rubLamp}
+      aria-label={lampStage===0?'Rub the golden lamp to summon Jinni':'Replay Jinni’s magical lamp animation'}
+     >
+      <img src={A+'jinni-gold-lamp.webp'} alt="" width="220" height="220" loading="lazy"/>
+      <span className="jrw-lamp-rub-hint" aria-hidden="true">✦</span>
+     </button>
+     <svg key={lampRun} className="jrw-magic-smoke" viewBox="0 0 1000 390" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+      <defs>
+       <linearGradient id="jrwSmokeWarm" x1="0" x2="1" y1="1" y2="0"><stop offset="0%" stopColor="#fff3b9" stopOpacity=".88"/><stop offset="48%" stopColor="#edc56f" stopOpacity=".82"/><stop offset="100%" stopColor="#8fdbc1" stopOpacity=".22"/></linearGradient>
+       <linearGradient id="jrwSmokeMint" x1="0" x2="1" y1="1" y2="0"><stop offset="0%" stopColor="#92e0c3" stopOpacity=".86"/><stop offset="54%" stopColor="#ffd994" stopOpacity=".78"/><stop offset="100%" stopColor="#e8b968" stopOpacity=".12"/></linearGradient>
+       <filter id="jrwSmokeBlur" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur stdDeviation="10"/></filter>
+      </defs>
+      <g className="jrw-smoke-veil" filter="url(#jrwSmokeBlur)" fill="none" strokeLinecap="round">
+       <path d="M83 240 C138 211 176 244 214 198 S312 172 303 129 S430 107 490 48" stroke="url(#jrwSmokeWarm)" strokeWidth="78"/>
+       <path d="M80 243 C137 219 201 222 263 184 S391 136 368 105 S496 75 507 20" stroke="url(#jrwSmokeMint)" strokeWidth="54"/>
+      </g>
+      <g className="jrw-smoke-ribbons" fill="none" strokeLinecap="round">
+       <path className="jrw-smoke-ribbon one" d="M82 239 C139 210 201 238 269 198 S356 155 340 121 S438 77 480 36" stroke="url(#jrwSmokeWarm)" strokeWidth="16"/>
+       <path className="jrw-smoke-ribbon two" d="M82 241 C165 226 235 222 302 186 S391 131 374 100 S480 68 501 12" stroke="url(#jrwSmokeMint)" strokeWidth="12"/>
+       <path className="jrw-smoke-ribbon three" d="M80 242 C168 215 225 237 269 197 S338 147 373 131 S424 98 452 54" stroke="#fff1be" strokeOpacity=".55" strokeWidth="5"/>
+      </g>
+      <g className="jrw-smoke-embers" fill="#ffe3a0">
+       <circle cx="146" cy="223" r="4"/><circle cx="303" cy="200" r="3"/><circle cx="357" cy="152" r="5"/><circle cx="404" cy="94" r="3"/><circle cx="465" cy="50" r="4"/>
+      </g>
+     </svg>
+     <div className="jrw-summon-character" aria-hidden="true">
+      <img className="jrw-summon-jinni" src={A+'jrw-wish-jinni.webp'} alt="" width="300" height="300" loading="lazy"/>
+      <span className="jrw-summon-stars" aria-hidden="true">✦ &nbsp; ✧ &nbsp; ✦</span>
      </div>
      <div className="jrw-summon-message">
-      <div className="jrw-summon-bubble" role="status" aria-live="polite">{lampStage>=6?"There. Three steps. Even you don't need three wishes for that, darling.":"Oh, you finally rubbed it. I was beginning to think you needed instructions."}</div>
-      {lampStage>=6&&<button type="button" className="jrw-btn jrw-btn-primary jrw-summon-cta" onClick={()=>ask()}>Grant My Website Wish <span aria-hidden="true">→</span></button>}
+      <div className="jrw-summon-bubble" role="status" aria-live="polite">
+       {lampStage>=8?"See? Three steps. It really wasn't that difficult, darling.":"Oh, you finally rubbed it. I was beginning to think you needed instructions."}
+      </div>
+      <button type="button" className="jrw-btn jrw-btn-primary jrw-summon-cta" onClick={()=>ask()} tabIndex={lampStage>=8?0:-1} aria-hidden={lampStage<8}>
+       Grant My Website Wish <span aria-hidden="true">→</span>
+      </button>
      </div>
-    </div>}
+     <div className="jrw-lamp-caption" role="status" aria-live="polite">
+      {lampStage===0?'Go on, rub the lamp. I’m waiting.':lampStage<3?'Something magical is coming…':lampStage<8?'Of course I made an entrance.':'Magic complete. Tap the lamp to watch again.'}
+     </div>
+    </div>
    </div>
   </div></section>
 
