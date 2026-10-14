@@ -277,7 +277,18 @@ export default function RestaurantWebsites(){
    </div>
   </div></section>
 
-  <section className="jrw-final" aria-labelledby="jrw-final-title"><div className="jrw-container jrw-final-panel"><div className="jrw-final-image" aria-hidden="true"/><div className="jrw-final-content"><span className="jrw-label">ONE LAST WISH?</span><h2 id="jrw-final-title">Ready to Get Your Restaurant Online?</h2><p>“You've admired my work long enough, darling. Shall we make yours?”</p><button type="button" className="jrw-btn jrw-btn-primary" onClick={()=>ask()}>Grant My Website Wish <span>→</span></button></div><span className="jrw-final-note">Your success is just a wish away ✧</span></div></section>
+  <section className="jrw-final" aria-labelledby="jrw-final-title"><div className="jrw-container jrw-final-panel"><div className="jrw-final-image" aria-hidden="true"/>
+   <button type="button" className="jrw-final-magical-lamp" onClick={()=>ask()} aria-label="Make your website wish — open the inquiry form">
+    <span className="jrw-final-lamp-float" aria-hidden="true">
+     <img src={A+'jinni-gold-lamp.webp'} alt="" width="220" height="220" loading="lazy"/>
+     <span className="jrw-final-lamp-spark jrw-final-spark-one">✦</span>
+     <span className="jrw-final-lamp-spark jrw-final-spark-two">✧</span>
+     <span className="jrw-final-lamp-spark jrw-final-spark-three">✦</span>
+     <span className="jrw-final-lamp-spark jrw-final-spark-four">✧</span>
+    </span>
+    <span className="jrw-final-lamp-tooltip" aria-hidden="true">One last wish, darling? Make it count.</span>
+   </button>
+   <div className="jrw-final-content"><span className="jrw-label">ONE LAST WISH?</span><h2 id="jrw-final-title">Ready to Get Your Restaurant Online?</h2><p>“You've admired my work long enough, darling. Shall we make yours?”</p><button type="button" className="jrw-btn jrw-btn-primary" onClick={()=>ask()}>Grant My Website Wish <span>→</span></button></div><span className="jrw-final-note">Your success is just a wish away ✧</span></div></section>
 
   {preview&&<div className="jrw-preview-overlay" onMouseDown={e=>{if(e.currentTarget===e.target)closePreview();}}><div className="jrw-preview-dialog" role="dialog" aria-modal="true" aria-label={`${preview.name} template preview`}><div className="jrw-preview-top"><div><h2>{preview.name}</h2><p>{preview.description}</p></div><button type="button" className="jrw-preview-close" onClick={closePreview} aria-label="Close preview">×</button></div><img src={A+preview.image} alt={`${preview.name} restaurant demo template large preview`}/><div className="jrw-preview-bottom"><span>Illustrative design concept · Can be customized for your restaurant</span><button type="button" className="jrw-btn jrw-btn-primary" onClick={()=>ask(preview.name)}>I Want This Style <span>→</span></button></div></div></div>}
   {inquiry!==null&&<InquiryModal key={inquiry} onClose={closeInquiry} selectedTemplate={inquiry}/>}
