@@ -97,7 +97,23 @@ function InquiryModal({onClose,selectedTemplate}){
 export default function RestaurantWebsites(){
  const [preview,setPreview]=React.useState(null);
  const [activeTemplate,setActiveTemplate]=React.useState(null);
- const [lampAwake,setLampAwake]=React.useState(false);
+ const [lampStage,setLampStage]=React.useState(0);
+ const [lampRun,setLampRun]=React.useState(0);
+ const lampTimers=React.useRef([]);
+ React.useEffect(()=>()=>lampTimers.current.forEach(clearTimeout),[]);
+ const rubLamp=()=>{
+  lampTimers.current.forEach(clearTimeout);
+  lampTimers.current=[];
+  setLampRun(run=>run+1);
+  if(typeof window!=='undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   setLampStage(6);
+   return;
+  }
+  setLampStage(1);
+  [[2,410],[3,900],[4,1310],[5,1730],[6,2400]].forEach(([step,ms])=>{
+   lampTimers.current.push(window.setTimeout(()=>setLampStage(step),ms));
+  });
+ };
  const [inquiry,setInquiry]=React.useState(null);
  const closeInquiry=React.useCallback(()=>setInquiry(null),[]);
  const closePreview=React.useCallback(()=>setPreview(null),[]);
@@ -191,18 +207,32 @@ export default function RestaurantWebsites(){
    <p className="jrw-demo-disclosure">These are illustrative demo concepts, not examples of completed client projects.</p>
   </section>
 
-  <section className="jrw-process" aria-labelledby="jrw-process-title"><div className="jrw-container jrw-process-inner">
+  <section className={`jrw-process${lampStage>0?' is-magic-on':''}`} aria-labelledby="jrw-process-title"><div className="jrw-container jrw-process-inner">
    <Reveal className="jrw-process-heading"><span className="jrw-label">HOW JINNI MAKES IT HAPPEN</span><h2 id="jrw-process-title">A Simple <span>3-Step</span> Process</h2><p>“Three simple steps. And no, you don't need three wishes.”</p></Reveal>
    <div className="jrw-steps">
     {[
      {no:'01',icon:'chat',title:'Share Your Vision',text:'Tell us about your restaurant, style and requirements.'},
      {no:'02',icon:'pen',title:'We Design & Build',text:'We craft a customized website that feels like your brand.'},
      {no:'03',icon:'rocket',title:'Launch & Grow',text:'Your website goes live with essential on-page SEO setup.'}
-    ].map((step,i)=><Reveal key={step.no} className="jrw-step" style={{'--delay':`${i*.17}s`}}><div className="jrw-step-symbol"><LineIcon name={step.icon}/><span>{step.no}</span></div><div><h3>{step.title}</h3><p>{step.text}</p></div>{i<2&&<span className="jrw-step-arrow" aria-hidden="true">⟶</span>}</Reveal>)}
+    ].map((step,i)=><Reveal key={step.no} className={`jrw-step${lampStage>=i+3?' is-magic-lit':''}`} style={{'--delay':`${i*.17}s`}}><div className="jrw-step-symbol"><LineIcon name={step.icon}/><span>{step.no}</span></div><div><h3>{step.title}</h3><p>{step.text}</p></div>{i<2&&<span className="jrw-step-arrow" aria-hidden="true">⟶</span>}</Reveal>)}
+    {lampStage>0&&<span key={lampRun} className="jrw-process-gold-trail" aria-hidden="true"/>}
    </div>
-   <div className="jrw-lamp-interaction">
-    <button type="button" className={`jrw-lamp-button ${lampAwake?'is-awake':''}`} onClick={()=>setLampAwake(x=>!x)} aria-pressed={lampAwake} aria-label="Rub Jinni's enchanted lamp"><img src={A+'jinni-gold-lamp.webp'} alt=""/></button>
-    <div className="jrw-lamp-caption" role="status" aria-live="polite">{lampAwake?"Three steps. No complicated spells. Try to keep up, darling.":"Go ahead, rub the lamp. I'm waiting."}<span>{lampAwake?' ✨':' ↗'}</span></div>
+   <div className={`jrw-lamp-experience${lampStage>0?' is-activated':''}${lampStage>=2?' is-jinni-awake':''}${lampStage>=6?' is-wish-ready':''}`}>
+    <div className="jrw-lamp-interaction">
+     <button type="button" className={`jrw-lamp-button${lampStage>0?' is-awake':''}${lampStage===1?' is-shaking':''}`} onClick={rubLamp} aria-label={lampStage===0?'Rub Jinni’s enchanted lamp':'Replay Jinni’s enchanted lamp animation'} aria-pressed={lampStage>0}><img src={A+'jinni-gold-lamp.webp'} alt=""/></button>
+     <div className="jrw-lamp-caption" role="status" aria-live="polite">{lampStage===0?"Go ahead, rub the lamp. I'm waiting.":lampStage<6?"One little rub, one very fabulous genie…":"Magic complete. Go on, make your wish."}<span aria-hidden="true">{lampStage===0?' ↗':' ✦'}</span></div>
+    </div>
+    {lampStage>0&&<div className="jrw-summon-reveal">
+     <div className="jrw-summon-character">
+      <span className="jrw-summon-smoke" aria-hidden="true"/>
+      <span className="jrw-summon-sparkles" aria-hidden="true">✦ ✧ ✦</span>
+      <img className="jrw-summon-jinni" src={A+'jrw-wish-jinni.webp'} alt="Jinni appears in a swirl of golden magic" width="225" height="225"/>
+     </div>
+     <div className="jrw-summon-message">
+      <div className="jrw-summon-bubble" role="status" aria-live="polite">{lampStage>=6?"There. Three steps. Even you don't need three wishes for that, darling.":"Oh, you finally rubbed it. I was beginning to think you needed instructions."}</div>
+      {lampStage>=6&&<button type="button" className="jrw-btn jrw-btn-primary jrw-summon-cta" onClick={()=>ask()}>Grant My Website Wish <span aria-hidden="true">→</span></button>}
+     </div>
+    </div>}
    </div>
   </div></section>
 
