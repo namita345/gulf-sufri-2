@@ -122,7 +122,7 @@ export default function RestaurantWebsites(){
   }
   setLampStage(1);
   // A single cancellable GSAP timeline controls the entire summoning.
-  gsap.set(jinniRef.current,{autoAlpha:0,x:-120,y:105,scale:.38,rotation:-6,filter:'blur(9px)'});
+  gsap.set(jinniRef.current,{autoAlpha:0,x:118,y:96,scale:.38,rotation:6,filter:'blur(9px)'});
   const tl=gsap.timeline({defaults:{overwrite:'auto'}});
   sequence.current=tl;
   tl.call(()=>setLampStage(2),null,.68) // smoke first
