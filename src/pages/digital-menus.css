@@ -164,19 +164,6 @@
 /* === Digital Menus focused refinement: hero scale, stable template hover, CTA fit ===
    Page-scoped changes only. Other GulfSufra pages and shared header unchanged. */
 
-/* Hero artwork: proportionate to the text column, not competing with it. */
-.gdm-page .gdm-hero-tabikh {
-  width:clamp(360px,35vw,525px);
-  left:-2%;
-  bottom:2%;
-}
-.gdm-page .gdm-hero-book {
-  width:clamp(385px,39vw,550px);
-  right:-1%;
-  bottom:-3%;
-}
-.gdm-page .gdm-hero-bubble {top:3%;right:3%;}
-
 /* Keep all four previews visible during hover, focus and touch activation.
    The showroom section reveals on scroll; individual cards stay fully painted. */
 .gdm-page .gdm-template {
@@ -228,16 +215,10 @@
 }
 
 @media (max-width:1150px) and (min-width:851px) {
-  .gdm-page .gdm-hero-tabikh {left:-2%;width:clamp(345px,36vw,445px)}
-  .gdm-page .gdm-hero-book {right:-3%;width:clamp(370px,40vw,500px)}
-  .gdm-page .gdm-hero-bubble {right:3%;top:4%;}
   .gdm-page .gdm-last-content {width:60%;padding-left:36px;}
   .gdm-page .gdm-last-tabikh {right:2%;width:350px;}
 }
 @media (max-width:850px) {
-  .gdm-page .gdm-hero-tabikh {width:min(410px,52vw);left:9%;bottom:0;}
-  .gdm-page .gdm-hero-book {width:min(435px,57vw);right:2%;bottom:-6%;}
-  .gdm-page .gdm-hero-bubble {top:-6%;right:5%;}
   .gdm-page .gdm-last {min-height:450px;}
   .gdm-page .gdm-last-content {width:64%;padding:35px 0 36px 32px;}
   .gdm-page .gdm-last h2 {font-size:clamp(38px,5vw,48px);}
@@ -245,9 +226,6 @@
   .gdm-page .gdm-last-bubble {right:2%;}
 }
 @media (max-width:600px) {
-  .gdm-page .gdm-hero-tabikh {width:71%;left:-1%;bottom:0;}
-  .gdm-page .gdm-hero-book {width:73%;right:-6%;bottom:-3%;}
-  .gdm-page .gdm-hero-bubble {top:-6%;right:0;}
   .gdm-page .gdm-last {height:auto;min-height:590px;display:block;padding-bottom:220px;}
   .gdm-page .gdm-last-content {width:100%;padding:32px 22px 12px;max-width:none;}
   .gdm-page .gdm-last h2 {font-size:clamp(36px,9vw,43px);line-height:.98;}
@@ -257,57 +235,86 @@
   .gdm-page .gdm-last-bubble {top:auto;bottom:175px;right:12px;width:168px;}
 }
 @media (max-width:380px) {
-  .gdm-page .gdm-hero-tabikh {width:72%;left:-5%}
-  .gdm-page .gdm-hero-book {width:74%;right:-9%}
   .gdm-page .gdm-last {min-height:610px;}
   .gdm-page .gdm-last-content {padding:31px 19px 12px;}
   .gdm-page .gdm-last h2 {font-size:36px;}
   .gdm-page .gdm-last-bubble {right:9px;bottom:178px;width:151px;}
 }
 
-/* Digital Menus hero composition — proportional to Jinni's Restaurant Websites hero.
-   Deliberately scoped to this hero; no header, other sections or pages altered. */
-@media (min-width:1151px) {
+
+/* --------------------------------------------------------------------------
+   Digital Menus hero — one coherent layout, calibrated against Jinni's hero.
+   No hero scale patches below this point. Other sections remain untouched.
+   -------------------------------------------------------------------------- */
+@media (min-width:1051px) {
+  .gdm-page .gdm-hero {min-height:710px;}
+  .gdm-page .gdm-hero-inner {
+    width:min(1460px,calc(100% - 120px));
+    min-height:710px;
+    grid-template-columns:43% 57%;
+    align-items:center;
+    padding-top:102px;
+    padding-bottom:20px;
+  }
+  .gdm-page .gdm-hero-copy {max-width:600px;padding:12px 0 20px;}
+  .gdm-page .gdm-hero h1 {
+    font-size:clamp(53px,4.45vw,70px);
+    line-height:.93;
+    letter-spacing:-.045em;
+    margin:17px 0 21px;
+  }
+  .gdm-page .gdm-hero-copy>p {max-width:460px;font-size:14px;line-height:1.65;margin-bottom:22px;}
+  .gdm-page .gdm-hero-trust {margin-top:25px;}
+  .gdm-page .gdm-hero-art {height:490px;align-self:end;}
   .gdm-page .gdm-hero-tabikh {
-    width:clamp(485px,32.5vw,575px);
-    left:-2%;
-    bottom:0;
-    z-index:5; /* Tabikh stands in front of the mockup, like Jinni. */
+    width:clamp(382px,27vw,468px);
+    max-width:none;
+    left:-2%;bottom:48px;z-index:5;
   }
   .gdm-page .gdm-hero-book {
-    width:clamp(515px,34vw,595px);
-    right:-23%;
-    bottom:-2%;
-    z-index:3;
+    width:clamp(405px,29vw,500px);
+    max-width:none;
+    right:1%;bottom:1px;z-index:3;
   }
-  .gdm-page .gdm-hero-bubble {right:1%;top:0;z-index:7}
+  .gdm-page .gdm-hero-bubble {
+    right:11%;top:-62px;width:220px;
+    padding:12px 15px;z-index:7;
+  }
 }
-@media (min-width:851px) and (max-width:1150px) {
-  .gdm-page .gdm-hero-tabikh {width:clamp(370px,40vw,460px);left:-5%;bottom:0;z-index:5}
-  .gdm-page .gdm-hero-book {width:clamp(420px,44vw,520px);right:-20%;bottom:-2%;z-index:3}
-  .gdm-page .gdm-hero-bubble {right:0;top:-1%;z-index:7}
+@media (min-width:1051px) and (max-width:1250px) {
+  .gdm-page .gdm-hero-inner {width:calc(100% - 70px);grid-template-columns:42% 58%;}
+  .gdm-page .gdm-hero-tabikh {width:clamp(340px,33vw,400px);left:-5%;bottom:40px;}
+  .gdm-page .gdm-hero-book {width:clamp(365px,37vw,445px);right:-1%;}
+  .gdm-page .gdm-hero-bubble {right:4%;}
 }
-@media (min-width:601px) and (max-width:850px) {
-  .gdm-page .gdm-hero-tabikh {width:min(440px,57vw);left:5%;bottom:-1%;z-index:5}
-  .gdm-page .gdm-hero-book {width:min(475px,61vw);right:-5%;bottom:-6%;z-index:3}
-  .gdm-page .gdm-hero-bubble {right:0;top:-8%;z-index:7}
-}
-@media (max-width:600px) {
-  .gdm-page .gdm-hero-tabikh {width:73%;left:-4%;bottom:0;z-index:5}
-  .gdm-page .gdm-hero-book {width:75%;right:-18%;bottom:-3%;z-index:3}
-  .gdm-page .gdm-hero-bubble {right:0;top:-9%;z-index:7}
-}
-/* Keep the full book inside narrower laptop screens; protect the visual balance. */
-@media (min-width:1151px) and (max-width:1550px) {
-  .gdm-page .gdm-hero-tabikh {width:clamp(420px,35vw,520px);left:-5%}
-  .gdm-page .gdm-hero-book {width:clamp(465px,38vw,550px);right:-7%}
-}
-@media (max-width:600px) {
-  .gdm-page .gdm-hero-art {margin-top:-15px}
-  .gdm-page .gdm-hero-tabikh {width:68%;left:-3%;bottom:5%}
-  .gdm-page .gdm-hero-book {width:62%;right:-5%;bottom:3%}
+@media (min-width:601px) and (max-width:1050px) {
+  .gdm-page .gdm-hero {min-height:830px;}
+  .gdm-page .gdm-hero-inner {min-height:830px;grid-template-columns:1fr;width:calc(100% - 65px);padding-top:112px;padding-bottom:8px;align-content:start;}
+  .gdm-page .gdm-hero-copy {max-width:600px;padding:0;}
+  .gdm-page .gdm-hero h1 {font-size:clamp(52px,6.8vw,67px);line-height:.93;margin:14px 0 18px;}
+  .gdm-page .gdm-hero-copy>p {font-size:13px;max-width:480px;}
+  .gdm-page .gdm-hero-art {height:360px;max-width:690px;margin:0 auto;width:100%;align-self:end;}
+  .gdm-page .gdm-hero-tabikh {width:clamp(320px,42vw,400px);left:3%;bottom:1%;z-index:5;}
+  .gdm-page .gdm-hero-book {width:clamp(340px,45vw,420px);right:0;bottom:0;z-index:3;}
+  .gdm-page .gdm-hero-bubble {right:2%;top:-46px;width:185px;z-index:7;}
 }
 @media (max-width:600px) {
-  /* On phones, let the intro/proof finish before Tabikh speaks. */
-  .gdm-page .gdm-hero-bubble {top:9%;right:1%}
+  .gdm-page .gdm-hero {min-height:810px;}
+  .gdm-page .gdm-hero-inner {min-height:810px;padding-top:102px;padding-bottom:0;width:calc(100% - 32px);}
+  .gdm-page .gdm-hero-copy {padding:0;max-width:100%;}
+  .gdm-page .gdm-hero h1 {font-size:clamp(43px,10.5vw,58px);line-height:.92;margin:12px 0 15px;}
+  .gdm-page .gdm-hero-copy>p {max-width:490px;font-size:12px;line-height:1.52;margin-bottom:16px;}
+  .gdm-page .gdm-hero-trust {margin-top:17px;gap:7px 11px;font-size:9px;}
+  .gdm-page .gdm-hero-art {height:318px;margin-top:35px;width:100%;}
+  .gdm-page .gdm-hero-tabikh {width:64%;left:-3%;bottom:0;z-index:5;}
+  .gdm-page .gdm-hero-book {width:65%;right:-7%;bottom:0;z-index:3;}
+  .gdm-page .gdm-hero-bubble {top:-42px;right:0;width:152px;padding:8px;font-size:11px;z-index:7;}
+}
+@media (max-width:380px) {
+  .gdm-page .gdm-hero {min-height:780px;}
+  .gdm-page .gdm-hero-inner {min-height:780px;}
+  .gdm-page .gdm-hero-art {height:270px;margin-top:52px;}
+  .gdm-page .gdm-hero-tabikh {width:68%;}
+  .gdm-page .gdm-hero-book {width:70%;right:-10%;}
+  .gdm-page .gdm-hero-bubble {top:-42px;width:142px;}
 }
