@@ -88,56 +88,127 @@ function EnchantedProcess({onInquiry}){
  const [opened,setOpened]=React.useState(false);
  const [chapter,setChapter]=React.useState(0);
  const [turning,setTurning]=React.useState(false);
- const [replay,setReplay]=React.useState(0);
  const reduceMotion=React.useRef(false);
- const animRef=React.useRef(null);
+ const sectionRef=React.useRef(null);
+ const timersRef=React.useRef([]);
+ const playedRef=React.useRef(false);
+ const clearTimers=React.useCallback(()=>{
+  timersRef.current.forEach(window.clearTimeout);
+  timersRef.current=[];
+ },[]);
+ const goToChapter=React.useCallback((next,{animate=false}={})=>{
+  clearTimers();
+  setOpened(true);
+  if(reduceMotion.current||!animate){
+   setTurning(false);
+   setChapter(next);
+   return;
+  }
+  setTurning(true);
+  const t=window.setTimeout(()=>{setChapter(next);setTurning(false);},620);
+  timersRef.current=[t];
+ },[clearTimers]);
+ const playStory=React.useCallback(()=>{
+  clearTimers();
+  setOpened(false);
+  setTurning(false);
+  setChapter(0);
+  if(reduceMotion.current){
+   setOpened(true);
+   setChapter(2);
+   return;
+  }
+  const schedule=(fn,delay)=>{
+   const id=window.setTimeout(fn,delay);
+   timersRef.current.push(id);
+  };
+  schedule(()=>setOpened(true),220);
+  schedule(()=>setChapter(0),1200);
+  schedule(()=>setTurning(true),2400);
+  schedule(()=>{setChapter(1);setTurning(false);},3020);
+  schedule(()=>setTurning(true),4200);
+  schedule(()=>{setChapter(2);setTurning(false);},4820);
+ },[clearTimers]);
  React.useEffect(()=>{
   reduceMotion.current=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches||false;
-  return ()=>window.clearTimeout(animRef.current);
- },[]);
- const turnPage=(direction)=>{
-  if(turning)return;
-  const next=Math.max(0,Math.min(chapterDetails.length-1,chapter+direction));
-  if(next===chapter)return;
-  if(reduceMotion.current){setChapter(next);return;}
-  setTurning(true);
-  animRef.current=window.setTimeout(()=>{setChapter(next);setTurning(false);},680);
- };
- const openBook=()=>{setOpened(true);setChapter(0);setReplay(v=>v+1);setTurning(false);};
- const closeBook=()=>{window.clearTimeout(animRef.current);setOpened(false);setTurning(false);setChapter(0);};
- return <section id="gdm-process" className="gdm-shell gdm-panel gdm-process gdm-reveal gdm-story" aria-labelledby="gdm-process-title">
-  <header className="gdm-story-heading"><span className="gdm-eyebrow">SIMPLE PROCESS</span><h2 id="gdm-process-title">How Tabikh <em>Makes It Happen</em></h2><p>From menu details to happy diners, we'll guide you through every step. No ancient scrolls required.</p></header>
-  <div className="gdm-story-steps" aria-label="Our three simple steps">
-   <span className="gdm-story-connector" aria-hidden="true"/>
-   {chapterDetails.map((step,i)=><article className={'gdm-story-step '+(opened&&chapter===i?'is-current':'')} key={step.title}>
-    <div className="gdm-story-icon"><img src={A+['gdm-process-share.webp','gdm-process-build.webp','gdm-process-scan.webp'][i]} alt="" loading="lazy"/></div>
-    <span className="gdm-story-number">0{i+1}</span><h3>{step.title}</h3><p>{step.text}</p>
-   </article>)}
-  </div>
-  <div className={'gdm-story-stage '+(opened?'is-open':'is-closed')}>
-   <div className="gdm-story-stage-heading"><span>THE ENCHANTED EXPERIENCE</span><h3>A Little Magic Between the Pages</h3><p>{opened?'Three chapters. One rather clever way to bring your menu to life.':'A very old book with some surprisingly modern ideas. Tap to begin.'}</p></div>
-   <div className="gdm-story-scene">
-    <div className="gdm-story-book-wrap" key={replay}>
-     <div className="gdm-story-aura" aria-hidden="true"/>
-     <button className="gdm-story-closed-button" type="button" onClick={openBook} aria-label="Open Tabikh's enchanted book" tabIndex={opened?-1:0} disabled={opened}>
-      <img src={A+'gdm-closed-enchanted-book.webp'} alt="Closed emerald-and-gold enchanted book"/>
-     </button>
-     <div className="gdm-story-open-book" aria-hidden={!opened}>
-      <img src={A+'gdm-open-enchanted-book.webp'} alt=""/>
-      <div className={'gdm-story-page '+(turning?'is-turning':'')} aria-hidden="true"><div className="gdm-story-page-front"/><div className="gdm-story-page-back"/></div>
-      <div className="gdm-story-sparks" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i></div>
+  return ()=>clearTimers();
+ },[clearTimers]);
+ React.useEffect(()=>{
+  const node=sectionRef.current;
+  if(!node)return;
+  if(!('IntersectionObserver' in window)){
+   if(!playedRef.current){playedRef.current=true;playStory();}
+   return;
+  }
+  const ob=new IntersectionObserver((entries)=>{
+   const entry=entries[0];
+   if(entry?.isIntersecting && !playedRef.current){
+    playedRef.current=true;
+    playStory();
+    ob.disconnect();
+   }
+  },{threshold:.3});
+  ob.observe(node);
+  return ()=>ob.disconnect();
+ },[playStory]);
+ return <section ref={sectionRef} id="gdm-process" className="gdm-shell gdm-panel gdm-process gdm-reveal gdm-story" aria-labelledby="gdm-process-title">
+  <div className="gdm-story-grid">
+   <header className="gdm-story-heading">
+    <span className="gdm-eyebrow">SIMPLE PROCESS</span>
+    <h2 id="gdm-process-title">How Tabikh <em>Makes It Happen</em></h2>
+    <p>From menu details to happy diners, we guide you through three polished steps — with a little enchanted help from Tabikh and his book.</p>
+    <div className="gdm-story-intro-actions">
+     <button className="gdm-story-replay-btn" type="button" onClick={playStory}>Replay the Magic ✦</button>
+     <button className="gdm-story-cta" type="button" onClick={onInquiry}>Create My Digital Menu →</button>
+    </div>
+   </header>
+   <div className="gdm-story-right">
+    <div className="gdm-story-steps" aria-label="Our three simple steps">
+     <span className="gdm-story-connector" aria-hidden="true"/>
+     {chapterDetails.map((step,i)=><article key={step.title} className={'gdm-story-step '+(opened&&chapter===i?'is-current ':'')+(opened&&chapter>i?'is-complete':'')} role="button" tabIndex={0} onClick={()=>goToChapter(i,{animate:i!==chapter})} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goToChapter(i,{animate:i!==chapter});}}}>
+      <div className="gdm-story-icon"><img src={A+['gdm-process-share.webp','gdm-process-build.webp','gdm-process-scan.webp'][i]} alt="" loading="lazy"/></div>
+      <span className="gdm-story-number">0{i+1}</span>
+      <h3>{step.title}</h3>
+      <p>{step.text}</p>
+     </article>)}
+    </div>
+
+    <div className={'gdm-story-showcase '+(opened?'is-open':'is-closed')}>
+     <div className="gdm-story-showcase-head">
+      <span>THE ENCHANTED EXPERIENCE</span>
+      <strong>{opened?`Chapter ${['I','II','III'][chapter]} — ${chapterDetails[chapter].title}`:'Tap the book to begin'}</strong>
+      <p>{opened?chapterDetails[chapter].text:'A soft glow, a magical opening, and three clear steps to launch your digital menu.'}</p>
+     </div>
+     <div className="gdm-story-scene">
+      <div className="gdm-story-book-stage">
+       <div className="gdm-story-book-glow" aria-hidden="true"/>
+       <button className="gdm-story-closed-button" type="button" onClick={playStory} aria-label="Open Tabikh's enchanted book">
+        <img src={A+'gdm-closed-enchanted-book.webp'} alt="Closed emerald-and-gold enchanted book"/>
+       </button>
+       <img className="gdm-story-open-book" src={A+'gdm-open-enchanted-book.webp'} alt="Open enchanted book revealing the menu journey"/>
+       <div className={'gdm-story-page-turn '+(turning?'is-turning':'')} aria-hidden="true"><div className="gdm-story-page-front"/><div className="gdm-story-page-back"/></div>
+       <div className="gdm-story-sparks" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i></div>
+       <div className="gdm-story-mini-steps" aria-hidden={!opened}>
+        {chapterDetails.map((step,i)=><div key={step.title} className={'gdm-story-mini-card '+(opened&&chapter>=i?'is-shown ':'')+(opened&&chapter===i?'is-current':'')}>
+         <span>0{i+1}</span>
+         <img src={A+['gdm-process-share.webp','gdm-process-build.webp','gdm-process-scan.webp'][i]} alt="" loading="lazy"/>
+         <strong>{step.title}</strong>
+        </div>)}
+       </div>
+      </div>
+      <div className="gdm-story-guide">
+       <div className="gdm-story-speech" role="status">“{chapterDetails[chapter].quip}”</div>
+       <img className="gdm-story-guide-figure" src={A+chapterDetails[chapter].face} alt="Tabikh, your enchanted digital-menu guide"/>
+      </div>
+     </div>
+     <div className="gdm-story-footer">
+      <div className="gdm-story-status">Click the step cards above or replay the book animation anytime.</div>
+      <div className="gdm-story-control-row" aria-label="Choose a step">
+       {chapterDetails.map((step,i)=><button key={step.title} type="button" className={'gdm-story-chip '+(chapter===i?'is-current':'')} onClick={()=>goToChapter(i,{animate:i!==chapter})}>0{i+1} {step.title}</button>)}
+      </div>
      </div>
     </div>
-    <div className="gdm-story-guide" aria-hidden={!opened}>
-     <img src={A+chapterDetails[chapter].face} alt="Tabikh, your enchanted digital-menu guide"/>
-     <div className="gdm-story-speech" role="status">“{chapterDetails[chapter].quip}”</div>
-    </div>
    </div>
-   {!opened?<button className="gdm-story-primary" type="button" onClick={openBook}>Open the Enchanted Book <span>✦</span></button>:
-    <div className="gdm-story-controls">
-     <div className="gdm-story-chapter" aria-live="polite"><span>CHAPTER {['I','II','III'][chapter]} OF III</span><strong>{chapterDetails[chapter].title}</strong><p>{chapterDetails[chapter].text}</p></div>
-     <div className="gdm-story-nav"><button type="button" onClick={()=>turnPage(-1)} disabled={chapter===0||turning}>← Previous</button>{chapter<2?<button className="gdm-story-primary" type="button" onClick={()=>turnPage(1)} disabled={turning}>Turn the Page →</button>:<button className="gdm-story-primary" type="button" onClick={onInquiry}>Create My Digital Menu →</button>}<button className="gdm-story-replay" type="button" onClick={closeBook} aria-label="Close enchanted book and replay">↺ Replay</button></div>
-    </div>}
   </div>
  </section>;
 }
