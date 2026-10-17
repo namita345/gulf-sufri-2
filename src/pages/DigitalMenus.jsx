@@ -100,8 +100,8 @@ export default function DigitalMenus(){
     </div>
     <div className="gdm-hero-art">
      <div className="gdm-hero-halo" aria-hidden="true"/>
-     <img className="gdm-hero-tabikh" src={A+'gdm-tabikh-hero.webp'} alt="Tabikh, the cheerful storyteller presenting digital menus" width="590" height="590" fetchPriority="high"/>
-     <img className="gdm-hero-book" src={A+'gdm-book.webp'} alt="An ornate glowing enchanted book displaying a digital restaurant menu" width="615" height="615" fetchPriority="high"/>
+     <img className="gdm-hero-tabikh" src={A+'gdm-tabikh-hero.webp'} alt="Tabikh, the cheerful storyteller presenting digital menus" width="1150" height="996" fetchPriority="high"/>
+     <img className="gdm-hero-book" src={A+'gdm-book.webp'} alt="An ornate glowing enchanted book displaying a digital restaurant menu" width="1150" height="1150" fetchPriority="high"/>
      <span className="gdm-hero-spark gdm-hero-spark-a" aria-hidden="true">✦</span><span className="gdm-hero-spark gdm-hero-spark-b" aria-hidden="true">✧</span>
      <div className="gdm-hero-bubble">“A great meal brings people together... and a beautiful menu brings it to life!”<span>✦</span></div>
     </div>
