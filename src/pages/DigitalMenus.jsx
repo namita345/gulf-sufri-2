@@ -98,17 +98,12 @@ export default function DigitalMenus(){
      <div className="gdm-hero-actions"><button type="button" className="gdm-button gdm-button-gold" onClick={()=>ask()}>Get Your Digital Menu <span>→</span></button><a className="gdm-hero-secondary" href="#gdm-showroom"><span className="gdm-play">↗</span> Explore Menu Styles</a></div>
      <div className="gdm-hero-trust"><span>✦ No app needed</span><span>✦ Always easy to update</span><span>✦ Made for restaurants</span></div>
     </div>
-    <div className="gdm-hero-art" data-gdm-hero-layout="independent-figures-v2">
+    <div className="gdm-hero-art">
      <div className="gdm-hero-halo" aria-hidden="true"/>
-     {/* These are two separate illustrations — never scale the artwork as one composite image.
-         The grid gives each illustration its own space so neither gets stretched,
-         hidden behind the navigation, or clipped by the other. */}
-     <div className="gdm-hero-figures">
-      <img className="gdm-figure-tabikh" src={A+'gdm-tabikh-hero.webp'} alt="Tabikh, the cheerful storyteller presenting digital menus" width="1150" height="996" fetchPriority="high"/>
-      <img className="gdm-figure-book" src={A+'gdm-book.webp'} alt="An ornate glowing enchanted book displaying a digital restaurant menu" width="1150" height="1150" fetchPriority="high"/>
-     </div>
+     <img className="gdm-hero-tabikh" src={A+'gdm-tabikh-hero.webp'} alt="Tabikh, the cheerful storyteller presenting digital menus" width="590" height="590" fetchPriority="high"/>
+     <img className="gdm-hero-book" src={A+'gdm-book.webp'} alt="An ornate glowing enchanted book displaying a digital restaurant menu" width="615" height="615" fetchPriority="high"/>
      <span className="gdm-hero-spark gdm-hero-spark-a" aria-hidden="true">✦</span><span className="gdm-hero-spark gdm-hero-spark-b" aria-hidden="true">✧</span>
-     <div className="gdm-hero-quote">“A great meal brings people together... and a beautiful menu brings it to life!”<span>✦</span></div>
+     <div className="gdm-hero-bubble">“A great meal brings people together... and a beautiful menu brings it to life!”<span>✦</span></div>
     </div>
    </div>
   </section>
