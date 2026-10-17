@@ -1,5 +1,6 @@
 import React from 'react';
 import './digital-menus.css';
+import './tabikh-process.css';
 import DigitalMenuHero from './DigitalMenuHero.jsx';
 
 const A='/assets/';
@@ -78,6 +79,69 @@ function MenuInquiry({styleName,onClose}){
   </>}
  </Overlay>;
 }
+const chapterDetails=[
+ {title:'Share Your Menu',text:'Send us your dishes, photos and descriptions.',quip:'You bring the dishes. I shall keep the ancient recipes safely tucked away.',face:'gdm-tabikh-thinking.webp'},
+ {title:'We Design & Build',text:'We design your menu and set up easy updates.',quip:'A little design magic, and not a dusty scroll in sight!',face:'gdm-tabikh-surprise.webp'},
+ {title:'Launch & Scan',text:'Share your QR code and welcome your guests.',quip:'Three simple steps! I have seen recipes more complicated than that.',face:'gdm-tabikh-laugh.webp'}
+];
+function EnchantedProcess({onInquiry}){
+ const [opened,setOpened]=React.useState(false);
+ const [chapter,setChapter]=React.useState(0);
+ const [turning,setTurning]=React.useState(false);
+ const [replay,setReplay]=React.useState(0);
+ const reduceMotion=React.useRef(false);
+ const animRef=React.useRef(null);
+ React.useEffect(()=>{
+  reduceMotion.current=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches||false;
+  return ()=>window.clearTimeout(animRef.current);
+ },[]);
+ const turnPage=(direction)=>{
+  if(turning)return;
+  const next=Math.max(0,Math.min(chapterDetails.length-1,chapter+direction));
+  if(next===chapter)return;
+  if(reduceMotion.current){setChapter(next);return;}
+  setTurning(true);
+  animRef.current=window.setTimeout(()=>{setChapter(next);setTurning(false);},680);
+ };
+ const openBook=()=>{setOpened(true);setChapter(0);setReplay(v=>v+1);setTurning(false);};
+ const closeBook=()=>{window.clearTimeout(animRef.current);setOpened(false);setTurning(false);setChapter(0);};
+ return <section id="gdm-process" className="gdm-shell gdm-panel gdm-process gdm-reveal gdm-story" aria-labelledby="gdm-process-title">
+  <header className="gdm-story-heading"><span className="gdm-eyebrow">SIMPLE PROCESS</span><h2 id="gdm-process-title">How Tabikh <em>Makes It Happen</em></h2><p>From menu details to happy diners, we'll guide you through every step. No ancient scrolls required.</p></header>
+  <div className="gdm-story-steps" aria-label="Our three simple steps">
+   <span className="gdm-story-connector" aria-hidden="true"/>
+   {chapterDetails.map((step,i)=><article className={'gdm-story-step '+(opened&&chapter===i?'is-current':'')} key={step.title}>
+    <div className="gdm-story-icon"><img src={A+['gdm-process-share.webp','gdm-process-build.webp','gdm-process-scan.webp'][i]} alt="" loading="lazy"/></div>
+    <span className="gdm-story-number">0{i+1}</span><h3>{step.title}</h3><p>{step.text}</p>
+   </article>)}
+  </div>
+  <div className={'gdm-story-stage '+(opened?'is-open':'is-closed')}>
+   <div className="gdm-story-stage-heading"><span>THE ENCHANTED EXPERIENCE</span><h3>A Little Magic Between the Pages</h3><p>{opened?'Three chapters. One rather clever way to bring your menu to life.':'A very old book with some surprisingly modern ideas. Tap to begin.'}</p></div>
+   <div className="gdm-story-scene">
+    <div className="gdm-story-book-wrap" key={replay}>
+     <div className="gdm-story-aura" aria-hidden="true"/>
+     <button className="gdm-story-closed-button" type="button" onClick={openBook} aria-label="Open Tabikh's enchanted book" tabIndex={opened?-1:0} disabled={opened}>
+      <img src={A+'gdm-closed-enchanted-book.webp'} alt="Closed emerald-and-gold enchanted book"/>
+     </button>
+     <div className="gdm-story-open-book" aria-hidden={!opened}>
+      <img src={A+'gdm-open-enchanted-book.webp'} alt=""/>
+      <div className={'gdm-story-page '+(turning?'is-turning':'')} aria-hidden="true"><div className="gdm-story-page-front"/><div className="gdm-story-page-back"/></div>
+      <div className="gdm-story-sparks" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i></div>
+     </div>
+    </div>
+    <div className="gdm-story-guide" aria-hidden={!opened}>
+     <img src={A+chapterDetails[chapter].face} alt="Tabikh, your enchanted digital-menu guide"/>
+     <div className="gdm-story-speech" role="status">“{chapterDetails[chapter].quip}”</div>
+    </div>
+   </div>
+   {!opened?<button className="gdm-story-primary" type="button" onClick={openBook}>Open the Enchanted Book <span>✦</span></button>:
+    <div className="gdm-story-controls">
+     <div className="gdm-story-chapter" aria-live="polite"><span>CHAPTER {['I','II','III'][chapter]} OF III</span><strong>{chapterDetails[chapter].title}</strong><p>{chapterDetails[chapter].text}</p></div>
+     <div className="gdm-story-nav"><button type="button" onClick={()=>turnPage(-1)} disabled={chapter===0||turning}>← Previous</button>{chapter<2?<button className="gdm-story-primary" type="button" onClick={()=>turnPage(1)} disabled={turning}>Turn the Page →</button>:<button className="gdm-story-primary" type="button" onClick={onInquiry}>Create My Digital Menu →</button>}<button className="gdm-story-replay" type="button" onClick={closeBook} aria-label="Close enchanted book and replay">↺ Replay</button></div>
+    </div>}
+  </div>
+ </section>;
+}
+
 export default function DigitalMenus(){
  const [inquiry,setInquiry]=React.useState(null);
  const [preview,setPreview]=React.useState(null);
@@ -108,15 +172,7 @@ export default function DigitalMenus(){
     <div className="gdm-showroom-foot"><span>Illustrative demo concepts, customized to suit your restaurant.</span><button type="button" className="gdm-text-button" onClick={()=>ask('Something custom')}>Want something unique? Let's create it →</button></div>
    </section>
 
-   <section id="gdm-process" className="gdm-shell gdm-panel gdm-process gdm-reveal" aria-labelledby="gdm-process-title">
-    <div className="gdm-process-intro"><span className="gdm-eyebrow">SIMPLE PROCESS</span><h2 id="gdm-process-title">How Tabikh<br/><em>Makes It Happen</em></h2><p>From menu details to happy diners, we'll guide you through every step. No ancient scrolls required.</p></div>
-    <div className="gdm-process-steps"><div className="gdm-process-join" aria-hidden="true"/>
-     <article><div className="gdm-step-visual"><img src={A+'gdm-process-create.webp'} alt="Digital menu editor for adding dishes" loading="lazy"/></div><span className="gdm-step-n">1</span><h3>Share Your Menu</h3><p>Send your dishes, photos and descriptions.</p></article>
-     <article><div className="gdm-step-visual gdm-step-phone"><img src={A+'gdm-feature-updates.webp'} alt="Instant menu updates on a phone" loading="lazy"/></div><span className="gdm-step-n">2</span><h3>We Design &amp; Build</h3><p>We design your menu and set up easy updates.</p></article>
-     <article><div className="gdm-step-visual gdm-step-qr"><img src={A+'gdm-feature-qr.webp'} alt="Restaurant table QR code menu" loading="lazy"/></div><span className="gdm-step-n">3</span><h3>Launch &amp; Scan</h3><p>Share the QR code and welcome your guests.</p></article>
-    </div>
-    <div className="gdm-process-tabikh"><div className="gdm-small-bubble">“Three simple steps! I've seen recipes more complicated than that.”</div><img src={A+'gdm-tabikh-laugh.webp'} alt="Tabikh laughing about the easy three-step process" loading="lazy"/></div>
-   </section>
+   <EnchantedProcess onInquiry={()=>ask()} />
 
    <section className="gdm-shell gdm-panel gdm-perks gdm-reveal" aria-labelledby="gdm-perks-title"><div className="gdm-perks-intro"><span className="gdm-eyebrow">MORE THAN A MENU</span><h2 id="gdm-perks-title">A Smarter Way<br/><em>to Serve</em></h2><p>Beautiful menus are only the beginning. Give your team less hassle and your guests an experience worth remembering.</p></div><div className="gdm-perks-grid">{perks.map((perk,i)=><article key={perk.title} className="gdm-reveal" style={{'--gdm-delay':`${i*.09}s`}}><span className="gdm-perk-icon" aria-hidden="true">{perk.icon}</span><h3>{perk.title}</h3><p>{perk.desc}</p></article>)}</div></section>
 
