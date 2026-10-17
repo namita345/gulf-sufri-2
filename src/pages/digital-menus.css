@@ -5,7 +5,7 @@
 .gdm-page button,.gdm-page input,.gdm-page textarea,.gdm-page select{font:inherit}
 .gdm-shell{width:min(1260px,calc(100% - 80px));margin-inline:auto}
 .gdm-hero{position:relative;min-height:690px;background:#002b22;color:white;isolation:isolate;overflow:hidden}
-.gdm-hero-back{position:absolute;inset:0;z-index:-2;background:url('/assets/gdm-hero-bg.webp') center 54%/cover no-repeat}
+.gdm-hero-back{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(2,43,34,.72) 0%,rgba(2,43,34,.56) 28%,rgba(2,43,34,.24) 50%,rgba(2,43,34,.08) 69%,rgba(2,43,34,.03) 100%),url('/assets/gdm-hero-bg-light.png');background-position:center,center 52%;background-size:cover;background-repeat:no-repeat;filter:saturate(.92)}
 .gdm-hero:before{content:'';inset:0;position:absolute;z-index:-1;background:linear-gradient(90deg,rgba(0,37,29,.87) 0%,rgba(0,37,29,.66) 29%,rgba(0,37,29,.20) 66%,rgba(0,37,29,.1) 100%),linear-gradient(0deg,rgba(0,31,23,.55),transparent 29%)}
 .gdm-hero-inner{min-height:690px;display:grid;grid-template-columns:40% 60%;align-items:center;padding-top:95px;padding-bottom:46px;position:relative}
 .gdm-hero-copy{position:relative;z-index:4;padding:16px 0 32px;max-width:490px}
@@ -317,4 +317,149 @@
   .gdm-page .gdm-hero-tabikh {width:68%;}
   .gdm-page .gdm-hero-book {width:70%;right:-10%;}
   .gdm-page .gdm-hero-bubble {top:-42px;width:142px;}
+}
+
+
+/* === Final Digital Menus hero refinement: lighter approved background + Jinni-like balance === */
+.gdm-page .gdm-hero{
+  min-height:700px;
+}
+.gdm-page .gdm-hero-art{
+  position:relative;
+  min-height:520px;
+  align-self:end;
+}
+.gdm-page .gdm-hero-visual-group{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:min(100%,640px);
+  height:min(100%,540px);
+}
+.gdm-page .gdm-hero-halo{
+  left:58%;
+  top:18%;
+  width:56%;
+  height:58%;
+  background:radial-gradient(circle,rgba(255,214,145,.20) 0%,rgba(255,214,145,.10) 34%,rgba(255,214,145,0) 72%);
+}
+.gdm-page .gdm-hero-tabikh,
+.gdm-page .gdm-hero-book,
+.gdm-page .gdm-hero-bubble,
+.gdm-page .gdm-hero-spark{position:absolute;}
+
+@media (min-width:1051px){
+  .gdm-page .gdm-hero{min-height:715px;}
+  .gdm-page .gdm-hero-inner{
+    width:min(1450px,calc(100% - 112px));
+    min-height:715px;
+    grid-template-columns:42% 58%;
+    align-items:center;
+    padding-top:102px;
+    padding-bottom:18px;
+  }
+  .gdm-page .gdm-hero-copy{
+    max-width:585px;
+    padding:8px 0 18px;
+    z-index:4;
+  }
+  .gdm-page .gdm-hero h1{
+    font-size:clamp(54px,4.55vw,71px);
+    line-height:.92;
+    margin:16px 0 20px;
+    letter-spacing:-.045em;
+  }
+  .gdm-page .gdm-hero-copy>p{max-width:485px;font-size:14px;line-height:1.63;margin-bottom:22px;}
+  .gdm-page .gdm-hero-art{min-height:520px;}
+  .gdm-page .gdm-hero-visual-group{width:min(100%,635px);height:520px;right:0;bottom:0;}
+  .gdm-page .gdm-hero-tabikh{
+    left:2%;
+    bottom:4px;
+    width:clamp(290px,24vw,375px);
+    z-index:5;
+    filter:drop-shadow(0 14px 18px rgba(33,23,11,.24));
+  }
+  .gdm-page .gdm-hero-book{
+    right:0;
+    bottom:0;
+    width:clamp(320px,27vw,420px);
+    z-index:3;
+    filter:drop-shadow(0 16px 22px rgba(33,23,11,.28));
+  }
+  .gdm-page .gdm-hero-spark-a{right:24%;top:29%;}
+  .gdm-page .gdm-hero-spark-b{right:4%;top:33%;}
+  .gdm-page .gdm-hero-bubble{
+    right:10%;
+    top:34px;
+    width:225px;
+    padding:12px 15px;
+    z-index:7;
+  }
+}
+@media (min-width:1051px) and (max-width:1250px){
+  .gdm-page .gdm-hero-inner{width:calc(100% - 72px);grid-template-columns:44% 56%;}
+  .gdm-page .gdm-hero h1{font-size:clamp(50px,4.8vw,64px);}
+  .gdm-page .gdm-hero-visual-group{width:min(100%,570px);height:485px;}
+  .gdm-page .gdm-hero-tabikh{left:2%;width:clamp(260px,25vw,320px);}
+  .gdm-page .gdm-hero-book{width:clamp(300px,28vw,375px);right:1%;}
+  .gdm-page .gdm-hero-bubble{right:5%;top:26px;}
+}
+@media (min-width:601px) and (max-width:1050px){
+  .gdm-page .gdm-hero{min-height:840px;}
+  .gdm-page .gdm-hero-inner{
+    min-height:840px;
+    grid-template-columns:1fr;
+    width:calc(100% - 58px);
+    padding-top:108px;
+    padding-bottom:0;
+    align-content:start;
+  }
+  .gdm-page .gdm-hero-copy{max-width:610px;padding:0;}
+  .gdm-page .gdm-hero h1{font-size:clamp(50px,6.8vw,64px);line-height:.92;margin:14px 0 18px;}
+  .gdm-page .gdm-hero-copy>p{max-width:500px;font-size:13px;}
+  .gdm-page .gdm-hero-art{
+    min-height:395px;
+    margin-top:12px;
+    width:100%;
+  }
+  .gdm-page .gdm-hero-visual-group{
+    position:relative;
+    width:min(100%,690px);
+    height:390px;
+    margin:0 auto;
+  }
+  .gdm-page .gdm-hero-tabikh{left:10%;bottom:0;width:clamp(250px,37vw,320px);z-index:5;}
+  .gdm-page .gdm-hero-book{right:6%;bottom:0;width:clamp(280px,40vw,360px);z-index:3;}
+  .gdm-page .gdm-hero-spark-a{right:28%;top:34%;}
+  .gdm-page .gdm-hero-spark-b{right:10%;top:36%;}
+  .gdm-page .gdm-hero-bubble{right:10%;top:-12px;width:205px;z-index:7;}
+}
+@media (max-width:600px){
+  .gdm-page .gdm-hero{min-height:835px;}
+  .gdm-page .gdm-hero-inner{
+    min-height:835px;
+    width:calc(100% - 30px);
+    padding-top:100px;
+    padding-bottom:0;
+  }
+  .gdm-page .gdm-hero-copy{padding:0;max-width:100%;}
+  .gdm-page .gdm-hero h1{font-size:clamp(43px,10.6vw,57px);line-height:.93;margin:12px 0 15px;}
+  .gdm-page .gdm-hero-copy>p{max-width:480px;font-size:12px;line-height:1.54;margin-bottom:16px;}
+  .gdm-page .gdm-hero-trust{margin-top:16px;gap:7px 10px;font-size:9px;}
+  .gdm-page .gdm-hero-art{min-height:330px;margin-top:32px;width:100%;}
+  .gdm-page .gdm-hero-visual-group{position:relative;width:100%;height:320px;}
+  .gdm-page .gdm-hero-tabikh{left:0;bottom:2px;width:53%;z-index:5;}
+  .gdm-page .gdm-hero-book{right:-1%;bottom:0;width:56%;z-index:3;}
+  .gdm-page .gdm-hero-spark-a{right:25%;top:35%;}
+  .gdm-page .gdm-hero-spark-b{right:2%;top:38%;}
+  .gdm-page .gdm-hero-bubble{right:2%;top:-34px;width:155px;padding:8px 10px;font-size:11px;z-index:7;}
+}
+@media (max-width:380px){
+  .gdm-page .gdm-hero{min-height:805px;}
+  .gdm-page .gdm-hero-inner{min-height:805px;}
+  .gdm-page .gdm-hero-art{min-height:292px;margin-top:40px;}
+  .gdm-page .gdm-hero-visual-group{height:288px;}
+  .gdm-page .gdm-hero-tabikh{width:56%;left:-1%;}
+  .gdm-page .gdm-hero-book{width:59%;right:-3%;}
+  .gdm-page .gdm-hero-bubble{width:144px;top:-37px;right:0;}
 }
