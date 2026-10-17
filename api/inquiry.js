@@ -18,7 +18,7 @@ export default async function handler(req,res){
  if(!restaurant||!name||(!email&&!phone))return res.status(400).json({error:'Please include restaurant name, your name, and an email or WhatsApp number.'});
  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return res.status(400).json({error:'Please enter a valid email address.'});
  if(phone&&!/^[+()\d .-]{6,35}$/.test(phone))return res.status(400).json({error:'Please check your WhatsApp number.'});
- if(!['Restaurant Websites','Digital Menus'].includes(service)||!allowedCountries.has(country)||!allowedTemplates.has(template))return res.status(400).json({error:'Please select an available country and template.'});
+ if(!['Restaurant Websites','Digital Menus','Social Media'].includes(service)||!allowedCountries.has(country)||!allowedTemplates.has(template))return res.status(400).json({error:'Please select an available country and template.'});
  const key=process.env.RESEND_API_KEY;
  const from=process.env.RESEND_FROM_EMAIL;
  if(!key||!from)return res.status(503).json({error:'Online submissions are not enabled yet. Please email yalla@gulfsufri.com directly.'});
