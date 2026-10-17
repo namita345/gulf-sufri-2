@@ -1,5 +1,6 @@
 import React from 'react';
 import './digital-menus.css';
+import DigitalMenuHero from './DigitalMenuHero.jsx';
 
 const A='/assets/';
 const templates=[
@@ -88,27 +89,7 @@ export default function DigitalMenus(){
  const ask=(name='Not sure yet')=>{setPreview(null);setInquiry(name)};
  const scrollTemplates=(direction)=>rail.current?.scrollBy({left:direction*rail.current.clientWidth*.76,behavior:'smooth'});
  return <main className="gdm-page">
-  <section className="gdm-hero" aria-labelledby="gdm-title">
-   <div className="gdm-hero-back"/>
-   <div className="gdm-shell gdm-hero-inner">
-    <div className="gdm-hero-copy">
-     <span className="gdm-hero-pill">✦ GULFSUFRA DIGITAL MENUS</span>
-     <h1 id="gdm-title">Digital Menus<br/>That Feel<br/><em>Like Magic.</em></h1>
-     <p>Modern restaurants deserve more than paper menus. Create beautiful, easy-to-browse digital menus with QR access, instant updates and a presentation that delights every guest.</p>
-     <div className="gdm-hero-actions"><button type="button" className="gdm-button gdm-button-gold" onClick={()=>ask()}>Get Your Digital Menu <span>→</span></button><a className="gdm-hero-secondary" href="#gdm-showroom"><span className="gdm-play">↗</span> Explore Menu Styles</a></div>
-     <div className="gdm-hero-trust"><span>✦ No app needed</span><span>✦ Always easy to update</span><span>✦ Made for restaurants</span></div>
-    </div>
-    <div className="gdm-hero-art">
-     <div className="gdm-hero-visual-group">
-      <div className="gdm-hero-halo" aria-hidden="true"/>
-      <img className="gdm-hero-tabikh" src={A+'gdm-tabikh-hero.webp'} alt="Tabikh, the cheerful storyteller presenting digital menus" width="590" height="590" fetchPriority="high"/>
-      <img className="gdm-hero-book" src={A+'gdm-book.webp'} alt="An ornate glowing enchanted book displaying a digital restaurant menu" width="615" height="615" fetchPriority="high"/>
-      <span className="gdm-hero-spark gdm-hero-spark-a" aria-hidden="true">✦</span><span className="gdm-hero-spark gdm-hero-spark-b" aria-hidden="true">✧</span>
-      <div className="gdm-hero-bubble">“A great meal brings people together... and a beautiful menu brings it to life!”<span>✦</span></div>
-     </div>
-    </div>
-   </div>
-  </section>
+  <DigitalMenuHero onInquiry={()=>ask()}/>
 
   <div className="gdm-sections">
    <section className="gdm-shell gdm-panel gdm-features gdm-reveal" aria-labelledby="gdm-features-title">
