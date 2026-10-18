@@ -87,85 +87,47 @@ const chapterDetails=[
 function EnchantedProcess({onInquiry}){
  const [opened,setOpened]=React.useState(false);
  const [chapter,setChapter]=React.useState(0);
- const [turning,setTurning]=React.useState(false);
- const reduceMotion=React.useRef(false);
- const sectionRef=React.useRef(null);
+ const [shineTick,setShineTick]=React.useState(0);
+ const [opening,setOpening]=React.useState(false);
  const timersRef=React.useRef([]);
- const playedRef=React.useRef(false);
  const clearTimers=React.useCallback(()=>{
   timersRef.current.forEach(window.clearTimeout);
   timersRef.current=[];
  },[]);
- const goToChapter=React.useCallback((next,{animate=false}={})=>{
+ React.useEffect(()=>()=>clearTimers(),[clearTimers]);
+ const triggerOpen=React.useCallback((targetChapter=0)=>{
   clearTimers();
+  setChapter(targetChapter);
   setOpened(true);
-  if(reduceMotion.current||!animate){
-   setTurning(false);
-   setChapter(next);
+  setOpening(true);
+  setShineTick(v=>v+1);
+  const id=window.setTimeout(()=>setOpening(false),1400);
+  timersRef.current=[id];
+ },[clearTimers]);
+ const openFromBook=React.useCallback(()=>triggerOpen(chapter),[chapter,triggerOpen]);
+ const selectChapter=React.useCallback((next)=>{
+  if(!opened){
+   triggerOpen(next);
    return;
   }
-  setTurning(true);
-  const t=window.setTimeout(()=>{setChapter(next);setTurning(false);},620);
-  timersRef.current=[t];
- },[clearTimers]);
- const playStory=React.useCallback(()=>{
-  clearTimers();
-  setOpened(false);
-  setTurning(false);
-  setChapter(0);
-  if(reduceMotion.current){
-   setOpened(true);
-   setChapter(2);
-   return;
-  }
-  const schedule=(fn,delay)=>{
-   const id=window.setTimeout(fn,delay);
-   timersRef.current.push(id);
-  };
-  schedule(()=>setOpened(true),220);
-  schedule(()=>setChapter(0),1200);
-  schedule(()=>setTurning(true),2400);
-  schedule(()=>{setChapter(1);setTurning(false);},3020);
-  schedule(()=>setTurning(true),4200);
-  schedule(()=>{setChapter(2);setTurning(false);},4820);
- },[clearTimers]);
- React.useEffect(()=>{
-  reduceMotion.current=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches||false;
-  return ()=>clearTimers();
- },[clearTimers]);
- React.useEffect(()=>{
-  const node=sectionRef.current;
-  if(!node)return;
-  if(!('IntersectionObserver' in window)){
-   if(!playedRef.current){playedRef.current=true;playStory();}
-   return;
-  }
-  const ob=new IntersectionObserver((entries)=>{
-   const entry=entries[0];
-   if(entry?.isIntersecting && !playedRef.current){
-    playedRef.current=true;
-    playStory();
-    ob.disconnect();
-   }
-  },{threshold:.3});
-  ob.observe(node);
-  return ()=>ob.disconnect();
- },[playStory]);
- return <section ref={sectionRef} id="gdm-process" className="gdm-shell gdm-panel gdm-process gdm-reveal gdm-story" aria-labelledby="gdm-process-title">
+  setChapter(next);
+ },[opened,triggerOpen]);
+ const active=chapterDetails[chapter];
+ return <section id="gdm-process" className="gdm-shell gdm-panel gdm-process gdm-reveal gdm-story" aria-labelledby="gdm-process-title">
   <div className="gdm-story-grid">
    <header className="gdm-story-heading">
     <span className="gdm-eyebrow">SIMPLE PROCESS</span>
     <h2 id="gdm-process-title">How Tabikh <em>Makes It Happen</em></h2>
-    <p>From menu details to happy diners, we guide you through three polished steps — with a little enchanted help from Tabikh and his book.</p>
+    <p>From menu details to happy diners, we guide you through three polished steps. Tap the enchanted book, watch it open beautifully, and see how your digital menu comes to life.</p>
     <div className="gdm-story-intro-actions">
-     <button className="gdm-story-replay-btn" type="button" onClick={playStory}>Replay the Magic ✦</button>
+     <button className="gdm-story-replay-btn" type="button" onClick={openFromBook}>{opened?'Open the Book Again ✦':'Open the Enchanted Book ✦'}</button>
      <button className="gdm-story-cta" type="button" onClick={onInquiry}>Create My Digital Menu →</button>
     </div>
    </header>
    <div className="gdm-story-right">
     <div className="gdm-story-steps" aria-label="Our three simple steps">
      <span className="gdm-story-connector" aria-hidden="true"/>
-     {chapterDetails.map((step,i)=><article key={step.title} className={'gdm-story-step '+(opened&&chapter===i?'is-current ':'')+(opened&&chapter>i?'is-complete':'')} role="button" tabIndex={0} onClick={()=>goToChapter(i,{animate:i!==chapter})} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goToChapter(i,{animate:i!==chapter});}}}>
+     {chapterDetails.map((step,i)=><article key={step.title} className={'gdm-story-step '+(chapter===i?'is-current ':'')+(chapter>i&&opened?'is-complete':'')} role="button" tabIndex={0} onClick={()=>selectChapter(i)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectChapter(i);}}}>
       <div className="gdm-story-icon"><img src={A+['gdm-process-share.webp','gdm-process-build.webp','gdm-process-scan.webp'][i]} alt="" loading="lazy"/></div>
       <span className="gdm-story-number">0{i+1}</span>
       <h3>{step.title}</h3>
@@ -173,38 +135,33 @@ function EnchantedProcess({onInquiry}){
      </article>)}
     </div>
 
-    <div className={'gdm-story-showcase '+(opened?'is-open':'is-closed')}>
+    <div className={'gdm-story-showcase '+(opened?'is-open':'is-closed')+(opening?' is-opening':'')}>
      <div className="gdm-story-showcase-head">
       <span>THE ENCHANTED EXPERIENCE</span>
-      <strong>{opened?`Chapter ${['I','II','III'][chapter]} — ${chapterDetails[chapter].title}`:'Tap the book to begin'}</strong>
-      <p>{opened?chapterDetails[chapter].text:'A soft glow, a magical opening, and three clear steps to launch your digital menu.'}</p>
+      <strong>{opened?`Chapter ${['I','II','III'][chapter]} — ${active.title}`:'Click the book to begin'}</strong>
+      <p>{opened?active.text:'A clean, magical interaction — the book floats in, you click it once, it opens beautifully, and the glow reveals your process.'}</p>
      </div>
      <div className="gdm-story-scene">
       <div className="gdm-story-book-stage">
        <div className="gdm-story-book-glow" aria-hidden="true"/>
-       <button className="gdm-story-closed-button" type="button" onClick={playStory} aria-label="Open Tabikh's enchanted book">
+       <div className="gdm-story-book-prompt" aria-hidden={opened}>Click to open ✦</div>
+       <button className="gdm-story-closed-button" type="button" onClick={openFromBook} aria-label="Open Tabikh's enchanted book">
         <img src={A+'gdm-closed-enchanted-book.webp'} alt="Closed emerald-and-gold enchanted book"/>
        </button>
-       <img className="gdm-story-open-book" src={A+'gdm-open-enchanted-book.webp'} alt="Open enchanted book revealing the menu journey"/>
-       <div className={'gdm-story-page-turn '+(turning?'is-turning':'')} aria-hidden="true"><div className="gdm-story-page-front"/><div className="gdm-story-page-back"/></div>
-       <div className="gdm-story-sparks" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i></div>
-       <div className="gdm-story-mini-steps" aria-hidden={!opened}>
-        {chapterDetails.map((step,i)=><div key={step.title} className={'gdm-story-mini-card '+(opened&&chapter>=i?'is-shown ':'')+(opened&&chapter===i?'is-current':'')}>
-         <span>0{i+1}</span>
-         <img src={A+['gdm-process-share.webp','gdm-process-build.webp','gdm-process-scan.webp'][i]} alt="" loading="lazy"/>
-         <strong>{step.title}</strong>
-        </div>)}
+       <div className={'gdm-story-open-shell '+(opened?'is-visible':'')+(opening?' is-shimmering':'')} key={shineTick}>
+        <img className="gdm-story-open-book" src={A+'gdm-open-enchanted-book.webp'} alt="Open enchanted book revealing the menu journey"/>
        </div>
+       <div className="gdm-story-sparks" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i></div>
       </div>
       <div className="gdm-story-guide">
-       <div className="gdm-story-speech" role="status">“{chapterDetails[chapter].quip}”</div>
-       <img className="gdm-story-guide-figure" src={A+chapterDetails[chapter].face} alt="Tabikh, your enchanted digital-menu guide"/>
+       <div className="gdm-story-speech" role="status">“{active.quip}”</div>
+       <img className="gdm-story-guide-figure" src={A+active.face} alt="Tabikh, your enchanted digital-menu guide"/>
       </div>
      </div>
      <div className="gdm-story-footer">
-      <div className="gdm-story-status">Click the step cards above or replay the book animation anytime.</div>
+      <div className="gdm-story-status">Step 1: open the book. Step 2: choose a chapter. Step 3: launch your menu with style.</div>
       <div className="gdm-story-control-row" aria-label="Choose a step">
-       {chapterDetails.map((step,i)=><button key={step.title} type="button" className={'gdm-story-chip '+(chapter===i?'is-current':'')} onClick={()=>goToChapter(i,{animate:i!==chapter})}>0{i+1} {step.title}</button>)}
+       {chapterDetails.map((step,i)=><button key={step.title} type="button" className={'gdm-story-chip '+(chapter===i?'is-current':'')} onClick={()=>selectChapter(i)}>0{i+1} {step.title}</button>)}
       </div>
      </div>
     </div>
