@@ -87,8 +87,17 @@ function SocialInquiry({onClose}) {
 
 function MarinaMagicShell({onInquiry}) {
  const [open,setOpen]=React.useState(false);
+ const [shaking,setShaking]=React.useState(false);
  const [burst,setBurst]=React.useState(0);
- const toggle=()=>{setOpen(v=>!v);setBurst(v=>v+1)};
+ const shakeTimer=React.useRef(null);
+ React.useEffect(()=>()=>window.clearTimeout(shakeTimer.current),[]);
+ const toggle=()=>{
+   if(shaking)return;
+   if(open){setOpen(false);setBurst(v=>v+1);return;}
+   setShaking(true);
+   window.clearTimeout(shakeTimer.current);
+   shakeTimer.current=window.setTimeout(()=>{setShaking(false);setOpen(true);setBurst(v=>v+1);},620);
+ };
  return <section className="gsm-shell gsm-magic" aria-labelledby="gsm-magic-title">
    <div className="gsm-magic-copy"><span className="gsm-label">INTERACTIVE EXPERIENCE</span>
     <h2 id="gsm-magic-title">Open Marina's<br/><em>Magic Shell.</em></h2>
@@ -96,18 +105,18 @@ function MarinaMagicShell({onInquiry}) {
     <p className="gsm-magic-support">Beautiful content, powerful ads, and more ways for your restaurant to get noticed.</p>
     <button className="gsm-btn gsm-btn-gold" type="button" onClick={toggle}>{open?'Close the Magic Shell ↺':'Tap the Shell ✦'}</button>
    </div>
-   <div className={'gsm-magic-art '+(open?'is-open':'')}>
+   <div className={'gsm-magic-art '+(open?'is-open ':'')+(shaking?'is-shaking':'')}>
      <img className="gsm-magic-marina" src={A+'gsm-marina-new.webp'} alt="Marina the mermaid celebrating the magic of social media" loading="lazy"/>
      <img className="gsm-magic-crab" src={A+'gsm-crab-new.webp'} alt="Marina's crab marketing assistant operating a laptop" loading="lazy"/>
-     <button type="button" className="gsm-magic-shell" onClick={toggle} aria-expanded={open} aria-label={open?'Close Marina’s magic shell':'Open Marina’s magic shell'}>
+     <button type="button" className="gsm-magic-shell" onClick={toggle} disabled={shaking} aria-expanded={open} aria-label={open?'Close Marina’s magic shell':'Open Marina’s magic shell'}>
        <img className="gsm-shell-closed" src={A+'gsm-shell-closed.webp'} alt=""/>
        <img className="gsm-shell-open" src={A+'gsm-shell-open.webp'} alt=""/>
      </button>
      <div className="gsm-magic-bubbles" aria-hidden="true" key={burst}>
-       <div className="gsm-orb gsm-orb-instagram"><span>◎</span><small>Instagram</small></div>
-       <div className="gsm-orb gsm-orb-facebook"><span>f</span><small>Facebook</small></div>
-       <div className="gsm-orb gsm-orb-tiktok"><span>♪</span><small>TikTok</small></div>
-       <div className="gsm-orb gsm-orb-whatsapp"><span>✆</span><small>WhatsApp</small></div>
+       <img className="gsm-orb gsm-orb-instagram" src={A+'gsm-orb-instagram.webp'} alt=""/>
+       <img className="gsm-orb gsm-orb-tiktok" src={A+'gsm-orb-tiktok.webp'} alt=""/>
+       <img className="gsm-orb gsm-orb-whatsapp" src={A+'gsm-orb-whatsapp.webp'} alt=""/>
+       <img className="gsm-orb gsm-orb-meta" src={A+'gsm-orb-meta.webp'} alt=""/>
        <span className="gsm-magic-label gsm-ml-reach">Reach</span><span className="gsm-magic-label gsm-ml-engagement">Engagement</span><span className="gsm-magic-label gsm-ml-leads">Leads</span><span className="gsm-magic-label gsm-ml-bookings">Bookings</span>
      </div>
      <div className="gsm-magic-quote">“Darling, I don't just post. I make people stop scrolling. ✨”</div>

@@ -58,3 +58,29 @@
 @media(max-width:800px){.gsm-page .gsm-hero{min-height:0;background-position:60% center}.gsm-page .gsm-hero-grid{display:flex;flex-direction:column;align-items:stretch;padding:110px 0 0}.gsm-page .gsm-hero-content{max-width:620px}.gsm-page .gsm-hero-art{width:100%;height:480px;margin-top:12px}.gsm-page .gsm-marina{width:min(510px,75%);left:9%;bottom:-25px}.gsm-page .gsm-hero-posts{right:3%;top:16%;width:min(370px,50%)}.gsm-page .gsm-hero-crab{right:0;width:170px}.gsm-page .gsm-hero-bubbles{left:9%;top:10%}.gsm-page .gsm-marina-bubble{top:0;right:14%}.gsm-page .gsm-crab-bubble{right:0;bottom:29%}.gsm-page .gsm-magic{grid-template-columns:1fr}.gsm-page .gsm-magic-copy{padding:35px 30px 10px}.gsm-page .gsm-magic-art{height:490px}.gsm-page .gsm-magic-marina{right:0;width:min(460px,65%)}.gsm-page .gsm-magic-shell{left:28%}.gsm-page .gsm-final>img{width:350px}}
 @media(max-width:560px){.gsm-page .gsm-hero-grid{padding:103px 0 0}.gsm-page .gsm-hero h1{font-size:clamp(43px,10vw,57px)}.gsm-page .gsm-hero-art{height:350px;margin-top:16px}.gsm-page .gsm-marina{width:78%;left:-6%;bottom:-16px}.gsm-page .gsm-hero-posts{width:48%;right:-5%;top:18%}.gsm-page .gsm-hero-crab{width:31%;right:-2%;bottom:0}.gsm-page .gsm-hero-bubbles{left:2%;top:1%;transform:scale(.54);transform-origin:top left}.gsm-page .gsm-marina-bubble{width:145px;top:1%;right:0;font-size:12px}.gsm-page .gsm-crab-bubble{right:0;bottom:38%;width:115px;font-size:11px}.gsm-page .gsm-hero-platforms b{font-size:9px}.gsm-page .gsm-magic{border-radius:20px;margin-bottom:36px}.gsm-page .gsm-magic-copy{padding:26px 20px 5px}.gsm-page .gsm-magic h2{font-size:44px}.gsm-page .gsm-magic-art{height:360px}.gsm-page .gsm-magic-marina{width:70%;right:-12%;bottom:-10px}.gsm-page .gsm-magic-crab{width:105px;left:0;bottom:0}.gsm-page .gsm-magic-shell{width:170px;height:160px;left:19%;bottom:18px}.gsm-page .gsm-magic-bubbles{left:12%;top:0;width:60%;transform:scale(.68);transform-origin:top left}.gsm-page .gsm-magic-quote{font-size:12px;max-width:145px;right:2%;top:5px}.gsm-page .gsm-magic-label{font-size:12px}.gsm-page .gsm-process-icon{height:85px;width:85px}}
 @media(prefers-reduced-motion:reduce){.gsm-page .gsm-marina,.gsm-page .gsm-hero-bubbles span,.gsm-page .gsm-magic-shell,.gsm-page .gsm-orb{animation:none!important;transition:none!important}}
+
+/* Marina Magic Shell only: real iridescent bubble art + click-to-shake reveal */
+.gsm-page .gsm-magic-art.is-shaking .gsm-magic-shell{animation:gsmShellShake .62s cubic-bezier(.36,.07,.19,.97) both!important}
+.gsm-page .gsm-magic-shell:disabled{cursor:wait}
+@keyframes gsmShellShake{0%,100%{transform:translateY(0) rotate(0)}15%{transform:translateY(-4px) rotate(-4deg)}30%{transform:translateY(0) rotate(4deg)}45%{transform:translateY(-7px) rotate(-5deg)}62%{transform:translateY(-3px) rotate(4deg)}78%{transform:translateY(-7px) rotate(-2deg)}90%{transform:translateY(-3px) rotate(1deg)}}
+.gsm-page .gsm-magic-bubbles{left:8%;top:3%;width:67%;height:73%;z-index:8}
+.gsm-page .gsm-magic-bubbles .gsm-orb{
+ width:clamp(76px,8vw,122px);height:auto;aspect-ratio:1;display:block;object-fit:contain;
+ border:0;border-radius:0;background:none;box-shadow:none;
+ opacity:0;filter:drop-shadow(0 8px 12px rgba(58,80,95,.18));
+ transform:translate(18%,110%) scale(.32);
+ transition:opacity .42s ease,transform 1.05s cubic-bezier(.18,.78,.21,1);
+ animation:none;will-change:transform,opacity;
+}
+.gsm-page .gsm-magic-bubbles .gsm-orb-instagram{left:36%;top:0}
+.gsm-page .gsm-magic-bubbles .gsm-orb-tiktok{left:64%;top:28%}
+.gsm-page .gsm-magic-bubbles .gsm-orb-whatsapp{left:32%;top:58%}
+.gsm-page .gsm-magic-bubbles .gsm-orb-meta{left:3%;top:30%}
+.gsm-page .gsm-magic-art.is-open .gsm-magic-bubbles .gsm-orb{opacity:1;transform:translate(0,0) scale(1);animation:none}
+.gsm-page .gsm-magic-art.is-open .gsm-magic-bubbles .gsm-orb-instagram{transition-delay:.10s}
+.gsm-page .gsm-magic-art.is-open .gsm-magic-bubbles .gsm-orb-meta{transition-delay:.22s}
+.gsm-page .gsm-magic-art.is-open .gsm-magic-bubbles .gsm-orb-tiktok{transition-delay:.34s}
+.gsm-page .gsm-magic-art.is-open .gsm-magic-bubbles .gsm-orb-whatsapp{transition-delay:.46s}
+@media(max-width:800px){.gsm-page .gsm-magic-bubbles{left:8%;width:65%;top:2%}.gsm-page .gsm-magic-bubbles .gsm-orb{width:clamp(74px,13vw,108px)}}
+@media(max-width:560px){.gsm-page .gsm-magic-bubbles{left:2%;top:1%;width:72%;transform:none}.gsm-page .gsm-magic-bubbles .gsm-orb{width:clamp(57px,17vw,77px)}.gsm-page .gsm-magic-bubbles .gsm-orb-instagram{left:33%;top:3%}.gsm-page .gsm-magic-bubbles .gsm-orb-meta{left:0%;top:28%}.gsm-page .gsm-magic-bubbles .gsm-orb-tiktok{left:64%;top:25%}.gsm-page .gsm-magic-bubbles .gsm-orb-whatsapp{left:29%;top:59%}}
+@media(prefers-reduced-motion:reduce){.gsm-page .gsm-magic-art.is-shaking .gsm-magic-shell{animation:none!important}.gsm-page .gsm-magic-bubbles .gsm-orb{transition:none!important}}
