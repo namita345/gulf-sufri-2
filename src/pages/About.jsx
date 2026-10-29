@@ -1,75 +1,36 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './about.css';
 
-const A='/assets/';
-const characters=[
-  {name:'Jinni',personality:'The creative genie',service:'Restaurant Websites',copy:'Beautiful restaurant websites with a little attitude and a lot of attention to detail.',asset:'jinni-services.png',url:'/services/restaurant-websites',note:'Consider it granted.',theme:'jinni'},
-  {name:'Tabikh',personality:'The wise old storyteller',service:'Digital Menus',copy:'An easier way to present delicious dishes, update menus and delight your guests.',asset:'tabikh-services.png',url:'/services/digital-menus',note:'A fine menu has a story.',theme:'tabikh'},
-  {name:'Marina',personality:'The social spark',service:'Social Media',copy:'Thoughtful visuals and engaging content that show the personality behind the plate.',asset:'marina-services.png',url:'/services/social-media',note:'Make some waves.',theme:'marina'},
-  {name:'Mummo',personality:'The timeless local guide',service:'Google Business',copy:'A clearer online presence so hungry guests can find the important details.',asset:'mummo-services.png',url:'/services/google-business',note:'Let them find you.',theme:'mummo'}
+const A='/assets/about-';
+const cast=[
+ {name:'Jinni Al Khaleeji',short:'Jinni',title:'THE DIGITAL GENIE',quote:'I turn ideas into beautiful realities!',story:'I spent centuries granting wishes. Now I create gorgeous restaurant websites that make diners fall in love before they even visit.',img:'jinni.webp',service:'/services/restaurant-websites'},
+ {name:'Tabikh Al Khaleeji',short:'Tabikh',title:'THE MENU MASTER',quote:'Good food deserves a magical menu!',story:'An old soul, a proud father, and keeper of an enchanted book. I turn delicious dishes into menus worth exploring.',img:'tabikh.webp',service:'/services/digital-menus'},
+ {name:'Marina Al Khaleeji',short:'Marina',title:'THE ATTENTION SIREN',quote:'I make people stop the scroll!',story:'My magical shell creates the buzz, and my clever crab handles the ads. Together, we turn views into real restaurant guests.',img:'marina.webp',service:'/services/social-media'},
+ {name:'Mummo Al Khaleeji',short:'Mummo',title:'THE DISCOVERY GUIDE',quote:'I help hungry people find you!',story:'I’ve survived centuries of shifting sands. Now my golden compass helps hungry guests discover wonderful restaurants on Google.',img:'mummo.webp',service:'/services/google-business'}
 ];
-const beliefs=[
-  {n:'01',title:'Restaurant first.',description:'We start with the guest experience, the menu, the atmosphere, and the people behind your restaurant.'},
-  {n:'02',title:'Beautiful and useful.',description:'Pretty is good. Pretty that loads quickly, reads clearly and helps diners take action is even better.'},
-  {n:'03',title:'No complicated talk.',description:'You should always know what we are creating, why it matters, and what happens next.'}
+const offers=[
+ {icon:'▣',title:'Restaurant Websites',copy:'Beautiful, mobile-friendly websites that tell your story and turn visitors into guests.',href:'/services/restaurant-websites'},
+ {icon:'▤',title:'Digital Menus',copy:'Easy-to-update menus that make your dishes look irresistible.',href:'/services/digital-menus'},
+ {icon:'⌁',title:'Social Media with Ads',copy:'Creative content and targeted ads that help your restaurant get noticed.',href:'/services/social-media'},
+ {icon:'♧',title:'Google Business',copy:'Better visibility, reviews and local discovery for hungry diners.',href:'/services/google-business'}
 ];
-const steps=[
-  {num:'01',title:'We listen',text:'Tell us about your restaurant, your goals, and what feels missing from your online presence.'},
-  {num:'02',title:'We make it yours',text:'We plan and create the right digital experience around your identity—not a one-size-fits-all template.'},
-  {num:'03',title:'We help you launch',text:'We prepare the deliverables, get you ready to go live, and discuss the support your restaurant needs.'}
-];
-
 export default function About(){
- return <main className="gsa-page">
-  <section className="gsa-hero" aria-labelledby="gsa-title">
-   <div className="gsa-hero-scene" aria-hidden="true"/>
-   <div className="gsa-wrap gsa-hero-layout">
-    <div className="gsa-hero-copy">
-     <span className="gsa-eyebrow gsa-hero-eyebrow"><span aria-hidden="true">✦</span> A LITTLE ABOUT GULFSUFRA</span>
-     <h1 id="gsa-title">We Speak<br/><em>Restaurant.</em><br/>And Digital, Too.</h1>
-     <p>Great food deserves a great first impression—online and off. We're a restaurant-focused digital agency making websites, menus, social media and Google presence feel a whole lot easier.</p>
-     <div className="gsa-hero-actions">
-      <Link className="gsa-btn gsa-btn-gold" to="/services">Explore Our Services <span aria-hidden="true">→</span></Link>
-      <a className="gsa-btn gsa-btn-outline" href="#gsa-story">Get to Know Us <span aria-hidden="true">↗</span></a>
-     </div>
-     <div className="gsa-hero-foot"><span className="gsa-foot-spark">✦</span> Built for the restaurant world. Inspired by the Gulf.</div>
-    </div>
-    <div className="gsa-hero-visual" aria-label="Sufri, GulfSufra's cheerful mascot, welcoming restaurant owners">
-      <div className="gsa-hero-window" aria-hidden="true"/>
-      <img src={A+'sufri-presenting.webp'} alt="Sufri on his emerald-and-gold magic carpet" width="1210" height="920" fetchPriority="high"/>
-      <div className="gsa-hero-bubble">“Ahlan, habibi! You handle the flavour. We handle the digital.” <span aria-hidden="true">✦</span></div>
-    </div>
+ return <main className="kh-about">
+  <section className="kh-hero" aria-labelledby="kh-title">
+   <div className="kh-hero-shade"/>
+   <div className="kh-wrap kh-hero-grid">
+    <div className="kh-hero-text"><span className="kh-kicker">✦ &nbsp; ABOUT GULFSUFRA</span><h1 id="kh-title">How the<br/><em>Chaos</em> Began<span className="kh-tiny-star">✧</span></h1><p>GulfSufra is a magical family helping restaurants around the Gulf grow with personality, strategy, beauty and heart. We blend creativity, technology and a whole lot of soul to turn food businesses into unforgettable experiences.</p><a className="kh-text-link" href="#kh-story">Meet the family <span>↓</span></a></div>
+    <div className="kh-hero-character"><img src={A+'sufri.webp'} alt="Sufri Al Khaleeji welcoming visitors from his flying carpet"/><div className="kh-talk">Welcome to GulfSufra!<br/>Let me tell you how this beautiful chaos began... <span>✦</span></div></div>
    </div>
   </section>
-
-  <div className="gsa-page-body">
-   <section className="gsa-wrap gsa-intro" id="gsa-story" aria-labelledby="gsa-story-title">
-    <div className="gsa-intro-image"><img src={A+'services-golden-terrace.webp'} alt="Golden-hour Arabian Gulf restaurant terrace" loading="lazy"/><div className="gsa-image-note">GOOD FOOD. GREAT CONNECTIONS. <span>✦</span></div></div>
-    <div className="gsa-intro-copy"><span className="gsa-eyebrow">WHY WE EXIST</span><h2 id="gsa-story-title">Restaurants make memories.<br/><em>We make them easier to find.</em></h2><p>Your restaurant is more than tables and a menu. It's the smell of something delicious, the warm welcome at the door, and the little moments guests remember.</p><p>We believe that feeling should carry through every digital touchpoint—from the first Google search to the menu someone opens at their table.</p><div className="gsa-intro-signoff"><span aria-hidden="true">✳</span> Your story should still feel like <strong>your</strong> story.</div></div>
-   </section>
-
-   <section className="gsa-wrap gsa-values gsa-panel" aria-labelledby="gsa-values-title">
-    <div className="gsa-section-header"><div><span className="gsa-eyebrow">THE GULFSUFRA WAY</span><h2 id="gsa-values-title">A Little Magic.<br/><em>A Lot of Intention.</em></h2></div><p>No needless complexity, no generic restaurant experience. Just thoughtful digital work designed around what matters to your business.</p></div>
-    <div className="gsa-values-grid">{beliefs.map(b=><article className="gsa-value" key={b.n}><span>{b.n}</span><div className="gsa-value-line" aria-hidden="true"/><h3>{b.title}</h3><p>{b.description}</p></article>)}</div>
-   </section>
-
-   <section className="gsa-wrap gsa-crew" id="gsa-crew" aria-labelledby="gsa-crew-title">
-    <div className="gsa-section-header"><div><span className="gsa-eyebrow">OUR VERY UNUSUAL GUIDES</span><h2 id="gsa-crew-title">Meet the <em>Magic Makers.</em></h2></div><p>Four playful characters, four ways to help your restaurant shine. They're our brand's guides—each with a personality of their own.</p></div>
-    <div className="gsa-crew-grid">{characters.map(c=><article className={'gsa-crew-card gsa-crew-'+c.theme} key={c.name}>
-      <div className="gsa-crew-art"><img src={A+c.asset} alt={c.name+', GulfSufra '+c.personality} loading="lazy"/><span>{c.note}</span></div>
-      <div className="gsa-crew-info"><span>{c.personality}</span><h3>{c.name}</h3><h4>{c.service}</h4><p>{c.copy}</p><Link to={c.url} aria-label={'Explore '+c.service}>Meet {c.name} <span aria-hidden="true">↗</span></Link></div>
-    </article>)}</div>
-   </section>
-
-   <section className="gsa-wrap gsa-process gsa-panel" aria-labelledby="gsa-process-title">
-    <div className="gsa-section-header"><div><span className="gsa-eyebrow">NO MYSTERIOUS SPELLS REQUIRED</span><h2 id="gsa-process-title">How We Make<br/><em>Things Happen.</em></h2></div><p>Simple conversations, a clear plan, and a result that feels unmistakably like your restaurant.</p></div>
-    <div className="gsa-process-grid">{steps.map(s=><article key={s.num}><span className="gsa-process-number">{s.num}</span><h3>{s.title}</h3><p>{s.text}</p></article>)}</div>
-   </section>
-
-   <section className="gsa-wrap gsa-region" aria-labelledby="gsa-region-title"><div className="gsa-region-copy"><span className="gsa-eyebrow">ROOTED IN THE RESTAURANT WORLD</span><h2 id="gsa-region-title">A Gulf State of <em>Mind.</em></h2><p>Different cuisines. Different traditions. The same love for hospitality. We design with restaurants in Qatar, Bahrain and Kuwait in mind, blending local flavour with modern digital experiences.</p><div className="gsa-regions"><span>Qatar</span><span>Bahrain</span><span>Kuwait</span></div></div><div className="gsa-region-photo" role="img" aria-label="Warm evening restaurant terrace looking toward the Gulf skyline"/></section>
-
-   <section className="gsa-wrap gsa-cta" aria-labelledby="gsa-cta-title"><div className="gsa-cta-content"><span className="gsa-eyebrow">NOW, ABOUT YOUR RESTAURANT...</span><h2 id="gsa-cta-title">You've Got the Flavour.<br/><em>We've Got Ideas.</em></h2><p>Tell us what you're dreaming up. We'll help you find the digital solution that makes sense for your restaurant.</p><Link to="/contact" className="gsa-btn gsa-btn-gold">Let's Make Something Good <span aria-hidden="true">→</span></Link></div><img src={A+'sufri-approval.webp'} alt="Sufri giving a thumbs-up on his carpet" loading="lazy"/></section>
+  <div className="kh-wrap kh-content">
+   <section className="kh-story kh-panel" id="kh-story" aria-labelledby="kh-story-title"><div className="kh-story-art"><img src={A+'sufri-thoughtful.webp'} alt="Sufri Al Khaleeji reflecting on his journey"/></div><div className="kh-story-copy"><span className="kh-kicker">✦ &nbsp; HOW THE CHAOS BEGAN</span><h2 id="kh-story-title">Sufri Al Khaleeji <em>— The One Who Kept Going</em></h2><blockquote>“People think magic always looks grand. Loud. Effortless. Shiny.<br/>Mine didn’t start that way.”</blockquote><div className="kh-story-columns"><div><p>I wasn’t the strongest. I wasn’t the loudest. I didn’t always have the answers. There were days I felt small, lost, and unsure if I was ever going to become something more.</p><p>I learned that real magic isn’t about never struggling. It’s about choosing not to give up, even when the road gets hard.</p></div><div><p>I stayed soft without becoming weak. I stayed kind without disappearing. I believed in my vision even when it took time. And I built something anyway.</p><p>That something became GulfSufra — a team of magical minds, each with a special gift, coming together to help restaurants grow with care, personality, strategy, beauty, direction and soul.</p><strong>And if you’ve come this far, maybe your story is just getting started too.</strong></div></div></div></section>
+   <section className="kh-team" aria-labelledby="kh-team-title"><div className="kh-heading"><span aria-hidden="true">✦ ─ ✧</span><div><h2 id="kh-team-title">Meet the <em>Mischief Makers</em></h2><p>A MAGICAL TEAM. A BIGGER PURPOSE.</p></div><span aria-hidden="true">✧ ─ ✦</span></div><p className="kh-heading-sub">Different personalities. Different powers. The same mission — to help restaurants shine. Meet the four magical minds Sufri brought together.</p><div className="kh-team-grid">{cast.map(c=><article className="kh-person" key={c.name}><div className={'kh-person-art kh-art-'+c.short.toLowerCase()}><img src={A+c.img} loading="lazy" alt={c.name}/></div><div className="kh-person-copy"><h3>{c.short}</h3><span>{c.title}</span><p className="kh-quote">“{c.quote}”</p><p>{c.story}</p>{c.service&&<Link to={c.service} aria-label={'Explore '+c.short+'’s service'} className="kh-card-arrow">↗</Link>}<small>{c.name}</small></div></article>)}</div></section>
+   <section className="kh-duo" aria-label="What drives GulfSufra"><article className="kh-belief kh-belief-dark"><img src={A+'lamp.webp'} alt="" loading="lazy"/><div className="kh-belief-copy"><h2>The Magic Behind the Madness</h2><p>We exist to help restaurants grow with personality, strategy, beauty and heart. We combine creativity, technology and real-world experience to make sure every restaurant we work with feels seen, supported and celebrated.</p></div></article><article className="kh-belief kh-belief-world"><img className="kh-crescent" src="/assets/about-crescent.webp" alt=""/><img className="kh-cloud" src="/assets/about-cloud.webp" alt=""/><div className="kh-belief-copy"><h2>The World We’re Cooking Up</h2><p>A Gulf full of thriving, beloved restaurants — where great food meets great storytelling, and every restaurant has the tools, visibility and digital presence to grow, connect and create unforgettable experiences.</p></div></article></section>
+   <section className="kh-duo kh-duo-low" aria-label="Our approach"><article className="kh-mini kh-mini-rules"><img className="kh-mini-emblem" src="/assets/about-ornament.webp" alt=""/><div><h2>The Rules of Our Magic</h2><ul><li>Be kind, always.</li><li>Lead with creativity.</li><li>Make it beautiful and useful.</li><li>Keep learning, always.</li><li>Celebrate people and their food.</li><li>Turn challenges into opportunities.</li></ul></div></article><article className="kh-mini kh-mini-arch"><img className="kh-mini-emblem" src="/assets/about-seal.webp" alt=""/><div><h2>We’re Not Your Average Agency</h2><p>We’re restaurant people, brand people, tech people and dreamers. We understand the heart behind your food, and bring a rare mix of strategy, creativity and real-world experience. With us, you get a team that genuinely cares, communicates clearly and makes the journey fun.</p></div></article></section>
+   <section className="kh-services kh-panel" aria-labelledby="kh-services-title"><div className="kh-services-top"><h2 id="kh-services-title">Here’s Where the <em>Magic Happens</em> <span>✧</span></h2><p>Beautiful tools. Real results. Happier restaurants.</p></div><div className="kh-services-grid">{offers.map((o,i)=><Link className="kh-service" to={o.href} key={o.title}><div className="kh-service-symbol">{o.icon}</div><div><h3>{o.title}</h3><p>{o.copy}</p></div><span className="kh-service-go">→</span></Link>)}</div></section>
+   <section className="kh-cta" aria-labelledby="kh-cta-title"><img className="kh-family" src={A+'family.webp'} alt="The Al Khaleeji family: Sufri, Jinni, Tabikh, Marina and Mummo"/><div className="kh-cta-copy"><span>READY TO BE PART OF OUR STORY?</span><h2 id="kh-cta-title">Let’s Make Something<br/><em>Delicious Together</em> ✦</h2><p>Whether you’re starting fresh or ready to take your restaurant to the next level, we’re here to help you grow — with heart.</p><Link className="kh-cta-button" to="/contact">Let’s Grow Together <span>→</span></Link></div></section>
   </div>
  </main>;
 }

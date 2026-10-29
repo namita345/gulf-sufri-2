@@ -4,10 +4,10 @@ import './google-business.css';
 const ASSETS='/assets/';
 const countries=['Qatar','Bahrain','Kuwait','Saudi Arabia','United Arab Emirates','Oman','Other'];
 const benefits=[
-  {n:'01',icon:'pin',title:'A Profile Worth Finding',desc:'Set up or refresh your restaurant’s Google Business Profile with the essentials that help people recognize your business.'},
-  {n:'02',icon:'clock',title:'Details Diners Can Trust',desc:'Keep your location, hours, phone, website, menu and dining options organized and accurate.'},
-  {n:'03',icon:'camera',title:'Photos That Tell Your Story',desc:'Showcase the dishes and atmosphere that make your place special, with thoughtful profile photos and updates.'},
-  {n:'04',icon:'star',title:'Reviews & Reputation',desc:'Build a thoughtful approach to authentic guest feedback and professional review responses.'}
+  {n:'01',icon:'pin',art:'gmb-feature-find.webp',title:'A Profile Worth Finding',desc:'Set up or refresh your restaurant’s Google Business Profile with the essentials that help people recognize your business.'},
+  {n:'02',icon:'clock',art:'gmb-feature-trust.webp',title:'Details Diners Can Trust',desc:'Keep your location, hours, phone, website, menu and dining options organized and accurate.'},
+  {n:'03',icon:'camera',art:'gmb-feature-photo.webp',title:'Photos That Tell Your Story',desc:'Showcase the dishes and atmosphere that make your place special, with thoughtful profile photos and updates.'},
+  {n:'04',icon:'star',art:'gmb-feature-reviews.webp',title:'Reviews & Reputation',desc:'Build a thoughtful approach to authentic guest feedback and professional review responses.'}
 ];
 const details=[
   {key:'details',heading:'The essentials, beautifully in place.',tag:'01 / PROFILE DETAILS',body:'Restaurant name, category, opening hours, contact details, website, menus and useful attributes — checked for clarity and consistency.',items:['Business information','Menu and booking links','Relevant dining attributes']},
@@ -88,6 +88,11 @@ export default function GoogleBusiness(){
   const [inquiry,setInquiry]=React.useState(false);
   const [detail,setDetail]=React.useState(0);
   const [faq,setFaq]=React.useState(-1);
+  const [compassActive,setCompassActive]=React.useState(false);
+  const [compassReplay,setCompassReplay]=React.useState(0);
+  const compassTimer=React.useRef(null);
+  React.useEffect(()=>()=>window.clearTimeout(compassTimer.current),[]);
+  const activateCompass=()=>{if(compassActive)return;setCompassActive(true);setCompassReplay(n=>n+1);window.clearTimeout(compassTimer.current);compassTimer.current=window.setTimeout(()=>setCompassActive(false),4300)};
   const close=React.useCallback(()=>setInquiry(false),[]);
   return <main className="gmb-page">
     <section className="gmb-hero" aria-labelledby="gmb-title">
@@ -99,11 +104,10 @@ export default function GoogleBusiness(){
           <div className="gmb-actions"><button type="button" className="gmb-button gmb-gold" onClick={()=>setInquiry(true)}>Get Found on Google <Icon name="arrow" size={18}/></button><a href="#gmb-profile" className="gmb-button gmb-ghost">See What We Improve <span aria-hidden="true">↗</span></a></div>
           <div className="gmb-trust"><span><Icon name="check" size={16}/> Profile essentials</span><span><Icon name="check" size={16}/> Restaurant-focused</span><span><Icon name="check" size={16}/> Gulf markets</span></div>
         </div>
-        <div className="gmb-hero-visual" aria-label="Mummo presents a sample restaurant Google Business listing">
-          <div className="gmb-hero-glow" aria-hidden="true"/>
-          <div className="gmb-hero-mock"><img src={ASSETS+'google-business-new.webp'} alt="Illustrative Google Business Profile example displayed on laptop and phone" width="1640" height="1024" fetchPriority="high"/></div>
-          <small className="gmb-hero-illustrative">Illustrative profile concept</small>
-          <img className="gmb-mummo" src={ASSETS+'mummo-services.png'} alt="Mummo, GulfSufra's cheerful mummy guide" width="1270" height="1215" fetchPriority="high"/>
+        <div className="gmb-hero-visual" aria-label="Mummo shows a sample restaurant Google Business profile on a laptop and phone">
+          <img className="gmb-hero-laptop" src={ASSETS+'gmb-laptop.webp'} alt="Example Olive and Ember restaurant Google Business listing on a laptop" fetchPriority="high"/>
+          <img className="gmb-hero-phone" src={ASSETS+'gmb-phone.webp'} alt="The same restaurant listing on a smartphone" fetchPriority="high"/>
+          <img className="gmb-mummo" src={ASSETS+'gmb-mummo-hero.webp'} alt="Mummo cheerfully presenting the restaurant listing" fetchPriority="high"/>
           <div className="gmb-speech">“I've been around for centuries. Your restaurant shouldn't be hard to find!” <span>✦</span></div>
         </div>
       </div>
@@ -112,21 +116,33 @@ export default function GoogleBusiness(){
     <div className="gmb-sections">
       <section className="gmb-shell gmb-panel" aria-labelledby="gmb-benefits-title">
         <div className="gmb-heading"><div><span className="gmb-eyebrow">BE SEEN FOR THE RIGHT REASONS</span><h2 id="gmb-benefits-title">A Better Profile.<br/><em>A Better First Impression.</em></h2></div><p>Before guests walk through your doors, your listing often introduces your restaurant. Let's make that introduction count.</p></div>
-        <div className="gmb-benefits">{benefits.map(b=><article className="gmb-benefit" key={b.n}><div className="gmb-benefit-top"><span>{b.n}</span><i><Icon name={b.icon} size={27}/></i></div><h3>{b.title}</h3><p>{b.desc}</p></article>)}</div>
+        <div className="gmb-benefits">{benefits.map(b=><article className="gmb-benefit" key={b.n}><div className="gmb-benefit-top"><span>{b.n}</span><i><Icon name={b.icon} size={25}/></i></div><h3>{b.title}</h3><p>{b.desc}</p></article>)}</div>
       </section>
 
       <section className="gmb-shell gmb-profile" id="gmb-profile" aria-labelledby="gmb-profile-title">
         <div className="gmb-heading gmb-profile-heading"><div><span className="gmb-eyebrow">THAT FIRST GOOGLE IMPRESSION</span><h2 id="gmb-profile-title">From a Search<br/><em>to Your Table.</em></h2></div><p>When someone discovers your restaurant, it's the small details that make the next step easy.</p></div>
-        <div className="gmb-profile-display"><div className="gmb-profile-art"><img src={ASSETS+'google-business-new.webp'} alt="Illustrative restaurant Google listing displayed on desktop and mobile" loading="lazy"/><span>Sample concept · not a client listing</span></div><div className="gmb-profile-info"><span className="gmb-mini-label">WHAT WE PAY ATTENTION TO</span><div className="gmb-detail-tabs" role="tablist" aria-label="Profile focus areas">{details.map((d,i)=><button key={d.key} type="button" role="tab" aria-selected={detail===i} className={detail===i?'is-active':''} onClick={()=>setDetail(i)}>{['Details','Photos','Reputation'][i]}</button>)}</div><div className="gmb-detail-content" role="tabpanel"><small>{details[detail].tag}</small><h3>{details[detail].heading}</h3><p>{details[detail].body}</p><ul>{details[detail].items.map(item=><li key={item}><Icon name="check" size={16}/>{item}</li>)}</ul></div><button className="gmb-text-cta" type="button" onClick={()=>setInquiry(true)}>Let's improve my listing <Icon name="arrow" size={17}/></button></div></div>
+        <div className="gmb-profile-display"><div className="gmb-profile-art"><img src={ASSETS+'gmb-device-showcase.webp'} alt="Laptop and phone showing an illustrative restaurant profile" loading="lazy"/><span>Illustrative restaurant profile concept</span></div><div className="gmb-profile-info"><span className="gmb-mini-label">WHAT WE PAY ATTENTION TO</span><div className="gmb-detail-tabs" role="tablist" aria-label="Profile focus areas">{details.map((d,i)=><button key={d.key} type="button" role="tab" aria-selected={detail===i} className={detail===i?'is-active':''} onClick={()=>setDetail(i)}>{['Details','Photos','Reputation'][i]}</button>)}</div><div className="gmb-detail-content" role="tabpanel"><small>{details[detail].tag}</small><h3>{details[detail].heading}</h3><p>{details[detail].body}</p><ul>{details[detail].items.map(item=><li key={item}><Icon name="check" size={16}/>{item}</li>)}</ul></div><button className="gmb-text-cta" type="button" onClick={()=>setInquiry(true)}>Let's improve my listing <Icon name="arrow" size={17}/></button></div></div>
       </section>
 
-      <section className="gmb-shell gmb-reasons gmb-panel" aria-labelledby="gmb-reasons-title"><div className="gmb-reasons-text"><span className="gmb-eyebrow">MORE THAN A MAP PIN</span><h2 id="gmb-reasons-title">Your Story Deserves<br/><em>to Show Up.</em></h2><p>Someone is searching for dinner, a family celebration or their next favourite spot. Clear business details, fresh photos and an authentic profile help them decide whether your place is right for them.</p><div className="gmb-reasons-pills"><span>Menus</span><span>Opening hours</span><span>Photos</span><span>Directions</span><span>Guest reviews</span></div></div><div className="gmb-reasons-visual"><div className="gmb-reasons-caption">A strong restaurant profile brings your information together.</div><img src={ASSETS+'google-business-mockup.webp'} alt="Illustrative Google restaurant profile example with food, map and restaurant information" loading="lazy"/></div></section>
+      <section className="gmb-shell gmb-reasons gmb-panel" aria-labelledby="gmb-reasons-title"><div className="gmb-reasons-text"><span className="gmb-eyebrow">MORE THAN A MAP PIN</span><h2 id="gmb-reasons-title">Your Story Deserves<br/><em>to Show Up.</em></h2><p>Someone is searching for dinner, a family celebration or their next favourite spot. Clear business details, fresh photos and an authentic profile help them decide whether your place is right for them.</p><div className="gmb-reasons-pills"><span>Menus</span><span>Opening hours</span><span>Photos</span><span>Directions</span><span>Guest reviews</span></div></div><div className="gmb-reasons-visual"><img className="gmb-promo-bg" src={ASSETS+'gmb-promo-bg.webp'} alt="Inviting restaurant terrace and city backdrop" loading="lazy"/><div className="gmb-promo-poster"><span>OLIVE & EMBER</span><strong>Good Food<br/>Brings People<br/>Together.</strong><small>Your next favorite table is waiting.</small></div><div className="gmb-promo-card"><div className="gmb-promo-search"><span className="gmb-google-g">G</span> best Mediterranean restaurant near me <span>⌕</span></div><strong>Olive & Ember</strong><span className="gmb-stars">★★★★★</span><div className="gmb-promo-photo"/><div className="gmb-promo-actions"><span>Call</span><span>Directions</span><span>Website</span><span>Save</span></div><p>Authentic flavors. Beautiful moments. Discover your next favorite table.</p></div></div></section>
 
-      <section className="gmb-shell gmb-process" aria-labelledby="gmb-process-title"><div className="gmb-heading"><div><span className="gmb-eyebrow">MUMMO MAKES IT SIMPLE</span><h2 id="gmb-process-title">Three Steps.<br/><em>No Ancient Mystery.</em></h2></div><p>From your first hello to an organized Google Business Profile, we've kept the process straightforward.</p></div><div className="gmb-process-grid">{steps.map(s=><article key={s.n}><span className="gmb-step-number">{s.n}</span><h3>{s.title}</h3><p>{s.desc}</p></article>)}</div></section>
+      <section className="gmb-shell gmb-process gmb-process-magic" aria-labelledby="gmb-process-title">
+        <div className="gmb-magic-top">
+          <div><span className="gmb-eyebrow">MUMMO MAKES IT SIMPLE</span><h2 id="gmb-process-title">Three Steps.<br/><em>No Ancient Mystery.</em></h2><p>Finding your next guest shouldn't require an ancient spell. Shake Mummo's compass and watch the path to a stronger profile unfold.</p></div>
+          <div className="gmb-magic-controls"><span>☝ <small>Tap the compass</small></span><b>→</b><span>〰 <small>Sand flows</small></span><b>→</b><span>✦ <small>Steps light up</small></span></div>
+        </div>
+        <div className={'gmb-magic-scene '+(compassActive?'is-running':'')+' gmb-magic-run-'+compassReplay}>
+          <div className="gmb-magic-dunes" aria-hidden="true"/>
+          <button className="gmb-compass-button" type="button" onClick={activateCompass} aria-label="Shake the magical compass and reveal the three steps" disabled={compassActive}><img src={ASSETS+'gmb-compass.webp'} alt="Golden emerald magical compass"/><span>{compassActive?'Finding the way…':'✦ Shake the Compass'}</span></button>
+          <div className="gmb-magic-sand" aria-hidden="true"><img src={ASSETS+'gmb-sand.webp'} alt=""/></div>
+          <div className="gmb-magic-mummo"><div className="gmb-magic-speech">“A little visibility goes a long way, habibi.” ✦</div><img src={ASSETS+'gmb-promo-mummo.webp'} alt="Mummo showing the way" loading="lazy"/></div>
+        </div>
+        <div className="gmb-process-grid">{steps.map((s,i)=><article key={s.n} className={'gmb-magic-step gmb-magic-step-'+i}><span className="gmb-step-number">{s.n}</span><span className="gmb-magic-step-icon"><Icon name={['pin','check','star'][i]} size={23}/></span><h3>{s.title}</h3><p>{s.desc}</p></article>)}</div>
+      </section>
 
       <section className="gmb-shell gmb-faq" aria-labelledby="gmb-faq-title"><div className="gmb-faq-intro"><span className="gmb-eyebrow">A FEW GOOD QUESTIONS</span><h2 id="gmb-faq-title">Answers Worth<br/><em>Unwrapping.</em></h2><p>All the practical details, without the ancient riddles.</p></div><div className="gmb-faq-list">{questions.map(([q,a],i)=><div className="gmb-faq-item" key={q}><button type="button" aria-expanded={faq===i} onClick={()=>setFaq(faq===i?-1:i)}>{q}<span aria-hidden="true">{faq===i?'−':'+'}</span></button>{faq===i&&<p>{a}</p>}</div>)}</div></section>
 
-      <section className="gmb-shell gmb-final" aria-labelledby="gmb-final-title"><div className="gmb-final-copy"><span className="gmb-eyebrow">READY TO BE DISCOVERED?</span><h2 id="gmb-final-title">Put Your Restaurant<br/><em>On the Map.</em></h2><p>We'll help your Google listing look as inviting as your restaurant. Tell us what you're working with, and we'll take it from there.</p><button type="button" className="gmb-button gmb-gold" onClick={()=>setInquiry(true)}>Let's Get Found <Icon name="arrow" size={18}/></button></div><img src={ASSETS+'mummo-services.png'} alt="Mummo cheering you on" loading="lazy"/><div className="gmb-final-speech">“A little visibility goes a long way, habibi!”</div></section>
+      <section className="gmb-shell gmb-final" aria-labelledby="gmb-final-title"><div className="gmb-final-copy"><span className="gmb-eyebrow">READY TO BE DISCOVERED?</span><h2 id="gmb-final-title">Put Your Restaurant<br/><em>On the Map.</em></h2><p>We'll help your Google listing look as inviting as your restaurant. Tell us what you're working with, and we'll take it from there.</p><button type="button" className="gmb-button gmb-gold" onClick={()=>setInquiry(true)}>Let's Get Found <Icon name="arrow" size={18}/></button></div><img src={ASSETS+'gmb-cta-mummo.webp'} alt="Mummo cheering you on" loading="lazy"/><div className="gmb-final-speech">“A little visibility goes a long way, habibi!”</div></section>
     </div>
     {inquiry&&<Inquiry onClose={close}/>}
   </main>;

@@ -1,1 +1,1 @@
-import React from 'react'; import { createRoot } from 'react-dom/client'; import App from './App.jsx'; import '../styles.css'; import './pages/placeholder.css'; createRoot(document.getElementById('root')).render(<App/>);
+import React from 'react'; import { createRoot, hydrateRoot } from 'react-dom/client'; import App from './App.jsx'; import '../styles.css'; import './pages/placeholder.css'; const root=document.getElementById('root'); if(root.dataset.prerendered==='true'){hydrateRoot(root,<App/>)}else{createRoot(root).render(<App/>)}

@@ -463,3 +463,7 @@
   .gdm-page .gdm-hero-book{width:59%;right:-3%;}
   .gdm-page .gdm-hero-bubble{width:144px;top:-37px;right:0;}
 }
+
+/* Present complete menu concepts without cropping labels or edges. */
+.gdm-page .gdm-template-image>img{object-fit:contain;background:#fffaf2}
+@media(max-width:560px){.gdm-page .gdm-template-image>img{object-fit:contain!important}.gdm-page .gdm-template-rail{scroll-padding-inline:14px}}

@@ -12,8 +12,8 @@ const services = [
 ];
 const showcase = [
   {title:'The Signature Dish',type:'Food-first content',image:'gsm-post-one.webp',description:'Make the food the main event.'},
-  {title:'The Restaurant Story',type:'Atmosphere & storytelling',image:'gsm-post-two.webp',description:'Help guests picture their next visit.'},
-  {title:'The Fresh Moment',type:'Seasonal promotions',image:'gsm-post-three.webp',description:'Give them something worth saving.'},
+  {title:'The Restaurant Story',type:'Atmosphere & storytelling',image:'gsm-portfolio-cafe.webp',description:'Help guests picture their next visit.'},
+  {title:'The Fresh Moment',type:'Seasonal promotions',image:'gsm-portfolio-seafood.webp',description:'Give them something worth saving.'},
 ];
 
 function Modal({children,title,onClose}) {
@@ -171,7 +171,7 @@ export default function SocialMedia(){
         <div className="gsm-profile-visual"><img src={A+'gsm-feed-collage.webp'} alt="Illustrative restaurant Instagram profile with cohesive branded food posts" loading="lazy"/></div></section>
 
       <section className="gsm-shell gsm-panel gsm-process" id="gsm-process" aria-labelledby="gsm-process-title"><div className="gsm-process-head"><span className="gsm-label">EASY AS ONE, TWO, SEA</span><h2 id="gsm-process-title">How Marina<br/><em>Makes Waves.</em></h2><p>No complicated treasure maps here. Just a simple plan for beautiful, consistent content.</p></div>
-        <div className="gsm-process-steps"><article><img className="gsm-process-icon" src={A+'gsm-process-1.webp'} alt="" loading="lazy"/><span>01</span><h3>Share Your Story</h3><p>We get to know your food, audience, brand and goals.</p></article><article><img className="gsm-process-icon" src={A+'gsm-process-2.webp'} alt="" loading="lazy"/><span>02</span><h3>We Create the Content</h3><p>We plan the creative direction, post designs and captions with you.</p></article><article><img className="gsm-process-icon" src={A+'gsm-process-3.webp'} alt="" loading="lazy"/><span>03</span><h3>Your Brand Shows Up</h3><p>With an agreed content plan, your restaurant stays present and recognizable.</p></article></div>
+        <div className="gsm-process-steps"><article><div className="gsm-process-top"><img className="gsm-process-icon" src={A+'gsm-process-1.webp'} alt="" loading="lazy"/><span className="gsm-process-number">01</span></div><h3>Share Your Story</h3><p>We get to know your food, audience, brand and goals.</p></article><article><div className="gsm-process-top"><img className="gsm-process-icon" src={A+'gsm-process-2.webp'} alt="" loading="lazy"/><span className="gsm-process-number">02</span></div><h3>We Create the Content</h3><p>We plan the creative direction, post designs and captions with you.</p></article><article><div className="gsm-process-top"><img className="gsm-process-icon" src={A+'gsm-process-3.webp'} alt="" loading="lazy"/><span className="gsm-process-number">03</span></div><h3>Your Brand Shows Up</h3><p>With an agreed content plan, your restaurant stays present and recognizable.</p></article></div>
       </section>
 
       <section className="gsm-shell gsm-final" aria-labelledby="gsm-final-title"><div className="gsm-final-copy"><span className="gsm-label">READY TO MAKE A SPLASH?</span><h2 id="gsm-final-title">Let's Give Your Restaurant<br/><em>Something to Talk About.</em></h2><p>Your best dishes deserve more than a passing glance. Tell us about your restaurant and let’s make a feed worth following.</p><button type="button" className="gsm-btn gsm-btn-gold" onClick={()=>setInquiry(true)}>Get Started With Marina <span>→</span></button></div>

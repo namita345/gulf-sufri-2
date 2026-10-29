@@ -890,3 +890,7 @@
   .jrw-final .jrw-final-lamp-spark {animation:none!important}
   .jrw-final .jrw-final-lamp-spark {opacity:.6}
 }
+
+/* Avoid device and character art overflowing narrow screens; demo previews preserve the whole image. */
+.jrw-template-img>img{object-fit:contain!important;background:#f6eee4}
+@media(max-width:560px){.jrw-hero-visual{overflow:hidden}.jrw-devices{max-width:85%;right:-4%;width:310px}.jrw-jinni{left:0;width:min(57%,230px)}.jrw-hero-bubble{left:auto;right:4%;top:8px;width:min(43%,155px)}.jrw-template-img{aspect-ratio:4/3}.jrw-template-img>img{object-fit:contain!important}.jrw-preview-dialog{max-width:calc(100vw - 24px)}}

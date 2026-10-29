@@ -5,9 +5,9 @@ import './restaurant-websites.css';
 
 const A = '/assets/';
 const TEMPLATES = [
-  { id:'spice-house', name:'The Spice House', style:'Dark · Elegant · Bold', image:'template-spice-house.webp', description:'A dramatic, luxury look for destination dining and signature cuisine.', jinni:'jinni-template-spice.webp', quip:'Dark, dramatic, expensive-looking. Finally, a website with standards.' },
+  { id:'spice-house', name:'The Spice House', style:'Dark · Elegant · Bold', image:'template-spice-house-rose.webp', description:'A dramatic, luxury look for destination dining and signature cuisine.', jinni:'jinni-template-spice.webp', quip:'Dark, dramatic, expensive-looking. Finally, a website with standards.' },
   { id:'olive-thyme', name:'Olive & Thyme', style:'Clean · Modern · Fresh', image:'template-olive-thyme.webp', description:'Sunlit, minimal design for modern cafés and Mediterranean concepts.', jinni:'jinni-template-olive.webp', quip:'Elegant. Minimal. See? You don’t need 47 colors to look expensive.' },
-  { id:'al-yamama', name:'Al Yamama', style:'Traditional · Luxury · Warm', image:'template-al-yamama.webp', description:'Timeless Arabian hospitality, with rich green and golden details.', jinni:'jinni-template-yamama.webp', quip:'Traditional doesn’t mean outdated, darling. This isn’t 2009.' },
+  { id:'al-yamama', name:'Al Yamama', style:'Traditional · Luxury · Warm', image:'template-al-yamama-plum.webp', description:'Timeless Arabian hospitality, with rich green and golden details.', jinni:'jinni-template-yamama.webp', quip:'Traditional doesn’t mean outdated, darling. This isn’t 2009.' },
   { id:'ocean-grill', name:'Ocean Grill', style:'Modern · Clean · Coastal', image:'template-ocean-grill.webp', description:'Fresh ocean blue with refined seafood and coastal imagery.', jinni:'jinni-template-ocean.webp', quip:'Coastal luxury without the tacky clip-art fish. You’re welcome.' },
 ];
 

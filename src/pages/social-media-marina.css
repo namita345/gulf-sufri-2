@@ -84,3 +84,17 @@
 @media(max-width:800px){.gsm-page .gsm-magic-bubbles{left:8%;width:65%;top:2%}.gsm-page .gsm-magic-bubbles .gsm-orb{width:clamp(74px,13vw,108px)}}
 @media(max-width:560px){.gsm-page .gsm-magic-bubbles{left:2%;top:1%;width:72%;transform:none}.gsm-page .gsm-magic-bubbles .gsm-orb{width:clamp(57px,17vw,77px)}.gsm-page .gsm-magic-bubbles .gsm-orb-instagram{left:33%;top:3%}.gsm-page .gsm-magic-bubbles .gsm-orb-meta{left:0%;top:28%}.gsm-page .gsm-magic-bubbles .gsm-orb-tiktok{left:64%;top:25%}.gsm-page .gsm-magic-bubbles .gsm-orb-whatsapp{left:29%;top:59%}}
 @media(prefers-reduced-motion:reduce){.gsm-page .gsm-magic-art.is-shaking .gsm-magic-shell{animation:none!important}.gsm-page .gsm-magic-bubbles .gsm-orb{transition:none!important}}
+
+/* Mobile refinements — keep Marina's original character assets untouched. */
+.gsm-page .gsm-showcase-image{aspect-ratio:1 / 1;height:auto;background:#f8f0e4}
+.gsm-page .gsm-showcase-image img{width:100%;height:100%;object-fit:contain;background:#f8f0e4}
+.gsm-page .gsm-process-steps article{display:flex;flex-direction:column;align-items:center}
+.gsm-page .gsm-process-top{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:96px}
+.gsm-page .gsm-process-top .gsm-process-icon{width:min(85px,45%);height:85px;margin:0;object-fit:contain}
+.gsm-page .gsm-process-steps .gsm-process-top .gsm-process-number{flex:none;display:grid;place-items:center;width:45px;height:45px;border-radius:50%;background:#0d463a;color:#f2c879;font:600 19px var(--serif);margin:0}
+.gsm-page .gsm-process-steps article:nth-child(even) .gsm-process-top{flex-direction:row-reverse}
+.gsm-page .gsm-hero-art,.gsm-page .gsm-magic-art{max-width:100%}
+.gsm-page .gsm-final-bubble{right:5%;top:18px;left:auto;bottom:auto;max-width:165px}
+@media(max-width:800px){.gsm-page .gsm-hero-art{overflow:hidden}.gsm-page .gsm-hero-posts{right:0;width:min(44%,300px)}.gsm-page .gsm-marina{left:0;width:min(70%,460px)}.gsm-page .gsm-hero-crab{right:0;width:min(28%,160px)}.gsm-page .gsm-crab-bubble{right:0}.gsm-page .gsm-magic-art{overflow:hidden}.gsm-page .gsm-magic-marina{right:0}.gsm-page .gsm-final{overflow:hidden}.gsm-page .gsm-final-bubble{right:7%;top:auto;bottom:130px;left:auto;max-width:155px}.gsm-page .gsm-final>img{right:-12px;bottom:-75px}}
+@media(max-width:560px){.gsm-page .gsm-showcase-image{height:auto;aspect-ratio:1}.gsm-page .gsm-hero-art{height:355px}.gsm-page .gsm-marina{left:0;width:69%}.gsm-page .gsm-hero-posts{right:2%;top:19%;width:43%}.gsm-page .gsm-marina-bubble{top:4px;right:1%;width:140px}.gsm-page .gsm-crab-bubble{bottom:31%;right:0;width:112px}.gsm-page .gsm-magic-quote{right:1%;top:7px}.gsm-page .gsm-final{min-height:630px;padding-bottom:300px}.gsm-page .gsm-final>img{right:-6px;bottom:-75px;width:min(84%,320px)}.gsm-page .gsm-final-bubble{bottom:156px;right:auto;left:10px;top:auto;width:145px;font-size:12px}.gsm-page .gsm-process-top{min-height:83px}.gsm-page .gsm-process-top .gsm-process-icon{height:78px;width:78px}}
+@media(max-width:380px){.gsm-page .gsm-hero-art{height:305px}.gsm-page .gsm-marina-bubble{width:120px;font-size:10px}.gsm-page .gsm-crab-bubble{width:100px;font-size:10px}.gsm-page .gsm-final{padding-bottom:280px}.gsm-page .gsm-final-bubble{bottom:130px;width:127px}}

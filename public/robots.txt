@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Explicit AI crawler allowances (the general Allow rule already permits them).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://gulfsufra.com/sitemap.xml

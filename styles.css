@@ -1549,3 +1549,30 @@
  .nav.gulf-glass-nav .logo{max-width:140px}
 }
 @media(prefers-reduced-motion:reduce){.nav.gulf-glass-nav{transition:none!important}}
+
+/* Cross-page responsive safety: preserves individual page layouts while
+   ensuring long text/media and the shared shell fit narrow touch screens. */
+@media (max-width: 950px) {
+  body, #root { width:100%; max-width:100%; }
+  .nav.gulf-glass-nav nav.nav-open { max-height:calc(100dvh - 90px); overflow-y:auto; overscroll-behavior:contain; }
+  .site-footer .footer-top > * { min-width:0; }
+}
+@media (max-width: 700px) {
+  .site-footer .footer-bottom { flex-wrap:wrap; gap:12px; }
+  .site-footer .footer-top, .site-footer .footer-bottom { min-width:0; }
+  .site-footer .footer-contact a { overflow-wrap:anywhere; }
+  .hero-content { max-width:calc(100vw - 32px); }
+  .services-content { max-width:calc(100vw - 28px); }
+}
+@media(max-width:370px){
+  .nav.gulf-glass-nav, .nav.gulf-glass-nav.gulf-nav-scrolled { width:calc(100% - 12px); }
+  .nav.gulf-glass-nav .logo img { max-width:112px; }
+  .site-footer { margin-inline:5px; padding-inline:16px; }
+}
+
+/* Site-wide narrow-screen safety without changing established brand styles. */
+html{max-width:100%;overflow-x:clip}
+body,#root{min-width:0;max-width:100%;overflow-x:clip}
+img,svg,video{max-width:100%}
+@media(max-width:560px){button,a,input,select,textarea{max-width:100%}h1,h2,h3,p{overflow-wrap:break-word}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
